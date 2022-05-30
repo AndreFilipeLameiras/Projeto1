@@ -5,13 +5,9 @@ import android.provider.BaseColumns
 
 class TabelaBDMotorizacoes (val db: SQLiteDatabase) {
     fun cria(){
-        db.execSQL("CREATE TABLE $NOME (${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "$CAMPO_POTENCIA TEXT NOT NULL, " +
-                "$CAMPO_TIPO_DE_CAIXA TEXT NOT NULL, " +
-                "$CAMPO_TIPO_DE_TRACAO TEXT NOT NULL, " +
-                "$CAMPO_TIPO_DE_COMBUSTIVEL TEXT NOT NULL, " +
-                "$CAMPO_CONSUMO TEXT NOT NULL " +
-                "$CAMPO_EMISSOES TEXT NOT NULL)")
+        db.execSQL("CREATE TABLE $NOME (${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT, $CAMPO_POTENCIA TEXT NOT NULL, $CAMPO_TIPO_DE_CAIXA TEXT NOT NULL, $CAMPO_TIPO_DE_TRACAO TEXT NOT NULL, $CAMPO_TIPO_DE_COMBUSTIVEL TEXT NOT NULL, $CAMPO_CONSUMO INTEGER NOT NULL, $CAMPO_EMISSOES INTEGER NOT NULL)")
+
+
     }
 
     companion object{
