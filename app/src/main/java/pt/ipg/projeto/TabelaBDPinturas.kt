@@ -3,7 +3,7 @@ package pt.ipg.projeto
 import android.database.sqlite.SQLiteDatabase
 import android.provider.BaseColumns
 
-class Pinturas (val db: SQLiteDatabase) {
+class TabelaBDPinturas (val db: SQLiteDatabase) {
     fun cria(){
         db.execSQL("CREATE TABLE $NOME (${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT, $TIPO_PINTURA TEXT NOT NULL, $NOME_PINTURA TEXT NOT NULL) ")
     }
