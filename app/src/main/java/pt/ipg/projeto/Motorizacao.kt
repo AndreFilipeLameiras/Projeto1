@@ -6,7 +6,7 @@ data class Motorizacao (
     var idTransmissoes: Long,
     var idTracao: Long,
     var idCombustivel: Long,
-    var consumo: Long,
-    var emissoes: Long
+    var consumo: Double,
+    var emissoes: Double
 ){
 }
