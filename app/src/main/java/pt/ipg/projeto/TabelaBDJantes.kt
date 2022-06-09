@@ -10,7 +10,7 @@ class TabelaBDJantes (db: SQLiteDatabase): TabelaBD(db, NOME){
 
     companion object{
         const val NOME = "jantes"
-        const val JANTES = "nome das jantes"
+        const val JANTES = "nome"
         const val LARGURA = "largura"
         const val ALTURA = "altura"
         const val RAIO = "raio"

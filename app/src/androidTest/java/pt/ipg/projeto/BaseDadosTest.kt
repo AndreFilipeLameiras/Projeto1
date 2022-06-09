@@ -24,7 +24,6 @@ class BaseDadosTest {
         appContext().deleteDatabase(BDCarrosOpenHelper.NOME)
     }
 
-    
     @Test
     fun consegueAbrirBaseDados(){
         val openHelper = BDCarrosOpenHelper(appContext())
