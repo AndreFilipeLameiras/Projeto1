@@ -1,4 +1,7 @@
 package pt.ipg.projeto
 
-class Tracao (var id: Long, var nome: String){
+data class Tracao (
+    var id: Long,
+    var nome: String
+    ){
 }
