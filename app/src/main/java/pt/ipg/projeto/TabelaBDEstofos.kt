@@ -5,13 +5,13 @@ import android.provider.BaseColumns
 
 class TabelaBDEstofos (db: SQLiteDatabase): TabelaBD(db, NOME){
     override fun cria(){
-        db.execSQL("CREATE TABLE $nome (${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT, $TIPO_ESTOFOS TEXT NOT NULL, $NOME_ESTOFOS TEXT NOT NULL)")
+        db.execSQL("CREATE TABLE $nome (${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT, $ESTOFOS TEXT NOT NULL, $PRECO DOUBLE NOT NULL)")
     }
 
     companion object{
         const val NOME = "estofos"
-        const val TIPO_ESTOFOS = "tipo de estofos"
-        const val NOME_ESTOFOS = "nome dos estofos"
+        const val ESTOFOS = "nome"
+        const val PRECO = "preco"
     }
 
 }
