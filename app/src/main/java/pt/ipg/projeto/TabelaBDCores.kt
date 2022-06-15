@@ -5,7 +5,7 @@ import android.provider.BaseColumns
 
 class TabelaBDCores (db: SQLiteDatabase): TabelaBD(db, NOME) {
     override fun cria(){
-        db.execSQL("CREATE TABLE $nome (${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT, ${TabelaBDPinturas.CAMPO_PINTURA_ID} INTEGER NOT NULL, FOREIGN KEY (${TabelaBDPinturas.CAMPO_PINTURA_ID}) REFERENCES ${TabelaBDPinturas.NOME}, $CAMPO_COR TEXT NOT NULL, $PRECO DOUBLE NOT NULL) ")
+        db.execSQL("CREATE TABLE $nome (${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT, $CAMPO_PINTURA_ID INTEGER NOT NULL, FOREIGN KEY ($CAMPO_PINTURA_ID) REFERENCES ${TabelaBDCoresPintura.NOME}, $CAMPO_COR TEXT NOT NULL, $PRECO DOUBLE NOT NULL) ")
     }
 
     companion object{
