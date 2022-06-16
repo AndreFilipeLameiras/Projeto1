@@ -3,8 +3,8 @@ package pt.ipg.projeto
 import android.content.ContentValues
 
 data class Marca(
-    var id: Long,
-    var nome: String
+    var nome: String,
+    var id: Long = -1
 ) {
     fun toContentValues(): ContentValues{
         val valores = ContentValues()

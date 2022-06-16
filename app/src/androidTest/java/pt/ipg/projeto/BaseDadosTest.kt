@@ -1,5 +1,6 @@
 package pt.ipg.projeto
 
+import android.database.sqlite.SQLiteDatabase
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
 
@@ -19,6 +20,12 @@ class BaseDadosTest {
     fun appContext() =
         InstrumentationRegistry.getInstrumentation().targetContext
 
+    private fun getWritableDatabase(): SQLiteDatabase{
+        val openHelper = BDCarrosOpenHelper(appContext())
+        return openHelper.writableDatabase
+    }
+
+
     @Test
     fun apagaBaseDados(){
         appContext().deleteDatabase(BDCarrosOpenHelper.NOME)
@@ -30,6 +37,17 @@ class BaseDadosTest {
         val db = openHelper.readableDatabase
 
         assertTrue(db.isOpen)
+
+        db.close()
+    }
+
+    @Test
+    fun consegueInserirMarca(){
+        val db = getWritableDatabase()
+
+        val marca = Marca("BMW")
+
+        TabelaBDModelo(db).insert(marca.toContentValues())
 
         db.close()
     }
