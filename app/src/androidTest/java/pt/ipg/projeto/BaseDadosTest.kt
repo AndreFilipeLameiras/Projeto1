@@ -8,6 +8,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 import org.junit.Assert.*
+import org.junit.Before
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -25,8 +26,13 @@ class BaseDadosTest {
         return openHelper.writableDatabase
     }
 
+    private fun insereMarca(db: SQLiteDatabase, marca: Marca) {
+        marca.id = TabelaBDMarcas(db).insert(marca.toContentValues())
+        assertNotEquals(-1, marca.id)
+    }
 
-    @Test
+
+    @Before
     fun apagaBaseDados(){
         appContext().deleteDatabase(BDCarrosOpenHelper.NOME)
     }
@@ -48,6 +54,22 @@ class BaseDadosTest {
         val marca = Marca("BMW")
 
         TabelaBDModelo(db).insert(marca.toContentValues())
+
+        db.close()
+    }
+
+
+    @Test
+    fun consegueInserirModelo(){
+        val db = getWritableDatabase()
+
+        val marca = Marca("Audi")
+        insereMarca(db, marca)
+
+        val modelo = Modelo("Serie 1 ", 23574.28, marca.id)
+        modelo.id = TabelaBDModelo(db).insert(modelo.toContentValues())
+
+        assertNotEquals(-1, modelo.id)
 
         db.close()
     }
