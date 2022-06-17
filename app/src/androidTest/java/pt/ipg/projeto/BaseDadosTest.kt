@@ -144,4 +144,28 @@ class BaseDadosTest {
         db.close()
     }
 
+
+    @Test
+    fun consegueEliminarModelo(){
+        val db = getWritableDatabase()
+
+        val marca = Marca("Opel")
+        insereMarca(db, marca)
+
+
+        val modelo = Modelo("Teste", 25214.2, marca.id)
+        insereModelo(db, modelo)
+
+
+        val registosEliminados = TabelaBDModelo(db).delete(
+            "${BaseColumns._ID}=?",
+            arrayOf("${modelo.id}"))
+
+
+
+        assertEquals(1, registosEliminados)
+
+        db.close()
+    }
+
 }
