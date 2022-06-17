@@ -98,7 +98,7 @@ class BaseDadosTest {
     }
 
     @Test
-    fun consegueAlterarModelos(){
+    fun consegueAlterarModelo(){
         val db = getWritableDatabase()
 
         val marcaNissam = Marca("Nissan")
@@ -122,6 +122,24 @@ class BaseDadosTest {
 
 
         assertEquals(1, registosAlterados)
+
+        db.close()
+    }
+
+    @Test
+    fun consegueEliminarMarca(){
+        val db = getWritableDatabase()
+
+        val marca = Marca("Teste")
+        insereMarca(db, marca)
+
+        marca.nome = "Mercedes"
+
+        val registosEliminados = TabelaBDMarcas(db).delete(
+            "${BaseColumns._ID}=?",
+            arrayOf("${marca.id}"))
+
+        assertEquals(1, registosEliminados)
 
         db.close()
     }
