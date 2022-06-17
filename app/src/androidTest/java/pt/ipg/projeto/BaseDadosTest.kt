@@ -19,7 +19,7 @@ import org.junit.Before
 @RunWith(AndroidJUnit4::class)
 class BaseDadosTest {
 
-    fun appContext() =
+    private fun appContext() =
         InstrumentationRegistry.getInstrumentation().targetContext
 
     private fun getWritableDatabase(): SQLiteDatabase{
@@ -30,6 +30,11 @@ class BaseDadosTest {
     private fun insereMarca(db: SQLiteDatabase, marca: Marca) {
         marca.id = TabelaBDMarcas(db).insert(marca.toContentValues())
         assertNotEquals(-1, marca.id)
+    }
+
+    private fun insereModelo(db: SQLiteDatabase, modelo: Modelo){
+        modelo.id = TabelaBDModelo(db).insert(modelo.toContentValues())
+        assertNotEquals(-1, modelo.id)
     }
 
 
@@ -68,9 +73,7 @@ class BaseDadosTest {
         insereMarca(db, marca)
 
         val modelo = Modelo("Serie 1 ", 23574.28, marca.id)
-        modelo.id = TabelaBDModelo(db).insert(modelo.toContentValues())
-
-        assertNotEquals(-1, modelo.id)
+        insereModelo(db, modelo)
 
         db.close()
     }
@@ -88,6 +91,35 @@ class BaseDadosTest {
             marca.toContentValues(),
             "${BaseColumns._ID}=?",
             arrayOf("${marca.id}"))
+
+        assertEquals(1, registosAlterados)
+
+        db.close()
+    }
+
+    @Test
+    fun consegueAlterarModelos(){
+        val db = getWritableDatabase()
+
+        val marcaNissam = Marca("Nissan")
+        insereMarca(db, marcaNissam)
+
+        val marcaSeat = Marca("Seat")
+        insereMarca(db, marcaSeat)
+
+        val modelo = Modelo("Teste", 25444.2, marcaNissam.id)
+        insereModelo(db, modelo)
+
+        modelo.modelo = "Navara"
+        modelo.preco = 35444.4
+        modelo.idMarca = marcaNissam.id
+
+        val registosAlterados = TabelaBDModelo(db).update(
+            modelo.toContentValues(),
+            "${BaseColumns._ID}=?",
+            arrayOf("${modelo.id}"))
+
+
 
         assertEquals(1, registosAlterados)
 
