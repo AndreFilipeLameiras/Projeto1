@@ -1,6 +1,7 @@
 package pt.ipg.projeto
 
 import android.database.sqlite.SQLiteDatabase
+import android.provider.BaseColumns
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
 
@@ -70,6 +71,25 @@ class BaseDadosTest {
         modelo.id = TabelaBDModelo(db).insert(modelo.toContentValues())
 
         assertNotEquals(-1, modelo.id)
+
+        db.close()
+    }
+
+    @Test
+    fun consegueAlterarMarca(){
+        val db = getWritableDatabase()
+
+        val marca = Marca("Teste")
+        insereMarca(db, marca)
+
+        marca.nome = "Mercedes"
+
+        val registosAlterados = TabelaBDMarcas(db).update(
+            marca.toContentValues(),
+            "${BaseColumns._ID}=?",
+            arrayOf("${marca.id}"))
+
+        assertEquals(1, registosAlterados)
 
         db.close()
     }
