@@ -168,4 +168,29 @@ class BaseDadosTest {
         db.close()
     }
 
+    @Test
+    fun consegueLerMarca(){
+        val db = getWritableDatabase()
+
+        val marca = Marca("Audi")
+        insereMarca(db, marca)
+
+        val cursor = TabelaBDMarcas(db).query(
+            TabelaBDMarcas.TODAS_COLUNAS,
+            "${BaseColumns._ID}=?",
+            arrayOf("${marca.id}"),
+            null,
+            null,
+            null
+
+        )
+
+        assertEquals(1, cursor.count)
+        assertTrue(cursor.moveToNext())
+
+        val marcBD = Marca.fromCursor(cursor)
+
+        assertEquals(marca, marcBD)
+    }
+
 }

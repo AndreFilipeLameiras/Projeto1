@@ -14,5 +14,7 @@ class TabelaBDMarcas (db: SQLiteDatabase): TabelaBD(db, NOME) {
         const val NOME = "marcas"
         const val MARCAS = "nome"
 
+        val TODAS_COLUNAS = arrayOf(BaseColumns._ID, MARCAS)
+
     }
 }
