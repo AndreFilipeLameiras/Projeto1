@@ -14,5 +14,7 @@ class TabelaBDModelo (db: SQLiteDatabase): TabelaBD(db, NOME){
         const val CAMPO_MODELO = "nome"
         const val CAMPO_MARCA_ID = "marcaID"
         const val CAMPO_PRECO = "preco"
+
+        val TODAS_COLUNAS = arrayOf(BaseColumns._ID, CAMPO_MODELO, CAMPO_PRECO, CAMPO_MARCA_ID)
     }
 }

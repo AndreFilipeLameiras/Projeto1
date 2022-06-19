@@ -191,6 +191,40 @@ class BaseDadosTest {
         val marcBD = Marca.fromCursor(cursor)
 
         assertEquals(marca, marcBD)
+
+        db.close()
+    }
+
+
+
+    @Test
+    fun consegueLerModelo(){
+            val db = getWritableDatabase()
+
+            val marca = Marca("Ferrari")
+            insereMarca(db, marca)
+
+            val modelo = Modelo("F8 Tributo", 78451.21, marca.id)
+            insereModelo(db, modelo)
+
+            val cursor = TabelaBDModelo(db).query(
+                TabelaBDModelo.TODAS_COLUNAS,
+                "${BaseColumns._ID}=?",
+                arrayOf("${marca.id}"),
+                null,
+                null,
+                null
+
+            )
+
+            assertEquals(1, cursor.count)
+            assertTrue(cursor.moveToNext())
+
+            val modeBD = Modelo.fromCursor(cursor)
+
+            assertEquals(marca, modeBD)
+
+            db.close()
     }
 
 }
