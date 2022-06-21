@@ -99,7 +99,22 @@ class ContentProviderModelos : ContentProvider() {
         selection: String?,
         selectionArgs: Array<out String>?
     ): Int {
-        TODO("Not yet implemented")
+        requireNotNull(values)
+
+        val db = dbOpenHelper!!.writableDatabase
+
+        val id = uri.lastPathSegment
+
+        val registosAlterados = when (getUriMatcher().match(uri)){
+            URI_MODELO_ESPECIFICO -> TabelaBDModelo(db).update(values,"${BaseColumns._ID}=?", arrayOf("${id}"))
+            URI_MARCA_ESPECIFICA -> TabelaBDMarcas(db).update(values,"${BaseColumns._ID}=?", arrayOf("${id}"))
+            else -> 0
+        }
+
+        db.close()
+
+        return registosAlterados
+
     }
 
     companion object{
