@@ -5,14 +5,15 @@ import android.content.ContentValues
 import android.content.UriMatcher
 import android.database.Cursor
 import android.net.Uri
+import android.provider.BaseColumns
 
 class ContentProviderModelos : ContentProvider() {
-    var db : BDCarrosOpenHelper? = null
+    var dbOpenHelper : BDCarrosOpenHelper? = null
 
 
 
     override fun onCreate(): Boolean {
-        db = BDCarrosOpenHelper(context)
+        dbOpenHelper = BDCarrosOpenHelper(context)
 
         return true
     }
@@ -24,7 +25,27 @@ class ContentProviderModelos : ContentProvider() {
         selectionArgs: Array<out String>?,
         sortOrder: String?
     ): Cursor? {
-        TODO("Not yet implemented")
+        val db = dbOpenHelper!!.readableDatabase
+
+        requireNotNull(projection)
+        val colunas = projection as Array<String>
+
+        val argsSeleccao = selectionArgs as Array<String>
+
+        val id = uri.lastPathSegment
+
+        val cursor = when (getUriMatcher().match(uri)){
+            URI_MODELOS -> TabelaBDModelo(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
+            URI_MARCAS -> TabelaBDMarcas(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
+            URI_MODELO_ESPECIFICO -> TabelaBDModelo(db).query(colunas, "${BaseColumns._ID}=?",arrayOf("${id}"),null, null, null)
+            URI_MARCA_ESPECIFICA -> TabelaBDMarcas(db).query(colunas, "${BaseColumns._ID}=?", arrayOf("${id}"),null, null, null)
+            else -> null
+        }
+
+        db.close()
+
+        return cursor
+
     }
 
     override fun getType(uri: Uri): String? =
