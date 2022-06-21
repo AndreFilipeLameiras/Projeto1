@@ -2,6 +2,7 @@ package pt.ipg.projeto
 
 import android.content.ContentProvider
 import android.content.ContentValues
+import android.content.UriMatcher
 import android.database.Cursor
 import android.net.Uri
 
@@ -46,4 +47,28 @@ class ContentProviderModelos : ContentProvider() {
     ): Int {
         TODO("Not yet implemented")
     }
+
+    companion object{
+        const val AUTHORITY = "pt.ipg.projeto"
+
+        const val URI_MARCAS = 100
+        const val URI_MARCAS_ESPECIFICA = 101
+        const val URI_MODELOS = 200
+        const val URI_MODELOS_ESPECIFICOS = 201
+
+
+        fun getUriMatcher() : UriMatcher{
+            var uriMatcher = UriMatcher(UriMatcher.NO_MATCH)
+
+            uriMatcher.addURI(AUTHORITY, TabelaBDMarcas.NOME, URI_MARCAS)
+            uriMatcher.addURI(AUTHORITY, "${TabelaBDMarcas.NOME}/#", URI_MARCAS_ESPECIFICA)
+            uriMatcher.addURI(AUTHORITY, TabelaBDModelo.NOME, URI_MODELOS)
+            uriMatcher.addURI(AUTHORITY, "${TabelaBDModelo.NOME}/#", URI_MODELOS_ESPECIFICOS)
+            
+            return uriMatcher
+        }
+
+
+    }
+
 }
