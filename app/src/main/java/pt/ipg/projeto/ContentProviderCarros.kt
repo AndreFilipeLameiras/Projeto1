@@ -155,6 +155,15 @@ class ContentProviderCarros : ContentProvider() {
         val registosAlterados = when (getUriMatcher().match(uri)){
             URI_MODELO_ESPECIFICO -> TabelaBDModelo(db).update(values,"${BaseColumns._ID}=?", arrayOf("${id}"))
             URI_MARCA_ESPECIFICA -> TabelaBDMarcas(db).update(values,"${BaseColumns._ID}=?", arrayOf("${id}"))
+            URI_JANTE_ESPECIFICA -> TabelaBDJantes(db).update(values,"${BaseColumns._ID}=?", arrayOf("${id}"))
+            URI_MOTORIZACAO_ESPECIFICA -> TabelaBDMotorizacoes(db).update(values,"${BaseColumns._ID}=?", arrayOf("${id}"))
+            URI_COMBUSTIVEIS -> TabelaBDCombustivel(db).update(values,"${BaseColumns._ID}=?", arrayOf("${id}"))
+            URI_COR_ESPECIFICA -> TabelaBDCores(db).update(values,"${BaseColumns._ID}=?", arrayOf("${id}"))
+            URI_ESTILO_ESPECIFICO -> TabelaBDEstilo(db).update(values,"${BaseColumns._ID}=?", arrayOf("${id}"))
+            URI_ESTOFO_ESPECIFICO -> TabelaBDEstofos(db).update(values,"${BaseColumns._ID}=?", arrayOf("${id}"))
+            URI_TRACAO_ESPECIFICA -> TabelaBDTracao(db).update(values,"${BaseColumns._ID}=?", arrayOf("${id}"))
+            URI_TRANSMISSAO_ESPECIFICA -> TabelaBDTransmissoes(db).update(values,"${BaseColumns._ID}=?", arrayOf("${id}"))
+
             else -> 0
         }
 
