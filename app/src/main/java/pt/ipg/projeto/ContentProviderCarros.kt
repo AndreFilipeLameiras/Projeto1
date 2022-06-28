@@ -7,7 +7,7 @@ import android.database.Cursor
 import android.net.Uri
 import android.provider.BaseColumns
 
-class ContentProviderModelos : ContentProvider() {
+class ContentProviderCarros : ContentProvider() {
     var dbOpenHelper : BDCarrosOpenHelper? = null
 
 
@@ -122,15 +122,50 @@ class ContentProviderModelos : ContentProvider() {
 
         const val URI_MARCAS = 100
         const val URI_MARCA_ESPECIFICA = 101
+
         const val URI_MODELOS = 200
         const val URI_MODELO_ESPECIFICO = 201
+
+        const val URI_JANTES = 300
+        const val URI_JANTE_ESPECIFICA = 301
+
+        const val URI_MOTORIZACOES = 400
+        const val URI_MOTORIZACAO_ESPECIFICA = 401
+
+        const val URI_COMBUSTIVEIS = 500
+        const val URI_COMBUSTIVEL_ESPECIFICO = 501
+
+        const val URI_CORES = 600
+        const val URI_COR_ESPECIFICA = 601
+
+        const val URI_ESTILO = 700
+        const val URI_ESTILO_ESPECIFICO = 701
+
+        const val URI_ESTOFOS = 800
+        const val URI_ESTOFO_ESPECIFICO = 801
+
+        const val URI_TRACOES = 900
+        const val URI_TRACAO_ESPECIFICA = 901
+
+        const val URI_TRASNMISSOES = 1000
+        const val URI_TRANSMISSAO_ESPECIFICA = 1001
 
         const val UNICO_REGISTO = "vnd.android.cursor.item"
         const val MULTIPLOS_REGISTOS = "vnd.android.cursor.dir"
 
         val ENDERECO_BASE = Uri.parse("content://$AUTHORITY")
         val ENDERECO_MODELOS = Uri.withAppendedPath(ENDERECO_BASE, TabelaBDModelo.NOME)
-        val ENDERECO_Marcas = Uri.withAppendedPath(ENDERECO_BASE, TabelaBDMarcas.NOME)
+        val ENDERECO_MARCAS = Uri.withAppendedPath(ENDERECO_BASE, TabelaBDMarcas.NOME)
+        val ENDERECO_JANTES = Uri.withAppendedPath(ENDERECO_BASE, TabelaBDJantes.NOME)
+        val ENDERECO_MOTORIZACOES = Uri.withAppendedPath(ENDERECO_BASE, TabelaBDMotorizacoes.NOME)
+        val ENDERECO_COMBUSTIVEIS = Uri.withAppendedPath(ENDERECO_BASE, TabelaBDCombustivel.NOME)
+        val ENDERECO_CORES = Uri.withAppendedPath(ENDERECO_BASE, TabelaBDCores.NOME)
+        val ENDERECO_ESTILO = Uri.withAppendedPath(ENDERECO_BASE, TabelaBDEstilo.NOME)
+        val ENDERECO_ESTOFOS = Uri.withAppendedPath(ENDERECO_BASE, TabelaBDEstofos.NOME)
+        val ENDERECO_TRACOES = Uri.withAppendedPath(ENDERECO_BASE, TabelaBDTracao.NOME)
+        val ENDERECO_TRASNMISSOES = Uri.withAppendedPath(ENDERECO_BASE, TabelaBDTransmissoes.NOME)
+
+
 
 
 
@@ -139,8 +174,36 @@ class ContentProviderModelos : ContentProvider() {
 
             uriMatcher.addURI(AUTHORITY, TabelaBDMarcas.NOME, URI_MARCAS)
             uriMatcher.addURI(AUTHORITY, "${TabelaBDMarcas.NOME}/#", URI_MARCA_ESPECIFICA)
+
             uriMatcher.addURI(AUTHORITY, TabelaBDModelo.NOME, URI_MODELOS)
             uriMatcher.addURI(AUTHORITY, "${TabelaBDModelo.NOME}/#", URI_MODELO_ESPECIFICO)
+
+            uriMatcher.addURI(AUTHORITY, TabelaBDJantes.NOME, URI_JANTES)
+            uriMatcher.addURI(AUTHORITY, "${TabelaBDJantes.NOME}/#", URI_JANTE_ESPECIFICA)
+
+            uriMatcher.addURI(AUTHORITY, TabelaBDMotorizacoes.NOME, URI_MOTORIZACOES)
+            uriMatcher.addURI(AUTHORITY, "${TabelaBDMotorizacoes.NOME}/#", URI_MOTORIZACAO_ESPECIFICA)
+
+            uriMatcher.addURI(AUTHORITY, TabelaBDCombustivel.NOME, URI_COMBUSTIVEIS)
+            uriMatcher.addURI(AUTHORITY, "${TabelaBDCombustivel.NOME}/#", URI_COMBUSTIVEL_ESPECIFICO)
+
+            uriMatcher.addURI(AUTHORITY, TabelaBDCores.NOME, URI_CORES)
+            uriMatcher.addURI(AUTHORITY, "${TabelaBDCores.NOME}/#", URI_COR_ESPECIFICA)
+
+            uriMatcher.addURI(AUTHORITY, TabelaBDEstilo.NOME, URI_ESTILO)
+            uriMatcher.addURI(AUTHORITY, "${TabelaBDEstilo.NOME}/#", URI_ESTILO_ESPECIFICO)
+
+            uriMatcher.addURI(AUTHORITY, TabelaBDEstofos.NOME, URI_ESTOFOS)
+            uriMatcher.addURI(AUTHORITY, "${TabelaBDEstofos.NOME}/#", URI_ESTOFO_ESPECIFICO)
+
+            uriMatcher.addURI(AUTHORITY, TabelaBDTracao.NOME, URI_TRACOES)
+            uriMatcher.addURI(AUTHORITY, "${TabelaBDTracao.NOME}/#", URI_TRACAO_ESPECIFICA)
+
+            uriMatcher.addURI(AUTHORITY, TabelaBDTransmissoes.NOME, URI_TRASNMISSOES)
+            uriMatcher.addURI(AUTHORITY, "${TabelaBDTransmissoes.NOME}/#", URI_TRANSMISSAO_ESPECIFICA)
+
+
+
 
             return uriMatcher
         }

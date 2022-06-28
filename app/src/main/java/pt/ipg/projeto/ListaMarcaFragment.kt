@@ -52,7 +52,7 @@ class ListaMarcasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
     override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> =
         CursorLoader(
             requireContext(),
-            ContentProviderModelos.ENDERECO_Marcas,
+            ContentProviderCarros.ENDERECO_MARCAS,
             TabelaBDMarcas.TODAS_COLUNAS,
             null,
             null,
