@@ -57,7 +57,7 @@ class ContentProviderCarros : ContentProvider() {
             URI_TRACAO_ESPECIFICA -> TabelaBDTracao(db).query(colunas, "${BaseColumns._ID}=?",arrayOf("${id}"),null, null, null)
             URI_TRANSMISSAO_ESPECIFICA -> TabelaBDTransmissoes(db).query(colunas, "${BaseColumns._ID}=?", arrayOf("${id}"),null, null, null)
 
-            
+
 
             else -> null
         }
@@ -105,6 +105,14 @@ class ContentProviderCarros : ContentProvider() {
         val id = when (getUriMatcher().match(uri)){
             URI_MODELOS -> TabelaBDModelo(db).insert(values)
             URI_MARCAS -> TabelaBDMarcas(db).insert(values)
+            URI_JANTES -> TabelaBDJantes(db).insert(values)
+            URI_MOTORIZACOES -> TabelaBDMotorizacoes(db).insert(values)
+            URI_COMBUSTIVEIS -> TabelaBDCombustivel(db).insert(values)
+            URI_CORES -> TabelaBDCores(db).insert(values)
+            URI_ESTILO -> TabelaBDEstilo(db).insert(values)
+            URI_ESTOFOS -> TabelaBDEstofos(db).insert(values)
+            URI_TRACOES -> TabelaBDTracao(db).insert(values)
+            URI_TRASNMISSOES -> TabelaBDTransmissoes(db).insert(values)
             else -> -1
         }
 
