@@ -52,8 +52,27 @@ class ContentProviderCarros : ContentProvider() {
         when(getUriMatcher().match(uri)){
             URI_MODELOS -> "$MULTIPLOS_REGISTOS/${TabelaBDModelo.NOME}"
             URI_MARCAS -> "$MULTIPLOS_REGISTOS/${TabelaBDMarcas.NOME}"
+            URI_JANTES -> "$MULTIPLOS_REGISTOS/${TabelaBDJantes.NOME}"
+            URI_MOTORIZACOES -> "$MULTIPLOS_REGISTOS/${TabelaBDMotorizacoes.NOME}"
+            URI_COMBUSTIVEIS -> "$MULTIPLOS_REGISTOS/${TabelaBDCombustivel.NOME}"
+            URI_CORES -> "$MULTIPLOS_REGISTOS/${TabelaBDCores.NOME}"
+            URI_ESTILO -> "$MULTIPLOS_REGISTOS/${TabelaBDEstilo.NOME}"
+            URI_ESTOFOS -> "$MULTIPLOS_REGISTOS/${TabelaBDEstofos.NOME}"
+            URI_TRACOES -> "$MULTIPLOS_REGISTOS/${TabelaBDTracao.NOME}"
+            URI_TRASNMISSOES -> "$MULTIPLOS_REGISTOS/${TabelaBDTransmissoes.NOME}"
+
             URI_MODELO_ESPECIFICO -> "$UNICO_REGISTO/${TabelaBDModelo.NOME}"
             URI_MARCA_ESPECIFICA -> "$UNICO_REGISTO/${TabelaBDMarcas.NOME}"
+            URI_JANTE_ESPECIFICA -> "$UNICO_REGISTO/${TabelaBDJantes.NOME}"
+            URI_MOTORIZACAO_ESPECIFICA -> "$UNICO_REGISTO/${TabelaBDMotorizacoes.NOME}"
+            URI_COMBUSTIVEL_ESPECIFICO -> "$UNICO_REGISTO/${TabelaBDCombustivel.NOME}"
+            URI_COR_ESPECIFICA -> "$UNICO_REGISTO/${TabelaBDCores.NOME}"
+            URI_ESTILO_ESPECIFICO -> "$UNICO_REGISTO/${TabelaBDEstilo.NOME}"
+            URI_ESTOFO_ESPECIFICO -> "$UNICO_REGISTO/${TabelaBDEstofos.NOME}"
+            URI_TRACAO_ESPECIFICA -> "$UNICO_REGISTO/${TabelaBDTracao.NOME}"
+            URI_TRANSMISSAO_ESPECIFICA -> "$UNICO_REGISTO/${TabelaBDTransmissoes.NOME}"
+
+
             else -> null
         }
 
