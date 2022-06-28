@@ -128,6 +128,11 @@ class ContentProviderModelos : ContentProvider() {
         const val UNICO_REGISTO = "vnd.android.cursor.item"
         const val MULTIPLOS_REGISTOS = "vnd.android.cursor.dir"
 
+        val ENDERECO_BASE = Uri.parse("content://$AUTHORITY")
+        val ENDERECO_MODELOS = Uri.withAppendedPath(ENDERECO_BASE, TabelaBDModelo.NOME)
+        val ENDERECO_Marcas = Uri.withAppendedPath(ENDERECO_BASE, TabelaBDMarcas.NOME)
+
+
 
         fun getUriMatcher() : UriMatcher{
             var uriMatcher = UriMatcher(UriMatcher.NO_MATCH)
