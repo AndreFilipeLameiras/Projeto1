@@ -37,8 +37,28 @@ class ContentProviderCarros : ContentProvider() {
         val cursor = when (getUriMatcher().match(uri)){
             URI_MODELOS -> TabelaBDModelo(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
             URI_MARCAS -> TabelaBDMarcas(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
+            URI_JANTES -> TabelaBDJantes(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
+            URI_MOTORIZACOES -> TabelaBDMotorizacoes(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
+            URI_COMBUSTIVEIS -> TabelaBDCombustivel(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
+            URI_CORES -> TabelaBDCores(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
+            URI_ESTILO -> TabelaBDEstilo(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
+            URI_ESTOFOS -> TabelaBDEstofos(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
+            URI_TRACOES -> TabelaBDTracao(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
+            URI_TRASNMISSOES -> TabelaBDTransmissoes(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
+
             URI_MODELO_ESPECIFICO -> TabelaBDModelo(db).query(colunas, "${BaseColumns._ID}=?",arrayOf("${id}"),null, null, null)
             URI_MARCA_ESPECIFICA -> TabelaBDMarcas(db).query(colunas, "${BaseColumns._ID}=?", arrayOf("${id}"),null, null, null)
+            URI_JANTE_ESPECIFICA -> TabelaBDJantes(db).query(colunas, "${BaseColumns._ID}=?",arrayOf("${id}"),null, null, null)
+            URI_MOTORIZACAO_ESPECIFICA -> TabelaBDMotorizacoes(db).query(colunas, "${BaseColumns._ID}=?", arrayOf("${id}"),null, null, null)
+            URI_COMBUSTIVEL_ESPECIFICO -> TabelaBDCombustivel(db).query(colunas, "${BaseColumns._ID}=?",arrayOf("${id}"),null, null, null)
+            URI_COR_ESPECIFICA -> TabelaBDCores(db).query(colunas, "${BaseColumns._ID}=?", arrayOf("${id}"),null, null, null)
+            URI_ESTILO_ESPECIFICO -> TabelaBDEstilo(db).query(colunas, "${BaseColumns._ID}=?",arrayOf("${id}"),null, null, null)
+            URI_ESTOFO_ESPECIFICO -> TabelaBDEstofos(db).query(colunas, "${BaseColumns._ID}=?", arrayOf("${id}"),null, null, null)
+            URI_TRACAO_ESPECIFICA -> TabelaBDTracao(db).query(colunas, "${BaseColumns._ID}=?",arrayOf("${id}"),null, null, null)
+            URI_TRANSMISSAO_ESPECIFICA -> TabelaBDTransmissoes(db).query(colunas, "${BaseColumns._ID}=?", arrayOf("${id}"),null, null, null)
+
+            
+
             else -> null
         }
 
