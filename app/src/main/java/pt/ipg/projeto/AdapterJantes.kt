@@ -3,6 +3,7 @@ package pt.ipg.projeto
 import android.database.Cursor
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class AdapterJantes(val fragment: ListaJantesFragment) : RecyclerView.Adapter<AdapterJantes.ViewHolderJantes>(){
@@ -17,8 +18,25 @@ class AdapterJantes(val fragment: ListaJantesFragment) : RecyclerView.Adapter<Ad
 
 
 
-    class ViewHolderJantes(itemView: View) : RecyclerView.ViewHolder(itemView){
+    class ViewHolderJantes(itemJantes: View) : RecyclerView.ViewHolder(itemJantes){
+        val textViewNome = itemJantes.findViewById<TextView>(R.id.textViewNome)
+        val textViewLargura = itemJantes.findViewById<TextView>(R.id.textViewLargura)
+        val textViewAltura = itemJantes.findViewById<TextView>(R.id.textViewAltura)
+        val textViewRaio = itemJantes.findViewById<TextView>(R.id.textViewRaio)
+        val textViewPreco = itemJantes.findViewById<TextView>(R.id.textViewPreco)
 
+        var jante: Jante? = null
+            get() = field
+            set(value: Jante?) {
+                field = value
+
+                textViewNome.text = jante!!.nome
+                textViewLargura.text = jante!!.largura.toString()
+                textViewAltura.text = jante!!.altura.toString()
+                textViewRaio.text = jante!!.raio.toString()
+                textViewPreco.text = jante!!.preco.toString()
+
+            }
     }
 
     /**
@@ -72,7 +90,8 @@ class AdapterJantes(val fragment: ListaJantesFragment) : RecyclerView.Adapter<Ad
      * @param position The position of the item within the adapter's data set.
      */
     override fun onBindViewHolder(holder: ViewHolderJantes, position: Int) {
-        TODO("Not yet implemented")
+        cursor!!.moveToPosition(position)
+        holder.jante = Jante.fromCursor(cursor!!)
     }
 
     /**
