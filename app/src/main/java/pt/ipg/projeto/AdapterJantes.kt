@@ -5,9 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class AdapterJantes : RecyclerView.Adapter<AdapterJantes.ViewHolderJantes>(){
-    class ViewHolderJantes(itemView: View) : RecyclerView.ViewHolder(itemView){
-        var cursor: Cursor? = null
+class AdapterJantes(val fragment: ListaJantesFragment) : RecyclerView.Adapter<AdapterJantes.ViewHolderJantes>(){
+    var cursor: Cursor? = null
         get() = field
         set(value) {
             if(field != value){
@@ -15,6 +14,11 @@ class AdapterJantes : RecyclerView.Adapter<AdapterJantes.ViewHolderJantes>(){
                 notifyDataSetChanged()
             }
         }
+
+
+
+    class ViewHolderJantes(itemView: View) : RecyclerView.ViewHolder(itemView){
+
     }
 
     /**
@@ -41,7 +45,9 @@ class AdapterJantes : RecyclerView.Adapter<AdapterJantes.ViewHolderJantes>(){
      * @see .onBindViewHolder
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderJantes {
-        TODO("Not yet implemented")
+        val itemJantes = fragment.layoutInflater.inflate(R.layout.item_jantes, parent, false)
+        return ViewHolderJantes(itemJantes)
+
     }
 
     /**
