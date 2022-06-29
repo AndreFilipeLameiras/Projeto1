@@ -62,7 +62,7 @@ class ContentProviderCarros : ContentProvider() {
             else -> null
         }
 
-        db.close()
+
 
         return cursor
 
