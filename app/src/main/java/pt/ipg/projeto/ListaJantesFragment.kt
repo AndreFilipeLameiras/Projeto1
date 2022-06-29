@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
+import androidx.recyclerview.widget.RecyclerView
 import pt.ipg.projeto.databinding.FragmentListaJantesBinding
 
 class ListaJantesFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
@@ -65,6 +66,8 @@ class ListaJantesFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
      */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val recycleViewJantes = view.findViewById<RecyclerView>(R.id.recycleViewJantes)
 
         LoaderManager.getInstance(this)
             .initLoader(ID_LOADER_JANTES, null, this)
