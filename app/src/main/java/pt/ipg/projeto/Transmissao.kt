@@ -1,10 +1,12 @@
 package pt.ipg.projeto
 
 import android.content.ContentValues
+import android.database.Cursor
+import android.provider.BaseColumns
 
 data class Transmissao (
-    var id: Long,
-    var nome: String
+    var nome: String,
+    var id: Long = -1
         ) {
 
     fun toContentValues(): ContentValues {
@@ -15,5 +17,17 @@ data class Transmissao (
 
         return valores
 
+    }
+
+    companion object{
+        fun fromCursor(cursor: Cursor) : Transmissao{
+            val posId = cursor.getColumnIndex(BaseColumns._ID)
+            val posNome = cursor.getColumnIndex(TabelaBDTransmissoes.CAMPO_NOME)
+
+            val id = cursor.getLong(posId)
+            val nome = cursor.getString(posNome)
+
+            return Transmissao(nome, id)
+        }
     }
 }
