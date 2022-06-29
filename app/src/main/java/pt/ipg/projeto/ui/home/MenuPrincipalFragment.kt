@@ -31,7 +31,7 @@ class MenuPrincipalFragment : Fragment() {
         _binding = FragmentMenuPrincipalBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textHome
+        val textView: TextView = binding.textView2
         homeViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
