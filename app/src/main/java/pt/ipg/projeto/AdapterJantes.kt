@@ -75,6 +75,8 @@ class AdapterJantes : RecyclerView.Adapter<AdapterJantes.ViewHolderJantes>(){
      * @return The total number of items in this adapter.
      */
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        if(cursor == null) return 0
+
+        return cursor!!.count
     }
 }
