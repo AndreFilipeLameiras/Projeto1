@@ -1,12 +1,20 @@
 package pt.ipg.projeto
 
+import android.database.Cursor
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
 class AdapterJantes : RecyclerView.Adapter<AdapterJantes.ViewHolderJantes>(){
     class ViewHolderJantes(itemView: View) : RecyclerView.ViewHolder(itemView){
-
+        var cursor: Cursor? = null
+        get() = field
+        set(value) {
+            if(field != value){
+                field = value
+                notifyDataSetChanged()
+            }
+        }
     }
 
     /**
