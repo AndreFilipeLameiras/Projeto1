@@ -9,12 +9,14 @@ import androidx.fragment.app.Fragment
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import pt.ipg.projeto.databinding.FragmentListaJantesBinding
 
 class ListaJantesFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
 
     private var _binding: FragmentListaJantesBinding? = null
+    private var adapterJantes : AdapterJantes? = null
 
     private val binding get() = _binding!!
 
@@ -67,10 +69,14 @@ class ListaJantesFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val recycleViewJantes = view.findViewById<RecyclerView>(R.id.recycleViewJantes)
+       // val recycleViewJantes = view.findViewById<RecyclerView>(R.id.recycleViewJantes)
 
         LoaderManager.getInstance(this)
             .initLoader(ID_LOADER_JANTES, null, this)
+
+        adapterJantes = AdapterJantes()
+        binding.recycleViewJantes.adapter = adapterJantes
+        binding.recycleViewJantes.layoutManager = LinearLayoutManager(requireContext())
     }
 
 
