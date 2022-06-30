@@ -11,6 +11,10 @@ class TabelaBDTransmissoes (db: SQLiteDatabase): TabelaBD(db, NOME) {
     companion object{
         const val NOME = "transmissoes"
         const val CAMPO_NOME = "nome"
+
+        val TODAS_COLUNAS = arrayOf(BaseColumns._ID, CAMPO_NOME)
     }
+
+
 
 }
