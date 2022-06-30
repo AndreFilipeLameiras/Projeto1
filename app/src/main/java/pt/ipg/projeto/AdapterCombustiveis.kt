@@ -1,12 +1,39 @@
 package pt.ipg.projeto
 
 import android.database.Cursor
+import android.view.TextureView
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class AdapterCombustiveis(var cursor: Cursor? = null): RecyclerView.Adapter<AdapterCombustiveis.ViewHolderCombustiveis>() {
-    class ViewHolderCombustiveis(itemView: View): RecyclerView.ViewHolder(itemView)
+class AdapterCombustiveis(val fragment: ListaCombustivelFragment): RecyclerView.Adapter<AdapterCombustiveis.ViewHolderCombustiveis>() {
+    var cursor: Cursor? = null
+        get() = field
+        set(value){
+            if(field != value){
+                field = value
+                notifyDataSetChanged()
+        }
+    }
+
+
+    class ViewHolderCombustiveis(itemCombustivel: View): RecyclerView.ViewHolder(itemCombustivel){
+        val textViewNome = itemCombustivel.findViewById<TextView>(R.id.textViewNomeCombustivel)
+
+        var combustivel : Combustivel? = null
+            get() = field
+            set(value: Combustivel?) {
+                field = value
+
+                textViewNome.text = combustivel?.nome ?: ""
+
+            }
+    }
+
+
+
+
 
     /**
      * Called when RecyclerView needs a new [ViewHolder] of the given type to represent
@@ -32,7 +59,8 @@ class AdapterCombustiveis(var cursor: Cursor? = null): RecyclerView.Adapter<Adap
      * @see .onBindViewHolder
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderCombustiveis {
-        TODO("Not yet implemented")
+        val itemCombustivel = fragment.layoutInflater.inflate(R.layout.item_combustivel,parent, false)
+        return ViewHolderCombustiveis(itemCombustivel)
     }
 
     /**
@@ -57,7 +85,8 @@ class AdapterCombustiveis(var cursor: Cursor? = null): RecyclerView.Adapter<Adap
      * @param position The position of the item within the adapter's data set.
      */
     override fun onBindViewHolder(holder: ViewHolderCombustiveis, position: Int) {
-        TODO("Not yet implemented")
+        cursor!!.moveToPosition(position)
+        holder.combustivel = Combustivel.fromCursor(cursor!!)
     }
 
     /**
@@ -66,6 +95,8 @@ class AdapterCombustiveis(var cursor: Cursor? = null): RecyclerView.Adapter<Adap
      * @return The total number of items in this adapter.
      */
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        if(cursor == null) return 0
+
+        return cursor!!.count
     }
 }

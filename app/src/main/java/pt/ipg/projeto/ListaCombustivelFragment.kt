@@ -36,7 +36,7 @@ class ListaCombustivelFragment: Fragment(), LoaderManager.LoaderCallbacks<Cursor
 
         val recyclerViewCombustivel = view.findViewById<RecyclerView>(R.id.recyclerViewCombustivel)
 
-        adapterCombustiveis = AdapterCombustiveis()
+        adapterCombustiveis = AdapterCombustiveis(this)
         recyclerViewCombustivel.adapter = adapterCombustiveis
         recyclerViewCombustivel.layoutManager = LinearLayoutManager(requireContext())
 
