@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
+import androidx.recyclerview.widget.RecyclerView
 import pt.ipg.projeto.databinding.FragmentListaCoresBinding
 
 class ListaCoresFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
@@ -29,6 +30,8 @@ class ListaCoresFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val recyclerViewCores = view.findViewById<RecyclerView>(R.id.recyclerViewCores)
 
         LoaderManager.getInstance(this)
             .initLoader(ID_LOADER_CORES, null, this)
