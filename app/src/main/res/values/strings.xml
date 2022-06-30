@@ -16,4 +16,5 @@
     <string name="preco">Preco</string>
     <string name="largura">Largura</string>
     <string name="combustivel">Combustivel</string>
+    <string name="transmissao">Transmissao</string>
 </resources>
