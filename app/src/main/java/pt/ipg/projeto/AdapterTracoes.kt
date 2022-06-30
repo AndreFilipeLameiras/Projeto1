@@ -1,10 +1,11 @@
 package pt.ipg.projeto
 
+import android.database.Cursor
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class AdapterTracoes : RecyclerView.Adapter<AdapterTracoes.ViewHolderTracoes>(){
+class AdapterTracoes(var cursor: Cursor? = null) : RecyclerView.Adapter<AdapterTracoes.ViewHolderTracoes>(){
     class ViewHolderTracoes (itemView: View) :RecyclerView.ViewHolder(itemView){
 
     }
