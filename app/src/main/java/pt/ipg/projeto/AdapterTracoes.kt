@@ -3,11 +3,16 @@ package pt.ipg.projeto
 import android.database.Cursor
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class AdapterTracoes(var cursor: Cursor? = null) : RecyclerView.Adapter<AdapterTracoes.ViewHolderTracoes>(){
+class AdapterTracoes(val fragment: ListaTracaoFragment ,var cursor: Cursor? = null) : RecyclerView.Adapter<AdapterTracoes.ViewHolderTracoes>(){
     class ViewHolderTracoes (itemView: View) :RecyclerView.ViewHolder(itemView){
+        private val textViewNomeTracao = itemView.findViewById<TextView>(R.id.textViewNomeTracao)
 
+        fun atualizaTracao(tracao: Tracao){
+            textViewNomeTracao.text = tracao.nome
+        }
     }
 
     /**
@@ -34,7 +39,9 @@ class AdapterTracoes(var cursor: Cursor? = null) : RecyclerView.Adapter<AdapterT
      * @see .onBindViewHolder
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderTracoes {
-        TODO("Not yet implemented")
+        val itemTracao = fragment.layoutInflater.inflate(R.layout.item_tracao, parent, false)
+
+        return ViewHolderTracoes(itemTracao)
     }
 
     /**
@@ -59,7 +66,8 @@ class AdapterTracoes(var cursor: Cursor? = null) : RecyclerView.Adapter<AdapterT
      * @param position The position of the item within the adapter's data set.
      */
     override fun onBindViewHolder(holder: ViewHolderTracoes, position: Int) {
-        TODO("Not yet implemented")
+        cursor!!.moveToPosition(position)
+        holder.atualizaTracao(Tracao.fromCursor(cursor!!))
     }
 
     /**
@@ -68,6 +76,6 @@ class AdapterTracoes(var cursor: Cursor? = null) : RecyclerView.Adapter<AdapterT
      * @return The total number of items in this adapter.
      */
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return cursor?.count ?: 0
     }
 }

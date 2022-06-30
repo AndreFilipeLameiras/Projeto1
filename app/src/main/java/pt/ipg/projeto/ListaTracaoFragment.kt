@@ -34,7 +34,7 @@ class ListaTracaoFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
         super.onViewCreated(view, savedInstanceState)
 
         val recyclerViewTracao = view.findViewById<RecyclerView>(R.id.recyclerViewTracao)
-        adapterTracoes = AdapterTracoes()
+        adapterTracoes = AdapterTracoes(this)
         recyclerViewTracao.adapter = adapterTracoes
         recyclerViewTracao.layoutManager = LinearLayoutManager(requireContext())
 
