@@ -34,7 +34,7 @@ class ListaCoresFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
         super.onViewCreated(view, savedInstanceState)
 
         val recyclerViewCores = view.findViewById<RecyclerView>(R.id.recyclerViewCores)
-        adapterCores = AdapterCores()
+        adapterCores = AdapterCores(this)
         recyclerViewCores.adapter = adapterCores
         recyclerViewCores.layoutManager = LinearLayoutManager(requireContext())
 

@@ -3,10 +3,16 @@ package pt.ipg.projeto
 import android.database.Cursor
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class AdapterCores(var cursor: Cursor? = null) : RecyclerView.Adapter<AdapterCores.ViewHolderCores>() {
+class AdapterCores(val fragment: ListaCoresFragment ,var cursor: Cursor? = null) : RecyclerView.Adapter<AdapterCores.ViewHolderCores>() {
     class ViewHolderCores (itemView: View) :RecyclerView.ViewHolder(itemView){
+        private val textViewNomeCor = itemView.findViewById<TextView>(R.id.textViewNomeCor)
+
+        fun atualizaCor(cor: Cores){
+            textViewNomeCor.text = cor.nome
+        }
 
     }
 
@@ -34,7 +40,9 @@ class AdapterCores(var cursor: Cursor? = null) : RecyclerView.Adapter<AdapterCor
      * @see .onBindViewHolder
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderCores {
-        TODO("Not yet implemented")
+        val itemCor = fragment.layoutInflater.inflate(R.layout.item_cor, parent, false)
+
+        return ViewHolderCores(itemCor)
     }
 
     /**
@@ -59,7 +67,8 @@ class AdapterCores(var cursor: Cursor? = null) : RecyclerView.Adapter<AdapterCor
      * @param position The position of the item within the adapter's data set.
      */
     override fun onBindViewHolder(holder: ViewHolderCores, position: Int) {
-        TODO("Not yet implemented")
+        cursor!!.moveToPosition(position)
+        holder.atualizaCor(Cores.fromCursor(cursor!!))
     }
 
     /**
@@ -68,7 +77,7 @@ class AdapterCores(var cursor: Cursor? = null) : RecyclerView.Adapter<AdapterCor
      * @return The total number of items in this adapter.
      */
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return cursor?.count ?: 0
     }
 
 
