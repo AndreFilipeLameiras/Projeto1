@@ -17,4 +17,5 @@
     <string name="largura">Largura</string>
     <string name="combustivel">Combustivel</string>
     <string name="transmissao">Transmissao</string>
+    <string name="nome_tracao">Nome da Traçao</string>
 </resources>
