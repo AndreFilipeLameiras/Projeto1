@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
+import androidx.recyclerview.widget.RecyclerView
 import pt.ipg.projeto.databinding.FragmentListaTransmissaoBinding
 
 class ListaTransmissoesFragment: Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
@@ -30,6 +31,8 @@ class ListaTransmissoesFragment: Fragment(), LoaderManager.LoaderCallbacks<Curso
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val recycleViewTransmissao = view.findViewById<RecyclerView>(R.id.recyclerViewTransmissoes)
 
         LoaderManager.getInstance(this).initLoader(ID_LOAD_TRANSMISSOES, null, this)
     }
