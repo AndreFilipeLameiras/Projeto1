@@ -13,6 +13,8 @@ class TabelaBDTracao (db: SQLiteDatabase): TabelaBD(db, NOME) {
         const val NOME = "tracao"
         const val CAMPO_NOME = "nome"
 
+
+        val TODAS_COLUNAS = arrayOf(BaseColumns._ID, CAMPO_NOME)
     }
 
 }
