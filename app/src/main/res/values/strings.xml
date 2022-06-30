@@ -15,4 +15,5 @@
     <string name="raio">Raio</string>
     <string name="preco">Preco</string>
     <string name="largura">Largura</string>
+    <string name="combustivel">Combustivel</string>
 </resources>
