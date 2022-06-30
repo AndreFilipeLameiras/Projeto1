@@ -3,11 +3,16 @@ package pt.ipg.projeto
 import android.database.Cursor
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class AdapterTransmissoes(var cursor: Cursor? = null): RecyclerView.Adapter<AdapterTransmissoes.ViewHolderTransmissoes>() {
+class AdapterTransmissoes(val fragment: ListaTransmissoesFragment,var cursor: Cursor? = null): RecyclerView.Adapter<AdapterTransmissoes.ViewHolderTransmissoes>() {
     class ViewHolderTransmissoes (itemView: View): RecyclerView.ViewHolder(itemView){
+        private val textViewNomeTransmissao = itemView.findViewById<TextView>(R.id.textViewNomeTransmissao)
 
+        fun atualizaTransmissao(transmissao: Transmissao){
+            textViewNomeTransmissao.text = transmissao.nome
+        }
     }
 
     /**
@@ -34,7 +39,9 @@ class AdapterTransmissoes(var cursor: Cursor? = null): RecyclerView.Adapter<Adap
      * @see .onBindViewHolder
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderTransmissoes {
-        TODO("Not yet implemented")
+        val itemTransmissao = fragment.layoutInflater.inflate(R.layout.item_transmissao, parent, false)
+
+        return ViewHolderTransmissoes(itemTransmissao)
     }
 
     /**
@@ -59,7 +66,8 @@ class AdapterTransmissoes(var cursor: Cursor? = null): RecyclerView.Adapter<Adap
      * @param position The position of the item within the adapter's data set.
      */
     override fun onBindViewHolder(holder: ViewHolderTransmissoes, position: Int) {
-        TODO("Not yet implemented")
+        cursor!!.moveToPosition(position)
+        holder.atualizaTransmissao(Transmissao.fromCursor(cursor!!))
     }
 
     /**
@@ -68,6 +76,6 @@ class AdapterTransmissoes(var cursor: Cursor? = null): RecyclerView.Adapter<Adap
      * @return The total number of items in this adapter.
      */
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return cursor?.count ?: 0
     }
 }

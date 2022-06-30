@@ -36,11 +36,13 @@ class ListaTransmissoesFragment: Fragment(), LoaderManager.LoaderCallbacks<Curso
 
         val recycleViewTransmissao = view.findViewById<RecyclerView>(R.id.recyclerViewTransmissoes)
 
-        adapterTransmissoes = AdapterTransmissoes()
+        LoaderManager.getInstance(this).initLoader(ID_LOAD_TRANSMISSOES, null, this)
+
+        adapterTransmissoes = AdapterTransmissoes(this)
         recycleViewTransmissao.adapter = adapterTransmissoes
         recycleViewTransmissao.layoutManager = LinearLayoutManager(requireContext())
 
-        LoaderManager.getInstance(this).initLoader(ID_LOAD_TRANSMISSOES, null, this)
+
     }
 
     override fun onDestroy() {
