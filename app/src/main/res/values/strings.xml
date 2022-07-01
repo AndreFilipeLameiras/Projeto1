@@ -20,4 +20,6 @@
     <string name="nome_tracao">Nome da Traçao</string>
     <string name="nome_cor">Nome da Cor</string>
     <string name="preco_cor">Preço da Cor</string>
+    <string name="nome_estofo">Nome dos Estofos</string>
+    <string name="preco_estofo">Preço dos Estofos</string>
 </resources>
