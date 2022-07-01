@@ -10,11 +10,11 @@ class TabelaBDCores (db: SQLiteDatabase): TabelaBD(db, NOME) {
 
     companion object{
         const val NOME = "cores"
-        //const val CAMPO_PINTURA_ID = "pinturaId"
+        const val CAMPO_ID = "$NOME.${BaseColumns._ID}"
         const val CAMPO_COR = "nome"
         const val PRECO = "preco"
 
-        val TODAS_COLUNAS = arrayOf(BaseColumns._ID, CAMPO_COR, PRECO)
+        val TODAS_COLUNAS = arrayOf(CAMPO_ID, CAMPO_COR, PRECO)
     }
 
 }

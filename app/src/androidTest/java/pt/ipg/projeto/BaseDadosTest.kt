@@ -70,6 +70,11 @@ class BaseDadosTest {
         assertNotEquals(-1, jante.id)
     }
 
+    private fun insereMotorizacao(db: SQLiteDatabase, motorizacao: Motorizacao){
+        motorizacao.id = TabelaBDMotorizacoes(db).insert(motorizacao.toContentValues())
+        assertNotEquals(-1, motorizacao.id)
+    }
+
     @Before
     fun apagaBaseDados(){
         //appContext().deleteDatabase(BDCarrosOpenHelper.NOME)
@@ -682,6 +687,49 @@ class BaseDadosTest {
         val motorizacao = Motorizacao(109, 6.5, 140.5 , transmissao.id, tracao.id, combustivel.id)
 
         TabelaBDMotorizacoes(db).insert(motorizacao.toContentValues())
+    }
+
+    @Test
+    fun consegueAlterarMotorizacao(){
+        val db = getBdCarrosOpenHelper().writableDatabase
+
+        val transmissaoAutomatica = Transmissao("Automatica")
+        insereMotorizacao(db, transmissaoAutomatica)
+
+        val transmissaoManual = Transmissao("Manual")
+        insereMotorizacao(db, transmissaoManual)
+
+        val tracaoTraseira = Tracao("Traseira")
+        insereTracao(db, tracaoTraseira)
+
+        val tracaoDianteira = Tracao("Dianteira")
+        insereTracao(db, tracaoDianteira)
+
+        val combustivelGasolina = Combustivel("Gasolina")
+        insereCombustivel(db, combustivelGasolina)
+
+        val combustivelDiesel = Combustivel("Diesel")
+        insereCombustivel(db, combustivelDiesel)
+
+        val motorizacao = Motorizacao(136, 6.8, 145.5, transmissaoAutomatica, tracaoTraseira, combustivelGasolina )
+        insereMotorizacao(db, motorizacao)
+
+        motorizacao.potencia = 190
+        motorizacao.consumo = 5.4
+        motorizacao.emissoes = 141.1
+        motorizacao.idTransmissoes = transmissaoManual
+
+
+        val registosAlterados = TabelaBDModelo(db).update(
+            modelo.toContentValues(),
+            "${BaseColumns._ID}=?",
+            arrayOf("${modelo.id}"))
+
+
+
+        assertEquals(1, registosAlterados)
+
+        db.close()
     }
 
 

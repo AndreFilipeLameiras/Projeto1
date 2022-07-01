@@ -10,13 +10,15 @@ class TabelaBDJantes (db: SQLiteDatabase): TabelaBD(db, NOME){
 
     companion object{
         const val NOME = "jantes"
+
+        const val CAMPO_ID = "$NOME.${BaseColumns._ID}"
         const val JANTES = "nome"
         const val LARGURA = "largura"
         const val ALTURA = "altura"
         const val RAIO = "raio"
         const val PRECO = "preco"
 
-        val TODAS_COLUNAS = arrayOf(BaseColumns._ID, JANTES, LARGURA, ALTURA, RAIO, PRECO)
+        val TODAS_COLUNAS = arrayOf(CAMPO_ID, JANTES, LARGURA, ALTURA, RAIO, PRECO)
 
     }
 
