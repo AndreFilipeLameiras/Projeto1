@@ -374,6 +374,24 @@ class BaseDadosTest {
         db.close()
     }
 
+    @Test
+    fun consegueEliminarCombustivel(){
+        val db = getBdCarrosOpenHelper().writableDatabase
+
+        val combustivel = Combustivel("Teste")
+        insereCombustivel(db, combustivel)
+
+        combustivel.nome = "Eletrico"
+
+        val registosEliminados = TabelaBDCombustivel(db).delete(
+            "${BaseColumns._ID}=?",
+            arrayOf("${combustivel.id}"))
+
+        assertEquals(1, registosEliminados)
+
+        db.close()
+    }
+
 
 
 
