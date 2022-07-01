@@ -52,6 +52,11 @@ class BaseDadosTest {
         assertNotEquals(-1, tracao.id)
     }
 
+    private fun insereCombustivel(db: SQLiteDatabase, combustivel: Combustivel){
+        combustivel.id = TabelaBDCombustivel(db).insert(combustivel.toContentValues())
+        assertNotEquals(-1, combustivel.id)
+    }
+
     @Before
     fun apagaBaseDados(){
         //appContext().deleteDatabase(BDCarrosOpenHelper.NOME)
@@ -350,6 +355,24 @@ class BaseDadosTest {
         TabelaBDCombustivel(db).insert(combustivel.toContentValues())
     }
 
+    @Test
+    fun consegueAlterarCombustivel(){
+        val db = getBdCarrosOpenHelper().writableDatabase
+
+        val combustivel = Combustivel("Teste")
+        insereCombustivel(db, combustivel)
+
+        combustivel.nome = "Diesel"
+
+        val registosAlterados = TabelaBDCombustivel(db).update(
+            combustivel.toContentValues(),
+            "${BaseColumns._ID}=?",
+            arrayOf("${combustivel.id}"))
+
+        assertEquals(1, registosAlterados)
+
+        db.close()
+    }
 
 
 
