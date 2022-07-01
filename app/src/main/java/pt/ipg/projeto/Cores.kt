@@ -17,7 +17,7 @@ data class Cores (
 
         valores.put(TabelaBDCores.CAMPO_COR, nome)
         valores.put(TabelaBDCores.PRECO, preco)
-        valores.put(TabelaBDCores.CAMPO_PINTURA_ID, idPintura)
+        //valores.put(TabelaBDCores.CAMPO_PINTURA_ID, idPintura)
 
 
         return valores
@@ -29,14 +29,14 @@ data class Cores (
             val posId = cursor.getColumnIndex(BaseColumns._ID)
             val posNome = cursor.getColumnIndex(TabelaBDCores.CAMPO_COR)
             val posPreco = cursor.getColumnIndex(TabelaBDCores.PRECO)
-            val posIdPint = cursor.getColumnIndex(TabelaBDCores.CAMPO_PINTURA_ID)
+            //val posIdPint = cursor.getColumnIndex(TabelaBDCores.CAMPO_PINTURA_ID)
 
             val id = cursor.getLong(posId)
             val nome = cursor.getString(posNome)
             val preco = cursor.getDouble(posPreco)
-            val idPintura = cursor.getLong(posIdPint)
+            //val idPintura = cursor.getLong(posIdPint)
 
-            return Cores(nome, preco, idPintura, id)
+            return Cores(nome, preco, id)
         }
     }
 }

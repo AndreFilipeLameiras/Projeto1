@@ -19,33 +19,43 @@ import org.junit.Before
 @RunWith(AndroidJUnit4::class)
 class BaseDadosTest {
 
-    private fun appContext() =
+    private fun getAppContext() =
         InstrumentationRegistry.getInstrumentation().targetContext
 
-    private fun getWritableDatabase(): SQLiteDatabase{
+    private fun getBdCarrosOpenHelper() = BDCarrosOpenHelper(getAppContext())
+
+
+    /*private fun getWritableDatabase(): SQLiteDatabase{
         val openHelper = BDCarrosOpenHelper(appContext())
         return openHelper.writableDatabase
-    }
+    }*/
 
     private fun insereMarca(db: SQLiteDatabase, marca: Marca) {
         marca.id = TabelaBDMarcas(db).insert(marca.toContentValues())
         assertNotEquals(-1, marca.id)
     }
 
+
+
     private fun insereModelo(db: SQLiteDatabase, modelo: Modelo){
         modelo.id = TabelaBDModelo(db).insert(modelo.toContentValues())
         assertNotEquals(-1, modelo.id)
     }
 
+    private fun insereTransmissao(db: SQLiteDatabase, transmissao: Transmissao){
+        transmissao.id = TabelaBDTransmissoes(db).insert(transmissao.toContentValues())
+        assertNotEquals(-1, transmissao.id)
+    }
+
 
     @Before
     fun apagaBaseDados(){
-        appContext().deleteDatabase(BDCarrosOpenHelper.NOME)
+        //appContext().deleteDatabase(BDCarrosOpenHelper.NOME)
     }
 
     @Test
     fun consegueAbrirBaseDados(){
-        val openHelper = BDCarrosOpenHelper(appContext())
+        val openHelper = BDCarrosOpenHelper(getAppContext())
         val db = openHelper.readableDatabase
 
         assertTrue(db.isOpen)
@@ -55,7 +65,7 @@ class BaseDadosTest {
 
     @Test
     fun consegueInserirMarca(){
-        val db = getWritableDatabase()
+        val db = getBdCarrosOpenHelper().writableDatabase
 
         val marca = Marca("BMW")
 
@@ -67,7 +77,7 @@ class BaseDadosTest {
 
     @Test
     fun consegueInserirModelo(){
-        val db = getWritableDatabase()
+        val db = getBdCarrosOpenHelper().writableDatabase
 
         val marca = Marca("Audi")
         insereMarca(db, marca)
@@ -79,8 +89,26 @@ class BaseDadosTest {
     }
 
     @Test
+    fun consegueInserirTransmissao(){
+        val db = getBdCarrosOpenHelper().writableDatabase
+
+        val transmissao = Transmissao("Automatica")
+
+        TabelaBDTransmissoes(db).insert(transmissao.toContentValues())
+    }
+
+    @Test
+    fun consegueInserirTracao(){
+        val db = getBdCarrosOpenHelper().writableDatabase
+
+        val tracao = Tracao("Integral")
+
+        TabelaBDTracao(db).insert(tracao.toContentValues())
+    }
+
+    @Test
     fun consegueAlterarMarca(){
-        val db = getWritableDatabase()
+        val db = getBdCarrosOpenHelper().writableDatabase
 
         val marca = Marca("Teste")
         insereMarca(db, marca)
@@ -99,7 +127,7 @@ class BaseDadosTest {
 
     @Test
     fun consegueAlterarModelo(){
-        val db = getWritableDatabase()
+        val db = getBdCarrosOpenHelper().writableDatabase
 
         val marcaNissam = Marca("Nissan")
         insereMarca(db, marcaNissam)
@@ -128,7 +156,7 @@ class BaseDadosTest {
 
     @Test
     fun consegueEliminarMarca(){
-        val db = getWritableDatabase()
+        val db = getBdCarrosOpenHelper().writableDatabase
 
         val marca = Marca("Teste")
         insereMarca(db, marca)
@@ -147,7 +175,7 @@ class BaseDadosTest {
 
     @Test
     fun consegueEliminarModelo(){
-        val db = getWritableDatabase()
+        val db = getBdCarrosOpenHelper().writableDatabase
 
         val marca = Marca("Opel")
         insereMarca(db, marca)
@@ -170,7 +198,7 @@ class BaseDadosTest {
 
     @Test
     fun consegueLerMarca(){
-        val db = getWritableDatabase()
+        val db = getBdCarrosOpenHelper().writableDatabase
 
         val marca = Marca("Audi")
         insereMarca(db, marca)
@@ -199,7 +227,7 @@ class BaseDadosTest {
 
     @Test
     fun consegueLerModelo(){
-            val db = getWritableDatabase()
+            val db = getBdCarrosOpenHelper().writableDatabase
 
             val marca = Marca("Ferrari")
             insereMarca(db, marca)

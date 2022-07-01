@@ -22,4 +22,36 @@
         android:name="pt.ipg.projeto.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+    <fragment
+        android:id="@+id/listaCombustivelFragment"
+        android:name="pt.ipg.projeto.ListaCombustivelFragment"
+        android:label="ListaCombustivelFragment" />
+    <fragment
+        android:id="@+id/listaEstofosFragment"
+        android:name="pt.ipg.projeto.ListaEstofosFragment"
+        android:label="ListaEstofosFragment" />
+    <fragment
+        android:id="@+id/listaCoresFragment"
+        android:name="pt.ipg.projeto.ListaCoresFragment"
+        android:label="ListaCoresFragment" />
+    <fragment
+        android:id="@+id/listaJantesFragment"
+        android:name="pt.ipg.projeto.ListaJantesFragment"
+        android:label="ListaJantesFragment" />
+    <fragment
+        android:id="@+id/listaMarcasFragment"
+        android:name="pt.ipg.projeto.ListaMarcasFragment"
+        android:label="ListaMarcasFragment" />
+    <fragment
+        android:id="@+id/listaModelosfragment"
+        android:name="pt.ipg.projeto.ListaModelosfragment"
+        android:label="ListaModelosfragment" />
+    <fragment
+        android:id="@+id/listaTracaoFragment"
+        android:name="pt.ipg.projeto.ListaTracaoFragment"
+        android:label="ListaTracaoFragment" />
+    <fragment
+        android:id="@+id/listaTransmissoesFragment"
+        android:name="pt.ipg.projeto.ListaTransmissoesFragment"
+        android:label="ListaTransmissoesFragment" />
 </navigation>
