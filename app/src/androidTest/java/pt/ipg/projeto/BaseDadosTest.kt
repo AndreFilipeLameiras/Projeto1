@@ -581,7 +581,14 @@ class BaseDadosTest {
         db.close()
     }
 
+    @Test
+    fun consegueInserirJante(){
+        val db = getBdCarrosOpenHelper().writableDatabase
 
+        val jante = Jante("raios em estrela cinzento Ferric ", 205, 55 ,16, 450.5 )
+
+        TabelaBDJantes(db).insert(jante.toContentValues())
+    }
 
 
 
