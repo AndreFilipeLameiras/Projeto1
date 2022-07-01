@@ -500,6 +500,15 @@ class BaseDadosTest {
         db.close()
     }
 
+    @Test
+    fun consegueInserirEstofo(){
+        val db = getBdCarrosOpenHelper().writableDatabase
+
+        val estofo = Estofos("Pele Dakota perfurada Preto", 1780.1)
+
+        TabelaBDEstofos(db).insert(estofo.toContentValues())
+    }
+
 
 
 
