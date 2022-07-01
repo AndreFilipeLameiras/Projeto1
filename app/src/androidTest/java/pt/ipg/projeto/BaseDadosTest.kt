@@ -616,7 +616,28 @@ class BaseDadosTest {
         db.close()
     }
 
+    @Test
+    fun consegueEliminarJante(){
+        val db = getBdCarrosOpenHelper().writableDatabase
 
+        val jante = Jante("Teste", 225, 45, 16, 755.5)
+        insereJante(db, jante)
+
+        jante.nome = "raios duplos com pneus performance"
+        jante.largura = 225
+        jante.altura = 45
+        jante.raio = 17
+        jante.preco = 1512.2
+
+
+        val registosEliminados = TabelaBDJantes(db).delete(
+            "${BaseColumns._ID}=?",
+            arrayOf("${jante.id}"))
+
+        assertEquals(1, registosEliminados)
+
+        db.close()
+    }
 
 
 }
