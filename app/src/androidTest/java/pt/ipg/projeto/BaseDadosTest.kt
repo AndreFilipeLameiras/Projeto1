@@ -35,8 +35,6 @@ class BaseDadosTest {
         assertNotEquals(-1, marca.id)
     }
 
-
-
     private fun insereModelo(db: SQLiteDatabase, modelo: Modelo){
         modelo.id = TabelaBDModelo(db).insert(modelo.toContentValues())
         assertNotEquals(-1, modelo.id)
@@ -65,6 +63,11 @@ class BaseDadosTest {
     private fun insereEstofo(db: SQLiteDatabase, estofos: Estofos){
         estofos.id = TabelaBDEstofos(db).insert(estofos.toContentValues())
         assertNotEquals(-1, estofos.id)
+    }
+
+    private fun insereJante(db: SQLiteDatabase, jante: Jante){
+        jante.id = TabelaBDJantes(db).insert(jante.toContentValues())
+        assertNotEquals(-1, jante.id)
     }
 
     @Before
@@ -590,7 +593,28 @@ class BaseDadosTest {
         TabelaBDJantes(db).insert(jante.toContentValues())
     }
 
+    @Test
+    fun consegueAlterarJante(){
+        val db = getBdCarrosOpenHelper().writableDatabase
 
+        val jante = Jante("Teste", 205, 55, 16, 450.5)
+        insereJante(db, jante)
+
+        jante.nome = "raios multiplos "
+        jante.largura = 225
+        jante.altura = 45
+        jante.raio = 17
+        jante.preco = 454.2
+
+        val registosAlterados = TabelaBDJantes(db).update(
+            jante.toContentValues(),
+            "${BaseColumns._ID}=?",
+            arrayOf("${jante.id}"))
+
+        assertEquals(1, registosAlterados)
+
+        db.close()
+    }
 
 
 
