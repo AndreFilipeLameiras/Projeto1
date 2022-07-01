@@ -10,10 +10,10 @@ class TabelaBDTransmissoes (db: SQLiteDatabase): TabelaBD(db, NOME) {
 
     companion object{
         const val NOME = "transmissoes"
-        const val CAMPO_ID_TRANSMISSOES = "$NOME.${BaseColumns._ID}"
+        const val CAMPO_ID = "$NOME.${BaseColumns._ID}"
         const val CAMPO_NOME = "nome"
 
-        val TODAS_COLUNAS = arrayOf(CAMPO_ID_TRANSMISSOES, CAMPO_NOME)
+        val TODAS_COLUNAS = arrayOf(CAMPO_ID, CAMPO_NOME)
     }
 
 

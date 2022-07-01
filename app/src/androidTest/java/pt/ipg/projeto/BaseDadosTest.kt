@@ -112,7 +112,7 @@ class BaseDadosTest {
 
         val registosAlterados = TabelaBDMarcas(db).update(
             marca.toContentValues(),
-            "${BaseColumns._ID}=?",
+            "${TabelaBDMarcas.CAMPO_ID}=?",
             arrayOf("${marca.id}"))
 
         assertEquals(1, registosAlterados)
@@ -130,7 +130,7 @@ class BaseDadosTest {
         marca.nome = "Mercedes"
 
         val registosEliminados = TabelaBDMarcas(db).delete(
-            "${BaseColumns._ID}=?",
+            "${TabelaBDMarcas.CAMPO_ID}=?",
             arrayOf("${marca.id}"))
 
         assertEquals(1, registosEliminados)
@@ -147,7 +147,7 @@ class BaseDadosTest {
 
         val cursor = TabelaBDMarcas(db).query(
             TabelaBDMarcas.TODAS_COLUNAS,
-            "${BaseColumns._ID}=?",
+            "${TabelaBDMarcas.CAMPO_ID}=?",
             arrayOf("${marca.id}"),
             null,
             null,
@@ -173,7 +173,7 @@ class BaseDadosTest {
         val marca = Marca("Audi")
         insereMarca(db, marca)
 
-        val modelo = Modelo("Serie 1 ", 23574.28, marca.id)
+        val modelo = Modelo("Serie 1 ", 23574.28, marca)
         insereModelo(db, modelo)
 
         db.close()
@@ -189,16 +189,16 @@ class BaseDadosTest {
         val marcaSeat = Marca("Seat")
         insereMarca(db, marcaSeat)
 
-        val modelo = Modelo("Teste", 25444.2, marcaNissam.id)
+        val modelo = Modelo("Teste", 25444.2, marcaNissam)
         insereModelo(db, modelo)
 
         modelo.modelo = "Navara"
         modelo.preco = 35444.4
-        modelo.idMarca = marcaNissam.id
+        modelo.marca = marcaNissam
 
         val registosAlterados = TabelaBDModelo(db).update(
             modelo.toContentValues(),
-            "${BaseColumns._ID}=?",
+            "${TabelaBDModelo.CAMPO_ID}=?",
             arrayOf("${modelo.id}"))
 
 
@@ -216,12 +216,12 @@ class BaseDadosTest {
         insereMarca(db, marca)
 
 
-        val modelo = Modelo("Teste", 25214.2, marca.id)
+        val modelo = Modelo("Teste", 25214.2, marca)
         insereModelo(db, modelo)
 
 
         val registosEliminados = TabelaBDModelo(db).delete(
-            "${BaseColumns._ID}=?",
+            "${TabelaBDModelo.CAMPO_ID}=?",
             arrayOf("${modelo.id}"))
 
 
@@ -238,12 +238,12 @@ class BaseDadosTest {
         val marca = Marca("Ferrari")
         insereMarca(db, marca)
 
-        val modelo = Modelo("F8 Tributo", 78451.21, marca.id)
+        val modelo = Modelo("F8 Tributo", 78451.21, marca)
         insereModelo(db, modelo)
 
         val cursor = TabelaBDModelo(db).query(
             TabelaBDModelo.TODAS_COLUNAS,
-            "${BaseColumns._ID}=?",
+            "${TabelaBDModelo.CAMPO_ID}=?",
             arrayOf("${marca.id}"),
             null,
             null,
@@ -281,7 +281,7 @@ class BaseDadosTest {
 
         val registosAlterados = TabelaBDTransmissoes(db).update(
             transmissao.toContentValues(),
-            "${BaseColumns._ID}=?",
+            "${TabelaBDTransmissoes.CAMPO_ID}=?",
             arrayOf("${transmissao.id}"))
 
         assertEquals(1, registosAlterados)
@@ -309,7 +309,7 @@ class BaseDadosTest {
 
         val registosAlterados = TabelaBDTracao(db).update(
             tracao.toContentValues(),
-            "${BaseColumns._ID}=?",
+            "${TabelaBDTracao.CAMPO_ID}=?",
             arrayOf("${tracao.id}"))
 
         assertEquals(1, registosAlterados)
@@ -327,7 +327,7 @@ class BaseDadosTest {
         tracao.nome = "Dianteira"
 
         val registosEliminados = TabelaBDTracao(db).delete(
-            "${BaseColumns._ID}=?",
+            "${TabelaBDTracao.CAMPO_ID}=?",
             arrayOf("${tracao.id}"))
 
         assertEquals(1, registosEliminados)
@@ -346,7 +346,7 @@ class BaseDadosTest {
 
         val cursor = TabelaBDTracao(db).query(
             TabelaBDTracao.TODAS_COLUNAS,
-            "${BaseColumns._ID}=?",
+            "${TabelaBDTracao.CAMPO_ID}=?",
             arrayOf("${tracao.id}"),
             null,
             null,
@@ -384,7 +384,7 @@ class BaseDadosTest {
 
         val registosAlterados = TabelaBDCombustivel(db).update(
             combustivel.toContentValues(),
-            "${BaseColumns._ID}=?",
+            "${TabelaBDCombustivel.CAMPO_ID}=?",
             arrayOf("${combustivel.id}"))
 
         assertEquals(1, registosAlterados)
@@ -402,7 +402,7 @@ class BaseDadosTest {
         combustivel.nome = "Eletrico"
 
         val registosEliminados = TabelaBDCombustivel(db).delete(
-            "${BaseColumns._ID}=?",
+            "${TabelaBDCombustivel.CAMPO_ID}=?",
             arrayOf("${combustivel.id}"))
 
         assertEquals(1, registosEliminados)
@@ -419,7 +419,7 @@ class BaseDadosTest {
 
         val cursor = TabelaBDCombustivel(db).query(
             TabelaBDCombustivel.TODAS_COLUNAS,
-            "${BaseColumns._ID}=?",
+            "${TabelaBDCombustivel.CAMPO_ID}=?",
             arrayOf("${combustivel.id}"),
             null,
             null,
@@ -458,7 +458,7 @@ class BaseDadosTest {
 
         val registosAlterados = TabelaBDCores(db).update(
             cor.toContentValues(),
-            "${BaseColumns._ID}=?",
+            "${TabelaBDCores.CAMPO_ID}=?",
             arrayOf("${cor.id}"))
 
         assertEquals(1, registosAlterados)
@@ -478,7 +478,7 @@ class BaseDadosTest {
 
 
         val registosEliminados = TabelaBDCores(db).delete(
-            "${BaseColumns._ID}=?",
+            "${TabelaBDCores.CAMPO_ID}=?",
             arrayOf("${cor.id}"))
 
         assertEquals(1, registosEliminados)
@@ -495,7 +495,7 @@ class BaseDadosTest {
 
         val cursor = TabelaBDCores(db).query(
             TabelaBDCores.TODAS_COLUNAS,
-            "${BaseColumns._ID}=?",
+            "${TabelaBDCores.CAMPO_ID}=?",
             arrayOf("${cor.id}"),
             null,
             null,
@@ -534,7 +534,7 @@ class BaseDadosTest {
 
         val registosAlterados = TabelaBDEstofos(db).update(
             estofo.toContentValues(),
-            "${BaseColumns._ID}=?",
+            "${TabelaBDEstofos.CAMPO_ID}=?",
             arrayOf("${estofo.id}"))
 
         assertEquals(1, registosAlterados)
@@ -554,7 +554,7 @@ class BaseDadosTest {
 
 
         val registosEliminados = TabelaBDEstofos(db).delete(
-            "${BaseColumns._ID}=?",
+            "${TabelaBDEstofos.CAMPO_ID}=?",
             arrayOf("${estofo.id}"))
 
         assertEquals(1, registosEliminados)
@@ -571,7 +571,7 @@ class BaseDadosTest {
 
         val cursor = TabelaBDEstofos(db).query(
             TabelaBDEstofos.TODAS_COLUNAS,
-            "${BaseColumns._ID}=?",
+            "${TabelaBDEstofos.CAMPO_ID}=?",
             arrayOf("${estofo.id}"),
             null,
             null,
@@ -613,7 +613,7 @@ class BaseDadosTest {
 
         val registosAlterados = TabelaBDJantes(db).update(
             jante.toContentValues(),
-            "${BaseColumns._ID}=?",
+            "${TabelaBDJantes.CAMPO_ID}=?",
             arrayOf("${jante.id}"))
 
         assertEquals(1, registosAlterados)
@@ -636,7 +636,7 @@ class BaseDadosTest {
 
 
         val registosEliminados = TabelaBDJantes(db).delete(
-            "${BaseColumns._ID}=?",
+            "${TabelaBDJantes.CAMPO_ID}=?",
             arrayOf("${jante.id}"))
 
         assertEquals(1, registosEliminados)
@@ -653,7 +653,7 @@ class BaseDadosTest {
 
         val cursor = TabelaBDJantes(db).query(
             TabelaBDJantes.TODAS_COLUNAS,
-            "${BaseColumns._ID}=?",
+            "${TabelaBDJantes.CAMPO_ID}=?",
             arrayOf("${jante.id}"),
             null,
             null,
@@ -684,7 +684,7 @@ class BaseDadosTest {
         val combustivel = Combustivel("Gasolina")
         insereCombustivel(db, combustivel)
 
-        val motorizacao = Motorizacao(109, 6.5, 140.5 , transmissao.id, tracao.id, combustivel.id)
+        val motorizacao = Motorizacao(109, 6.5, 140.5 , transmissao, tracao, combustivel)
 
         TabelaBDMotorizacoes(db).insert(motorizacao.toContentValues())
     }
@@ -694,10 +694,10 @@ class BaseDadosTest {
         val db = getBdCarrosOpenHelper().writableDatabase
 
         val transmissaoAutomatica = Transmissao("Automatica")
-        insereMotorizacao(db, transmissaoAutomatica)
+        insereTransmissao(db, transmissaoAutomatica)
 
         val transmissaoManual = Transmissao("Manual")
-        insereMotorizacao(db, transmissaoManual)
+        insereTransmissao(db, transmissaoManual)
 
         val tracaoTraseira = Tracao("Traseira")
         insereTracao(db, tracaoTraseira)
@@ -717,13 +717,15 @@ class BaseDadosTest {
         motorizacao.potencia = 190
         motorizacao.consumo = 5.4
         motorizacao.emissoes = 141.1
-        motorizacao.idTransmissoes = transmissaoManual
+        motorizacao.transmissao = transmissaoManual
+        motorizacao.tracao = tracaoTraseira
+        motorizacao.combustivel = combustivelDiesel
 
 
-        val registosAlterados = TabelaBDModelo(db).update(
-            modelo.toContentValues(),
-            "${BaseColumns._ID}=?",
-            arrayOf("${modelo.id}"))
+        val registosAlterados = TabelaBDMotorizacoes(db).update(
+            motorizacao.toContentValues(),
+            "${TabelaBDMotorizacoes.CAMPO_ID}=?",
+            arrayOf("${motorizacao.id}"))
 
 
 

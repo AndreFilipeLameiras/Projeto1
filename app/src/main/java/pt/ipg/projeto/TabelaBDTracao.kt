@@ -11,11 +11,11 @@ class TabelaBDTracao (db: SQLiteDatabase): TabelaBD(db, NOME) {
 
     companion object{
         const val NOME = "tracao"
-        const val CAMPO_ID_TRACOES = "$NOME.${BaseColumns._ID}"
+        const val CAMPO_ID = "$NOME.${BaseColumns._ID}"
         const val CAMPO_NOME = "nome"
 
 
-        val TODAS_COLUNAS = arrayOf(CAMPO_ID_TRACOES, CAMPO_NOME)
+        val TODAS_COLUNAS = arrayOf(CAMPO_ID, CAMPO_NOME)
     }
 
 }

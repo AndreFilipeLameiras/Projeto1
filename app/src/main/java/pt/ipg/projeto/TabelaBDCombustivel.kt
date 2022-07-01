@@ -10,10 +10,10 @@ class TabelaBDCombustivel (db: SQLiteDatabase): TabelaBD(db, NOME){
 
     companion object{
         const val NOME = "combustivel"
-        const val CAMPO_ID_COMBUSTIVEL = "$NOME.${BaseColumns._ID}"
+        const val CAMPO_ID = "$NOME.${BaseColumns._ID}"
         const val CAMPO_NOME = "nome"
 
-        val TODAS_COLUNAS = arrayOf(CAMPO_ID_COMBUSTIVEL, CAMPO_NOME)
+        val TODAS_COLUNAS = arrayOf(CAMPO_ID, CAMPO_NOME)
     }
 
 

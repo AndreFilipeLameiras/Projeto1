@@ -21,9 +21,9 @@ class TabelaBDMotorizacoes (db: SQLiteDatabase) : TabelaBD(db, NOME){
         orderBy: String?
     ): Cursor {
         val queryBuilder = SQLiteQueryBuilder()
-        queryBuilder.tables = "$NOME INNER JOIN ${TabelaBDTransmissoes.NOME} ON ${TabelaBDTransmissoes.CAMPO_ID_TRANSMISSOES} = $CAMPO_TRANSMISSOES_ID"
-        queryBuilder.tables = "$NOME INNER JOIN ${TabelaBDTracao.NOME} ON ${TabelaBDTracao.CAMPO_ID_TRACOES} = $CAMPO_TRACAO_ID"
-        queryBuilder.tables = "$NOME INNER JOIN ${TabelaBDCombustivel.NOME} ON ${TabelaBDCombustivel.CAMPO_ID_COMBUSTIVEL} = $CAMPO_COMBUSTIVEL_ID"
+        queryBuilder.tables = "$NOME INNER JOIN ${TabelaBDTransmissoes.NOME} ON ${TabelaBDTransmissoes.CAMPO_ID} = $CAMPO_TRANSMISSOES_ID"
+        queryBuilder.tables = "$NOME INNER JOIN ${TabelaBDTracao.NOME} ON ${TabelaBDTracao.CAMPO_ID} = $CAMPO_TRACAO_ID"
+        queryBuilder.tables = "$NOME INNER JOIN ${TabelaBDCombustivel.NOME} ON ${TabelaBDCombustivel.CAMPO_ID} = $CAMPO_COMBUSTIVEL_ID"
 
         return queryBuilder.query(db, columns, selection, selectionArgs, groupBy, having, orderBy)
     }
@@ -31,9 +31,8 @@ class TabelaBDMotorizacoes (db: SQLiteDatabase) : TabelaBD(db, NOME){
     companion object{
         const val NOME = "motorizacoes"
 
-        const val CAMPO_ID_TRANSMISSOES = "$NOME.${BaseColumns._ID}"
-        const val CAMPO_ID_TRACOES = "$NOME.${BaseColumns._ID}"
-        const val CAMPO_ID_COMBUSTIVEL = "$NOME.${BaseColumns._ID}"
+        const val CAMPO_ID = "$NOME.${BaseColumns._ID}"
+
         const val CAMPO_POTENCIA = "potencia"
         const val CAMPO_CONSUMO = "consumo"
         const val CAMPO_EMISSOES = "emissoes"
@@ -42,7 +41,6 @@ class TabelaBDMotorizacoes (db: SQLiteDatabase) : TabelaBD(db, NOME){
         const val CAMPO_COMBUSTIVEL_ID = "combustivelID"
 
 
-        val TODAS_COLUNAS = arrayOf(CAMPO_ID_TRANSMISSOES, CAMPO_ID_TRACOES, CAMPO_ID_COMBUSTIVEL, CAMPO_POTENCIA, CAMPO_CONSUMO, CAMPO_EMISSOES, CAMPO_TRANSMISSOES_ID, CAMPO_TRACAO_ID,
-            CAMPO_COMBUSTIVEL_ID)
+        val TODAS_COLUNAS = arrayOf(CAMPO_ID, CAMPO_POTENCIA, CAMPO_CONSUMO, CAMPO_EMISSOES, TabelaBDTransmissoes.CAMPO_NOME, TabelaBDTracao.CAMPO_NOME, TabelaBDCombustivel.CAMPO_NOME)
     }
 }
