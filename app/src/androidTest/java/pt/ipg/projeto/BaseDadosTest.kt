@@ -473,6 +473,34 @@ class BaseDadosTest {
         db.close()
     }
 
+    @Test
+    fun consegueLerCores(){
+        val db = getBdCarrosOpenHelper().writableDatabase
+
+        val cor = Cores("Azul", 1785.8)
+        insereCor(db, cor)
+
+        val cursor = TabelaBDCoresPintura(db).query(
+            TabelaBDCores.TODAS_COLUNAS,
+            "${BaseColumns._ID}=?",
+            arrayOf("${cor.id}"),
+            null,
+            null,
+            null
+
+        )
+
+        assertEquals(1, cursor.count)
+        assertTrue(cursor.moveToNext())
+
+        val corBD = Cores.fromCursor(cursor)
+
+        assertEquals(cor, corBD)
+
+        db.close()
+    }
+
+
 
 
 
