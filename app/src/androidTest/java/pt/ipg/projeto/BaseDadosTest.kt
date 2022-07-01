@@ -419,6 +419,14 @@ class BaseDadosTest {
         db.close()
     }
 
+    @Test
+    fun consegueInserirCores(){
+        val db = getBdCarrosOpenHelper().writableDatabase
+
+        val cor = Cores("Vermelho", 1472.1)
+
+        TabelaBDCores(db).insert(cor.toContentValues())
+    }
 
 
 

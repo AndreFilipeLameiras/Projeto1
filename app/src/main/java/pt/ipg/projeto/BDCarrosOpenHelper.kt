@@ -19,8 +19,8 @@ class BDCarrosOpenHelper( context: Context? ) : SQLiteOpenHelper(context, NOME, 
         TabelaBDMarcas(db).cria()
         TabelaBDModelo(db).cria()
         TabelaBDEstilo(db).cria()
-        TabelaBDCoresPintura(db).cria()
-        TabelaBDEstofosEstilo(db).cria()
+        //TabelaBDCoresPintura(db).cria()
+        //TabelaBDEstofosEstilo(db).cria()
 
     }
 

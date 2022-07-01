@@ -4,12 +4,11 @@ import android.content.ContentValues
 import android.database.Cursor
 import android.provider.BaseColumns
 
-data class Cores (
+data class Cores(
     var nome: String,
     var preco: Double,
-    var idPintura: Long,
     var id: Long = -1
-    ) {
+) {
 
 
     fun toContentValues(): ContentValues {
