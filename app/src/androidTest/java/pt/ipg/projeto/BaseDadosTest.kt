@@ -639,5 +639,32 @@ class BaseDadosTest {
         db.close()
     }
 
+    @Test
+    fun consegueLerJante(){
+        val db = getBdCarrosOpenHelper().writableDatabase
+
+        val jante = Jante("raios duplos bicolores", 225,45,17, 1545.8)
+        insereJante(db, jante)
+
+        val cursor = TabelaBDJantes(db).query(
+            TabelaBDJantes.TODAS_COLUNAS,
+            "${BaseColumns._ID}=?",
+            arrayOf("${jante.id}"),
+            null,
+            null,
+            null
+
+        )
+
+        assertEquals(1, cursor.count)
+        assertTrue(cursor.moveToNext())
+
+        val jantBD = Jante.fromCursor(cursor)
+
+        assertEquals(jante, jantBD)
+
+        db.close()
+    }
+
 
 }
