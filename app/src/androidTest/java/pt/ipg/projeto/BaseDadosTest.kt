@@ -453,6 +453,25 @@ class BaseDadosTest {
         db.close()
     }
 
+    @Test
+    fun consegueEliminarCores(){
+        val db = getBdCarrosOpenHelper().writableDatabase
+
+        val cor = Cores("Teste", 1458.1)
+        insereCor(db, cor)
+
+        cor.nome = "Verde"
+        cor.preco = 1454.2
+
+
+        val registosEliminados = TabelaBDCores(db).delete(
+            "${BaseColumns._ID}=?",
+            arrayOf("${cor.id}"))
+
+        assertEquals(1, registosEliminados)
+
+        db.close()
+    }
 
 
 
