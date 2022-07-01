@@ -167,6 +167,34 @@ class BaseDadosTest {
     }
 
     @Test
+    fun consegueLerTracao(){
+        val db = getBdCarrosOpenHelper().writableDatabase
+
+        val tracao = Tracao("Traseira")
+        insereTracao(db, tracao)
+
+        val cursor = TabelaBDTracao(db).query(
+            TabelaBDTracao.TODAS_COLUNAS,
+            "${BaseColumns._ID}=?",
+            arrayOf("${tracao.id}"),
+            null,
+            null,
+            null
+
+        )
+
+        assertEquals(1, cursor.count)
+        assertTrue(cursor.moveToNext())
+
+        val tracBD = Tracao.fromCursor(cursor)
+
+        assertEquals(tracao, tracBD)
+
+        db.close()
+    }
+
+
+    @Test
     fun consegueAlterarModelo(){
         val db = getBdCarrosOpenHelper().writableDatabase
 
