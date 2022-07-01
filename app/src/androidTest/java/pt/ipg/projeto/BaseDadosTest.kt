@@ -392,6 +392,32 @@ class BaseDadosTest {
         db.close()
     }
 
+    @Test
+    fun consegueLerCombustivel(){
+        val db = getBdCarrosOpenHelper().writableDatabase
+
+        val combustivel = Combustivel("Hibrido")
+        insereCombustivel(db, combustivel)
+
+        val cursor = TabelaBDCombustivel(db).query(
+            TabelaBDCombustivel.TODAS_COLUNAS,
+            "${BaseColumns._ID}=?",
+            arrayOf("${combustivel.id}"),
+            null,
+            null,
+            null
+
+        )
+
+        assertEquals(1, cursor.count)
+        assertTrue(cursor.moveToNext())
+
+        val combBD = Combustivel.fromCursor(cursor)
+
+        assertEquals(combustivel, combBD)
+
+        db.close()
+    }
 
 
 
