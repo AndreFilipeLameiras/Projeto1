@@ -34,7 +34,7 @@ class ListaEstofosFragment : Fragment() , LoaderManager.LoaderCallbacks<Cursor>{
         super.onViewCreated(view, savedInstanceState)
 
         val recyclerViewEstofos = view.findViewById<RecyclerView>(R.id.recyclerViewEstofos)
-        adapterEstofos = AdapterEstofos()
+        adapterEstofos = AdapterEstofos(this)
         recyclerViewEstofos.adapter = adapterEstofos
         recyclerViewEstofos.layoutManager = LinearLayoutManager(requireContext())
 

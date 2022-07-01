@@ -3,11 +3,16 @@ package pt.ipg.projeto
 import android.database.Cursor
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class AdapterEstofos(var cursor: Cursor? = null) : RecyclerView.Adapter<AdapterEstofos.ViewHolderEstofos>() {
+class AdapterEstofos(val fragment: ListaEstofosFragment ,var cursor: Cursor? = null) : RecyclerView.Adapter<AdapterEstofos.ViewHolderEstofos>() {
     class ViewHolderEstofos(itemView: View) :RecyclerView.ViewHolder(itemView) {
+        private val textViewNomeEstofos = itemView.findViewById<TextView>(R.id.textViewNomeEstofo)
 
+        fun atualizaEstofo(estofos: Estofos){
+            textViewNomeEstofos.text = estofos.nome
+        }
     }
 
     /**
@@ -34,7 +39,9 @@ class AdapterEstofos(var cursor: Cursor? = null) : RecyclerView.Adapter<AdapterE
      * @see .onBindViewHolder
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderEstofos {
-        TODO("Not yet implemented")
+        val itemEstofo = fragment.layoutInflater.inflate(R.layout.item_estofos, parent, false)
+
+        return ViewHolderEstofos(itemEstofo)
     }
 
     /**
@@ -59,7 +66,8 @@ class AdapterEstofos(var cursor: Cursor? = null) : RecyclerView.Adapter<AdapterE
      * @param position The position of the item within the adapter's data set.
      */
     override fun onBindViewHolder(holder: ViewHolderEstofos, position: Int) {
-        TODO("Not yet implemented")
+        cursor!!.moveToPosition(position)
+        holder.atualizaEstofo(Estofos.fromCursor(cursor!!))
     }
 
     /**
@@ -68,7 +76,7 @@ class AdapterEstofos(var cursor: Cursor? = null) : RecyclerView.Adapter<AdapterE
      * @return The total number of items in this adapter.
      */
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return cursor?.count ?: 0
     }
 
 }
