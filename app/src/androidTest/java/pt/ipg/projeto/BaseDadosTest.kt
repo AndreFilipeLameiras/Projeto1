@@ -485,7 +485,7 @@ class BaseDadosTest {
         val cor = Cores("Azul", 1785.8)
         insereCor(db, cor)
 
-        val cursor = TabelaBDCoresPintura(db).query(
+        val cursor = TabelaBDCores(db).query(
             TabelaBDCores.TODAS_COLUNAS,
             "${BaseColumns._ID}=?",
             arrayOf("${cor.id}"),
@@ -554,6 +554,32 @@ class BaseDadosTest {
         db.close()
     }
 
+    @Test
+    fun consegueLerEstofo(){
+        val db = getBdCarrosOpenHelper().writableDatabase
+
+        val estofo = Estofos("Pele Dakota perfurada em vermelho Magma", 1245.8)
+        insereEstofo(db, estofo)
+
+        val cursor = TabelaBDEstofos(db).query(
+            TabelaBDEstofos.TODAS_COLUNAS,
+            "${BaseColumns._ID}=?",
+            arrayOf("${estofo.id}"),
+            null,
+            null,
+            null
+
+        )
+
+        assertEquals(1, cursor.count)
+        assertTrue(cursor.moveToNext())
+
+        val estoBD = Estofos.fromCursor(cursor)
+
+        assertEquals(estofo, estoBD)
+
+        db.close()
+    }
 
 
 
