@@ -12,6 +12,8 @@ class TabelaBDEstofos (db: SQLiteDatabase): TabelaBD(db, NOME){
         const val NOME = "estofos"
         const val ESTOFOS = "nome"
         const val PRECO = "preco"
+
+        val TODAS_COLUNAS = arrayOf(BaseColumns._ID, TabelaBDEstofos.ESTOFOS, TabelaBDEstofos.PRECO)
     }
 
 }
