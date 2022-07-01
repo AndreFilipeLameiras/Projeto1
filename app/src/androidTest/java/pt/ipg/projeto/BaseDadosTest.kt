@@ -78,6 +78,70 @@ class BaseDadosTest {
         db.close()
     }
 
+    @Test
+    fun consegueAlterarMarca(){
+        val db = getBdCarrosOpenHelper().writableDatabase
+
+        val marca = Marca("Teste")
+        insereMarca(db, marca)
+
+        marca.nome = "Mercedes"
+
+        val registosAlterados = TabelaBDMarcas(db).update(
+            marca.toContentValues(),
+            "${BaseColumns._ID}=?",
+            arrayOf("${marca.id}"))
+
+        assertEquals(1, registosAlterados)
+
+        db.close()
+    }
+
+    @Test
+    fun consegueEliminarMarca(){
+        val db = getBdCarrosOpenHelper().writableDatabase
+
+        val marca = Marca("Teste")
+        insereMarca(db, marca)
+
+        marca.nome = "Mercedes"
+
+        val registosEliminados = TabelaBDMarcas(db).delete(
+            "${BaseColumns._ID}=?",
+            arrayOf("${marca.id}"))
+
+        assertEquals(1, registosEliminados)
+
+        db.close()
+    }
+
+    @Test
+    fun consegueLerMarca(){
+        val db = getBdCarrosOpenHelper().writableDatabase
+
+        val marca = Marca("Audi")
+        insereMarca(db, marca)
+
+        val cursor = TabelaBDMarcas(db).query(
+            TabelaBDMarcas.TODAS_COLUNAS,
+            "${BaseColumns._ID}=?",
+            arrayOf("${marca.id}"),
+            null,
+            null,
+            null
+
+        )
+
+        assertEquals(1, cursor.count)
+        assertTrue(cursor.moveToNext())
+
+        val marcBD = Marca.fromCursor(cursor)
+
+        assertEquals(marca, marcBD)
+
+        db.close()
+    }
+
 
     @Test
     fun consegueInserirModelo(){
@@ -93,12 +157,113 @@ class BaseDadosTest {
     }
 
     @Test
+    fun consegueAlterarModelo(){
+        val db = getBdCarrosOpenHelper().writableDatabase
+
+        val marcaNissam = Marca("Nissan")
+        insereMarca(db, marcaNissam)
+
+        val marcaSeat = Marca("Seat")
+        insereMarca(db, marcaSeat)
+
+        val modelo = Modelo("Teste", 25444.2, marcaNissam.id)
+        insereModelo(db, modelo)
+
+        modelo.modelo = "Navara"
+        modelo.preco = 35444.4
+        modelo.idMarca = marcaNissam.id
+
+        val registosAlterados = TabelaBDModelo(db).update(
+            modelo.toContentValues(),
+            "${BaseColumns._ID}=?",
+            arrayOf("${modelo.id}"))
+
+
+
+        assertEquals(1, registosAlterados)
+
+        db.close()
+    }
+
+    @Test
+    fun consegueEliminarModelo(){
+        val db = getBdCarrosOpenHelper().writableDatabase
+
+        val marca = Marca("Opel")
+        insereMarca(db, marca)
+
+
+        val modelo = Modelo("Teste", 25214.2, marca.id)
+        insereModelo(db, modelo)
+
+
+        val registosEliminados = TabelaBDModelo(db).delete(
+            "${BaseColumns._ID}=?",
+            arrayOf("${modelo.id}"))
+
+
+
+        assertEquals(1, registosEliminados)
+
+        db.close()
+    }
+
+    @Test
+    fun consegueLerModelo(){
+        val db = getBdCarrosOpenHelper().writableDatabase
+
+        val marca = Marca("Ferrari")
+        insereMarca(db, marca)
+
+        val modelo = Modelo("F8 Tributo", 78451.21, marca.id)
+        insereModelo(db, modelo)
+
+        val cursor = TabelaBDModelo(db).query(
+            TabelaBDModelo.TODAS_COLUNAS,
+            "${BaseColumns._ID}=?",
+            arrayOf("${marca.id}"),
+            null,
+            null,
+            null
+
+        )
+
+        assertEquals(1, cursor.count)
+        assertTrue(cursor.moveToNext())
+
+        val modeBD = Modelo.fromCursor(cursor)
+
+        assertEquals(marca, modeBD)
+
+        db.close()
+    }
+
+    @Test
     fun consegueInserirTransmissao(){
         val db = getBdCarrosOpenHelper().writableDatabase
 
         val transmissao = Transmissao("Automatica")
 
         TabelaBDTransmissoes(db).insert(transmissao.toContentValues())
+    }
+
+    @Test
+    fun consegueAlterarTransmissao(){
+        val db = getBdCarrosOpenHelper().writableDatabase
+
+        val transmissao = Transmissao("Automatica CVT")
+        insereTransmissao(db, transmissao)
+
+        transmissao.nome = "Automatica"
+
+        val registosAlterados = TabelaBDTransmissoes(db).update(
+            transmissao.toContentValues(),
+            "${BaseColumns._ID}=?",
+            arrayOf("${transmissao.id}"))
+
+        assertEquals(1, registosAlterados)
+
+        db.close()
     }
 
     @Test
@@ -147,24 +312,7 @@ class BaseDadosTest {
         db.close()
     }
 
-    @Test
-    fun consegueAlterarMarca(){
-        val db = getBdCarrosOpenHelper().writableDatabase
 
-        val marca = Marca("Teste")
-        insereMarca(db, marca)
-
-        marca.nome = "Mercedes"
-
-        val registosAlterados = TabelaBDMarcas(db).update(
-            marca.toContentValues(),
-            "${BaseColumns._ID}=?",
-            arrayOf("${marca.id}"))
-
-        assertEquals(1, registosAlterados)
-
-        db.close()
-    }
 
     @Test
     fun consegueLerTracao(){
@@ -193,153 +341,27 @@ class BaseDadosTest {
         db.close()
     }
 
-
     @Test
-    fun consegueAlterarModelo(){
+    fun consegueInserirCombustivel(){
         val db = getBdCarrosOpenHelper().writableDatabase
 
-        val marcaNissam = Marca("Nissan")
-        insereMarca(db, marcaNissam)
+        val combustivel = Combustivel("Gasolina")
 
-        val marcaSeat = Marca("Seat")
-        insereMarca(db, marcaSeat)
-
-        val modelo = Modelo("Teste", 25444.2, marcaNissam.id)
-        insereModelo(db, modelo)
-
-        modelo.modelo = "Navara"
-        modelo.preco = 35444.4
-        modelo.idMarca = marcaNissam.id
-
-        val registosAlterados = TabelaBDModelo(db).update(
-            modelo.toContentValues(),
-            "${BaseColumns._ID}=?",
-            arrayOf("${modelo.id}"))
-
-
-
-        assertEquals(1, registosAlterados)
-
-        db.close()
-    }
-    @Test
-    fun consegueAlterarTransmissao(){
-        val db = getBdCarrosOpenHelper().writableDatabase
-
-        val transmissao = Transmissao("Automatica CVT")
-        insereTransmissao(db, transmissao)
-
-        transmissao.nome = "Automatica"
-
-        val registosAlterados = TabelaBDTransmissoes(db).update(
-            transmissao.toContentValues(),
-            "${BaseColumns._ID}=?",
-            arrayOf("${transmissao.id}"))
-
-        assertEquals(1, registosAlterados)
-
-        db.close()
-    }
-
-    @Test
-    fun consegueEliminarMarca(){
-        val db = getBdCarrosOpenHelper().writableDatabase
-
-        val marca = Marca("Teste")
-        insereMarca(db, marca)
-
-        marca.nome = "Mercedes"
-
-        val registosEliminados = TabelaBDMarcas(db).delete(
-            "${BaseColumns._ID}=?",
-            arrayOf("${marca.id}"))
-
-        assertEquals(1, registosEliminados)
-
-        db.close()
-    }
-
-
-    @Test
-    fun consegueEliminarModelo(){
-        val db = getBdCarrosOpenHelper().writableDatabase
-
-        val marca = Marca("Opel")
-        insereMarca(db, marca)
-
-
-        val modelo = Modelo("Teste", 25214.2, marca.id)
-        insereModelo(db, modelo)
-
-
-        val registosEliminados = TabelaBDModelo(db).delete(
-            "${BaseColumns._ID}=?",
-            arrayOf("${modelo.id}"))
-
-
-
-        assertEquals(1, registosEliminados)
-
-        db.close()
-    }
-
-    @Test
-    fun consegueLerMarca(){
-        val db = getBdCarrosOpenHelper().writableDatabase
-
-        val marca = Marca("Audi")
-        insereMarca(db, marca)
-
-        val cursor = TabelaBDMarcas(db).query(
-            TabelaBDMarcas.TODAS_COLUNAS,
-            "${BaseColumns._ID}=?",
-            arrayOf("${marca.id}"),
-            null,
-            null,
-            null
-
-        )
-
-        assertEquals(1, cursor.count)
-        assertTrue(cursor.moveToNext())
-
-        val marcBD = Marca.fromCursor(cursor)
-
-        assertEquals(marca, marcBD)
-
-        db.close()
+        TabelaBDCombustivel(db).insert(combustivel.toContentValues())
     }
 
 
 
-    @Test
-    fun consegueLerModelo(){
-            val db = getBdCarrosOpenHelper().writableDatabase
 
-            val marca = Marca("Ferrari")
-            insereMarca(db, marca)
 
-            val modelo = Modelo("F8 Tributo", 78451.21, marca.id)
-            insereModelo(db, modelo)
 
-            val cursor = TabelaBDModelo(db).query(
-                TabelaBDModelo.TODAS_COLUNAS,
-                "${BaseColumns._ID}=?",
-                arrayOf("${marca.id}"),
-                null,
-                null,
-                null
 
-            )
 
-            assertEquals(1, cursor.count)
-            assertTrue(cursor.moveToNext())
 
-            val modeBD = Modelo.fromCursor(cursor)
 
-            assertEquals(marca, modeBD)
 
-            db.close()
-    }
+
+
+
 
 }
