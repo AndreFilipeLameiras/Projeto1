@@ -62,6 +62,11 @@ class BaseDadosTest {
         assertNotEquals(-1, cor.id)
     }
 
+    private fun insereEstofo(db: SQLiteDatabase, estofos: Estofos){
+        estofos.id = TabelaBDEstofos(db).insert(estofos.toContentValues())
+        assertNotEquals(-1, estofos.id)
+    }
+
     @Before
     fun apagaBaseDados(){
         //appContext().deleteDatabase(BDCarrosOpenHelper.NOME)
@@ -509,6 +514,25 @@ class BaseDadosTest {
         TabelaBDEstofos(db).insert(estofo.toContentValues())
     }
 
+    @Test
+    fun consegueAlterarEstofo(){
+        val db = getBdCarrosOpenHelper().writableDatabase
+
+        val estofo = Estofos("Teste", 1844.1)
+        insereEstofo(db, estofo)
+
+        estofo.nome = "tecido/Sensatec em antracite"
+        estofo.preco = 454.2
+
+        val registosAlterados = TabelaBDEstofos(db).update(
+            estofo.toContentValues(),
+            "${BaseColumns._ID}=?",
+            arrayOf("${estofo.id}"))
+
+        assertEquals(1, registosAlterados)
+
+        db.close()
+    }
 
 
 
