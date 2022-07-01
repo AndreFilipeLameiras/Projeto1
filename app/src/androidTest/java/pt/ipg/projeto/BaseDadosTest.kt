@@ -153,6 +153,24 @@ class BaseDadosTest {
 
         db.close()
     }
+    @Test
+    fun consegueAlterarTransmissao(){
+        val db = getBdCarrosOpenHelper().writableDatabase
+
+        val transmissao = Transmissao("Traseira")
+        insereTransmissao(db, transmissao)
+
+        transmissao.nome = "Dianteira"
+
+        val registosAlterados = TabelaBDTransmissoes(db).update(
+            transmissao.toContentValues(),
+            "${BaseColumns._ID}=?",
+            arrayOf("${transmissao.id}"))
+
+        assertEquals(1, registosAlterados)
+
+        db.close()
+    }
 
     @Test
     fun consegueEliminarMarca(){

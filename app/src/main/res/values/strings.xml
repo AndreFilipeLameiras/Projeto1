@@ -22,4 +22,11 @@
     <string name="preco_cor">Preço da Cor</string>
     <string name="nome_estofo">Nome dos Estofos</string>
     <string name="preco_estofo">Preço dos Estofos</string>
+    <string name="bem_vindo_ao_novo_configurador_de_carros">Bem-vindo ao novo configurador de carros</string>
+    <string name="marcas">Marcas</string>
+    <string name="modelos">Modelos</string>
+    <string name="motoriza_oes">Motorizaçoes</string>
+    <string name="jantes">Jantes</string>
+    <string name="pintura">Pintura</string>
+    <string name="estilo_de_estofos">Estilo de Estofos</string>
 </resources>

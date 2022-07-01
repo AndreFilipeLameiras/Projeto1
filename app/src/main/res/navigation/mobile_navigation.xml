@@ -3,13 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/navhome">
 
     <fragment
-        android:id="@+id/nav_home"
+        android:id="@+id/navhome"
         android:name="pt.ipg.projeto.ui.home.MenuPrincipalFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_menu_principal" />
+        tools:layout="@layout/fragment_menu_principal" >
+        <action
+            android:id="@+id/action_navhome_to_listaModelosfragment"
+            app:destination="@id/listaModelosfragment" />
+        <action
+            android:id="@+id/action_navhome_to_listaMarcasFragment"
+            app:destination="@id/listaMarcasFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_gallery"
@@ -41,11 +48,19 @@
     <fragment
         android:id="@+id/listaMarcasFragment"
         android:name="pt.ipg.projeto.ListaMarcasFragment"
-        android:label="ListaMarcasFragment" />
+        android:label="ListaMarcasFragment" >
+        <action
+            android:id="@+id/action_listaMarcasFragment_to_navhome"
+            app:destination="@id/navhome" />
+    </fragment>
     <fragment
         android:id="@+id/listaModelosfragment"
         android:name="pt.ipg.projeto.ListaModelosfragment"
-        android:label="ListaModelosfragment" />
+        android:label="ListaModelosfragment" >
+        <action
+            android:id="@+id/action_listaModelosfragment_to_navhome"
+            app:destination="@id/navhome" />
+    </fragment>
     <fragment
         android:id="@+id/listaTracaoFragment"
         android:name="pt.ipg.projeto.ListaTracaoFragment"
