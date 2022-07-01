@@ -130,6 +130,24 @@ class BaseDadosTest {
     }
 
     @Test
+    fun consegueEliminarTracao(){
+        val db = getBdCarrosOpenHelper().writableDatabase
+
+        val tracao = Tracao("Teste")
+        insereTracao(db, tracao)
+
+        tracao.nome = "Dianteira"
+
+        val registosEliminados = TabelaBDTracao(db).delete(
+            "${BaseColumns._ID}=?",
+            arrayOf("${tracao.id}"))
+
+        assertEquals(1, registosEliminados)
+
+        db.close()
+    }
+
+    @Test
     fun consegueAlterarMarca(){
         val db = getBdCarrosOpenHelper().writableDatabase
 
