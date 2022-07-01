@@ -47,6 +47,10 @@ class BaseDadosTest {
         assertNotEquals(-1, transmissao.id)
     }
 
+    private fun insereTracao(db: SQLiteDatabase, tracao: Tracao){
+        tracao.id = TabelaBDTracao(db).insert(tracao.toContentValues())
+        assertNotEquals(-1, tracao.id)
+    }
 
     @Before
     fun apagaBaseDados(){
@@ -107,6 +111,25 @@ class BaseDadosTest {
     }
 
     @Test
+    fun consegueAlterarTracao(){
+        val db = getBdCarrosOpenHelper().writableDatabase
+
+        val tracao = Tracao("Teste")
+        insereTracao(db, tracao)
+
+        tracao.nome = "Dianteira"
+
+        val registosAlterados = TabelaBDTracao(db).update(
+            tracao.toContentValues(),
+            "${BaseColumns._ID}=?",
+            arrayOf("${tracao.id}"))
+
+        assertEquals(1, registosAlterados)
+
+        db.close()
+    }
+
+    @Test
     fun consegueAlterarMarca(){
         val db = getBdCarrosOpenHelper().writableDatabase
 
@@ -157,10 +180,10 @@ class BaseDadosTest {
     fun consegueAlterarTransmissao(){
         val db = getBdCarrosOpenHelper().writableDatabase
 
-        val transmissao = Transmissao("Traseira")
+        val transmissao = Transmissao("Automatica CVT")
         insereTransmissao(db, transmissao)
 
-        transmissao.nome = "Dianteira"
+        transmissao.nome = "Automatica"
 
         val registosAlterados = TabelaBDTransmissoes(db).update(
             transmissao.toContentValues(),
