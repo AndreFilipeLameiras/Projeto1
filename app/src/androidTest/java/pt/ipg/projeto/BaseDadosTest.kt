@@ -534,7 +534,25 @@ class BaseDadosTest {
         db.close()
     }
 
+    @Test
+    fun consegueEliminarEstofo(){
+        val db = getBdCarrosOpenHelper().writableDatabase
 
+        val estofo = Estofos("Teste", 1475.1)
+        insereEstofo(db, estofo)
+
+        estofo.nome = "Tecido Grid Antracite/Preto"
+        estofo.preco = 1445.2
+
+
+        val registosEliminados = TabelaBDEstofos(db).delete(
+            "${BaseColumns._ID}=?",
+            arrayOf("${estofo.id}"))
+
+        assertEquals(1, registosEliminados)
+
+        db.close()
+    }
 
 
 
