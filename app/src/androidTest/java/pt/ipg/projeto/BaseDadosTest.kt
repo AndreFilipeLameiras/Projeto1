@@ -57,6 +57,11 @@ class BaseDadosTest {
         assertNotEquals(-1, combustivel.id)
     }
 
+    private fun insereCor(db: SQLiteDatabase, cor: Cores){
+        cor.id = TabelaBDCores(db).insert(cor.toContentValues())
+        assertNotEquals(-1, cor.id)
+    }
+
     @Before
     fun apagaBaseDados(){
         //appContext().deleteDatabase(BDCarrosOpenHelper.NOME)
@@ -426,6 +431,26 @@ class BaseDadosTest {
         val cor = Cores("Vermelho", 1472.1)
 
         TabelaBDCores(db).insert(cor.toContentValues())
+    }
+
+    @Test
+    fun consegueAlterarCores(){
+        val db = getBdCarrosOpenHelper().writableDatabase
+
+        val cor = Cores("Teste", 1614.1)
+        insereCor(db, cor)
+
+        cor.nome = "Verde"
+        cor.preco = 1454.2
+
+        val registosAlterados = TabelaBDCores(db).update(
+            cor.toContentValues(),
+            "${BaseColumns._ID}=?",
+            arrayOf("${cor.id}"))
+
+        assertEquals(1, registosAlterados)
+
+        db.close()
     }
 
 
