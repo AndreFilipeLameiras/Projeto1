@@ -666,5 +666,23 @@ class BaseDadosTest {
         db.close()
     }
 
+    @Test
+    fun consegueInserirMotorizacao(){
+        val db = getBdCarrosOpenHelper().writableDatabase
+
+        val transmissao = Transmissao("Automatica")
+        insereTransmissao(db, transmissao)
+
+        val tracao = Tracao("Traseira")
+        insereTracao(db, tracao)
+
+        val combustivel = Combustivel("Gasolina")
+        insereCombustivel(db, combustivel)
+
+        val motorizacao = Motorizacao(109, 6.5, 140.5 , transmissao.id, tracao.id, combustivel.id)
+
+        TabelaBDMotorizacoes(db).insert(motorizacao.toContentValues())
+    }
+
 
 }
