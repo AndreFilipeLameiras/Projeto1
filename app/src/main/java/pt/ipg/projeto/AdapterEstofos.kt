@@ -1,10 +1,11 @@
 package pt.ipg.projeto
 
+import android.database.Cursor
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class AdapterEstofos : RecyclerView.Adapter<AdapterEstofos.ViewHolderEstofos>() {
+class AdapterEstofos(var cursor: Cursor? = null) : RecyclerView.Adapter<AdapterEstofos.ViewHolderEstofos>() {
     class ViewHolderEstofos(itemView: View) :RecyclerView.ViewHolder(itemView) {
 
     }
