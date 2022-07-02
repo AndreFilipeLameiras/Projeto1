@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import pt.ipg.projeto.MainActivity
 import pt.ipg.projeto.R
 import pt.ipg.projeto.databinding.FragmentMenuPrincipalBinding
 
@@ -48,6 +49,9 @@ class MenuPrincipalFragment : Fragment() {
         binding.buttonMarcas.setOnClickListener {
             findNavController().navigate(R.id.action_navhome_to_listaMarcasFragment)
         }
+
+        val activity = activity as MainActivity
+        activity.idMenuAtual = R.menu.main
     }
 
     override fun onDestroyView() {

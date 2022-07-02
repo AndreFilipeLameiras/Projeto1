@@ -31,6 +31,11 @@ class ListaModelosfragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
         super.onViewCreated(view, savedInstanceState)
 
         LoaderManager.getInstance(this).initLoader(ID_LOADER_MODELOS, null, this)
+
+
+
+        val activity = activity as MainActivity
+        activity.idMenuAtual = R.menu.menu_lista
     }
 
     override fun onDestroy() {

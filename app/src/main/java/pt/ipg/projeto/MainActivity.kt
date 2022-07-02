@@ -18,6 +18,15 @@ class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
 
+    var idMenuAtual = R.menu.main
+        get() = field
+        set(value) {
+            if (value != field) {
+                field = value
+                invalidateOptionsMenu()
+            }
+        }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState) 
 
@@ -46,7 +55,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.main, menu)
+        menuInflater.inflate(idMenuAtual, menu)
         return true
     }
 
