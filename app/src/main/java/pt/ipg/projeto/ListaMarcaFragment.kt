@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
+import androidx.recyclerview.widget.RecyclerView
 import pt.ipg.projeto.databinding.FragmentListaMarcasBinding
 
 class ListaMarcasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
@@ -30,6 +31,8 @@ class ListaMarcasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val recyclerViewMarca = view.findViewById<RecyclerView>(R.id.recyclerViewMarcas)
 
         LoaderManager.getInstance(this).initLoader(ID_LOADER_MARCAS, null, this)
     }
