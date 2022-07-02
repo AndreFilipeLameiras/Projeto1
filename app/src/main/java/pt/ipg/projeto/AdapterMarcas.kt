@@ -1,10 +1,11 @@
 package pt.ipg.projeto
 
+import android.database.Cursor
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class AdapterMarcas: RecyclerView.Adapter<AdapterMarcas.ViewHolderMarcas>() {
+class AdapterMarcas(var cursor: Cursor? = null): RecyclerView.Adapter<AdapterMarcas.ViewHolderMarcas>() {
     class ViewHolderMarcas(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     }
