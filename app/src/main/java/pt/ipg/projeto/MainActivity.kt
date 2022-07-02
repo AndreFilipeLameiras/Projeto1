@@ -2,6 +2,7 @@ package pt.ipg.projeto
 
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
@@ -11,7 +12,9 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import pt.ipg.projeto.databinding.ActivityMainBinding
+import pt.ipg.projeto.ui.home.MenuPrincipalFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,6 +29,8 @@ class MainActivity : AppCompatActivity() {
                 invalidateOptionsMenu()
             }
         }
+
+    var fragment: Fragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState) 
@@ -58,6 +63,25 @@ class MainActivity : AppCompatActivity() {
         menuInflater.inflate(idMenuAtual, menu)
         return true
     }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+
+        val opcaoProcessada: Boolean
+
+        if (fragment is MenuPrincipalFragment) {
+            opcaoProcessada = (fragment as MenuPrincipalFragment).processaOpcaoMenu(item)
+        } else if (fragment is ListaModelosfragment) {
+            opcaoProcessada = (fragment as ListaModelosfragment).processaOpcaoMenu(item)
+        } else {
+            opcaoProcessada = false
+        }
+
+        if (opcaoProcessada) return true
+
+        return super.onOptionsItemSelected(item)
+    }
+
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
