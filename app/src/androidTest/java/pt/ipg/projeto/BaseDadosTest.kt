@@ -735,4 +735,34 @@ class BaseDadosTest {
     }
 
 
+    @Test
+    fun consegueEliminarMotorizacao(){
+        val db = getBdCarrosOpenHelper().writableDatabase
+
+        val transmissao = Transmissao("Automatica CVT")
+        insereTransmissao(db, transmissao)
+
+        val tracao = Tracao("Dianteira")
+        insereTracao(db, tracao)
+
+        val combustivel = Combustivel("Hibrido")
+        insereCombustivel(db, combustivel)
+
+
+        val motorizacao = Motorizacao(215, 5.7, 154.3, transmissao, tracao,combustivel )
+        insereMotorizacao(db, motorizacao)
+
+
+        val registosEliminados = TabelaBDMotorizacoes(db).delete(
+            "${TabelaBDMotorizacoes.CAMPO_ID}=?",
+            arrayOf("${motorizacao.id}"))
+
+
+
+        assertEquals(1, registosEliminados)
+
+        db.close()
+    }
+
+
 }
