@@ -3,12 +3,14 @@ package pt.ipg.projeto
 import android.database.Cursor
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import pt.ipg.projeto.databinding.FragmentListaMarcasBinding
@@ -25,7 +27,7 @@ class ListaMarcasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentListaMarcasBinding.inflate(inflater, container, false)
 
         return binding.root
@@ -34,14 +36,22 @@ class ListaMarcasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        LoaderManager.getInstance(this).initLoader(ID_LOADER_MARCAS, null, this)
+
         val recyclerViewMarca = view.findViewById<RecyclerView>(R.id.recyclerViewMarcas)
         adapterMarcas = AdapterMarcas(this)
         recyclerViewMarca.adapter = adapterMarcas
         recyclerViewMarca.layoutManager = LinearLayoutManager(requireContext())
 
+        val activity = activity as MainActivity
+        activity.fragment = this
+        activity.idMenuAtual = R.menu.menu_lista
 
-        LoaderManager.getInstance(this).initLoader(ID_LOADER_MARCAS, null, this)
     }
+
+   /* fun navegaInserirMarca(){
+        findNavController().navigate(R.id.action_listaMarcasFragment_to_inserirMarcaFragment)
+    }*/
 
     override fun onDestroy() {
         super.onDestroy()
@@ -129,6 +139,17 @@ class ListaMarcasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
     override fun onLoaderReset(loader: Loader<Cursor>) {
         adapterMarcas!!.cursor = null
     }
+
+    fun processaOpcaoMenu(item: MenuItem) : Boolean =
+        when(item.itemId){
+            R.id.action_inserir -> {
+                findNavController().navigate(R.id.action_listaMarcasFragment_to_inserirMarcaFragment)
+                true
+            }
+            R.id.action_alterar -> true
+            R.id.action_eliminar -> true
+            else -> false
+        }
 
     companion object{
         const val ID_LOADER_MARCAS = 0

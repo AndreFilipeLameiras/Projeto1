@@ -3,6 +3,7 @@ package pt.ipg.projeto
 import android.content.ContentValues
 import android.database.Cursor
 import android.provider.BaseColumns
+import java.io.Serializable
 
 data class Motorizacao (
     var potencia: Long,
@@ -12,7 +13,7 @@ data class Motorizacao (
     var tracao: Tracao,
     var combustivel: Combustivel,
     var id: Long = -1
-){
+): Serializable{
     fun toContentValues(): ContentValues{
         val valores = ContentValues()
 

@@ -71,8 +71,8 @@ class MainActivity : AppCompatActivity() {
 
         if (fragment is MenuPrincipalFragment) {
             opcaoProcessada = (fragment as MenuPrincipalFragment).processaOpcaoMenu(item)
-        } else if (fragment is ListaModelosfragment) {
-            opcaoProcessada = (fragment as ListaModelosfragment).processaOpcaoMenu(item)
+        } else if (fragment is ListaMarcasFragment) {
+            opcaoProcessada = (fragment as ListaMarcasFragment).processaOpcaoMenu(item)
         } else {
             opcaoProcessada = false
         }

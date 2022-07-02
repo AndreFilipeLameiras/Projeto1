@@ -52,6 +52,9 @@
         <action
             android:id="@+id/action_listaMarcasFragment_to_navhome"
             app:destination="@id/navhome" />
+        <action
+            android:id="@+id/action_listaMarcasFragment_to_inserirMarcaFragment"
+            app:destination="@id/inserirMarcaFragment" />
     </fragment>
     <fragment
         android:id="@+id/listaModelosfragment"
@@ -69,4 +72,12 @@
         android:id="@+id/listaTransmissoesFragment"
         android:name="pt.ipg.projeto.ListaTransmissoesFragment"
         android:label="ListaTransmissoesFragment" />
+    <fragment
+        android:id="@+id/inserirMarcaFragment"
+        android:name="pt.ipg.projeto.InserirMarcaFragment"
+        android:label="InserirMarcaFragment" >
+        <action
+            android:id="@+id/action_inserirMarcaFragment_to_listaMarcasFragment"
+            app:destination="@id/listaMarcasFragment" />
+    </fragment>
 </navigation>
