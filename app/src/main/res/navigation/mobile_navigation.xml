@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_navhome_to_listaMarcasFragment"
             app:destination="@id/listaMarcasFragment" />
+        <action
+            android:id="@+id/action_navhome_to_listaJantesFragment"
+            app:destination="@id/listaJantesFragment" />
     </fragment>
 
     <fragment
@@ -44,7 +47,11 @@
     <fragment
         android:id="@+id/listaJantesFragment"
         android:name="pt.ipg.projeto.ListaJantesFragment"
-        android:label="ListaJantesFragment" />
+        android:label="ListaJantesFragment" >
+        <action
+            android:id="@+id/action_listaJantesFragment_to_navhome"
+            app:destination="@id/navhome" />
+    </fragment>
     <fragment
         android:id="@+id/listaMarcasFragment"
         android:name="pt.ipg.projeto.ListaMarcasFragment"

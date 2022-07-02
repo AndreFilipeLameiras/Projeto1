@@ -28,17 +28,17 @@ class MenuPrincipalFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        homeViewModel =
+        /*homeViewModel =
             ViewModelProvider(this).get(HomeViewModel::class.java)
-
+*/
         _binding = FragmentMenuPrincipalBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        return binding.root
 
-        val textView: TextView = binding.textView2
+        /*val textView: TextView = binding.textView2
         homeViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
-        })
-        return root
+        })*/
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -49,6 +49,10 @@ class MenuPrincipalFragment : Fragment() {
         }
         binding.buttonMarcas.setOnClickListener {
             findNavController().navigate(R.id.action_navhome_to_listaMarcasFragment)
+        }
+
+        binding.buttonJantes.setOnClickListener {
+            findNavController().navigate(R.id.action_navhome_to_listaJantesFragment)
         }
 
         val activity = activity as MainActivity

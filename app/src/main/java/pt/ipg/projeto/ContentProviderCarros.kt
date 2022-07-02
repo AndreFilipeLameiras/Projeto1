@@ -30,13 +30,13 @@ class ContentProviderCarros : ContentProvider() {
         requireNotNull(projection)
         val colunas = projection as Array<String>
 
-        val argsSeleccao = selectionArgs as Array<String>
+        val argsSeleccao = selectionArgs as Array<String>?
 
         val id = uri.lastPathSegment
 
         val cursor = when (getUriMatcher().match(uri)){
             URI_MODELOS -> TabelaBDModelo(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
-            URI_MARCAS -> TabelaBDMarcas(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
+            URI_MARCAS -> TabelaBDMarcas(db).query(colunas, selection, argsSeleccao, null, null, null)
             URI_JANTES -> TabelaBDJantes(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
             URI_MOTORIZACOES -> TabelaBDMotorizacoes(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
             URI_COMBUSTIVEIS -> TabelaBDCombustivel(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)

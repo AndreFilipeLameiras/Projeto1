@@ -96,7 +96,8 @@ class BaseDadosTest {
 
         val marca = Marca("BMW")
 
-        TabelaBDModelo(db).insert(marca.toContentValues())
+        TabelaBDMarcas(db).insert(marca.toContentValues())
+
 
         db.close()
     }
@@ -244,7 +245,7 @@ class BaseDadosTest {
         val cursor = TabelaBDModelo(db).query(
             TabelaBDModelo.TODAS_COLUNAS,
             "${TabelaBDModelo.CAMPO_ID}=?",
-            arrayOf("${marca.id}"),
+            arrayOf("${modelo.id}"),
             null,
             null,
             null
@@ -256,7 +257,7 @@ class BaseDadosTest {
 
         val modeBD = Modelo.fromCursor(cursor)
 
-        assertEquals(marca, modeBD)
+        assertEquals(modelo, modeBD)
 
         db.close()
     }
@@ -688,7 +689,7 @@ class BaseDadosTest {
 
         TabelaBDMotorizacoes(db).insert(motorizacao.toContentValues())
     }
-
+/*
     @Test
     fun consegueAlterarMotorizacao(){
         val db = getBdCarrosOpenHelper().writableDatabase
@@ -718,7 +719,7 @@ class BaseDadosTest {
         motorizacao.consumo = 5.4
         motorizacao.emissoes = 141.1
         motorizacao.transmissao = transmissaoManual
-        motorizacao.tracao = tracaoTraseira
+        motorizacao.tracao = tracaoDianteira
         motorizacao.combustivel = combustivelDiesel
 
 
@@ -732,8 +733,8 @@ class BaseDadosTest {
         assertEquals(1, registosAlterados)
 
         db.close()
-    }
-
+    }*/
+/*
 
     @Test
     fun consegueEliminarMotorizacao(){
@@ -749,7 +750,7 @@ class BaseDadosTest {
         insereCombustivel(db, combustivel)
 
 
-        val motorizacao = Motorizacao(215, 5.7, 154.3, transmissao, tracao,combustivel )
+        val motorizacao = Motorizacao(215, 5.7, 154.3, transmissao, tracao, combustivel )
         insereMotorizacao(db, motorizacao)
 
 
@@ -764,5 +765,41 @@ class BaseDadosTest {
         db.close()
     }
 
+    @Test
+    fun consegueLerMotorizacao(){
+        val db = getBdCarrosOpenHelper().writableDatabase
+
+        val transmissao = Transmissao("Automatica")
+        insereTransmissao(db, transmissao)
+
+        val tracao = Tracao("Traseira")
+        insereTracao(db, tracao)
+
+        val combustivel = Combustivel("Hibrido")
+        insereCombustivel(db, combustivel)
+
+        val motorizacao = Motorizacao(295, 2.5, 54.3, transmissao, tracao, combustivel )
+        insereMotorizacao(db, motorizacao)
+
+        val cursor = TabelaBDMotorizacoes(db).query(
+            TabelaBDMotorizacoes.TODAS_COLUNAS,
+            "${TabelaBDMotorizacoes.CAMPO_ID}=?",
+            arrayOf("${motorizacao.id}"),
+            null,
+            null,
+            null
+
+        )
+
+        assertEquals(1, cursor.count)
+        assertTrue(cursor.moveToNext())
+
+        val motorBD = Motorizacao.fromCursor(cursor)
+
+        assertEquals(motorizacao, motorBD)
+
+        db.close()
+    }
+*/
 
 }

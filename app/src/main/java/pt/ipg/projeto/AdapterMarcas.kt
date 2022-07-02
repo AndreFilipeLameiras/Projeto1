@@ -76,6 +76,8 @@ class AdapterMarcas(val fragment: ListaMarcasFragment, var cursor: Cursor? = nul
      * @return The total number of items in this adapter.
      */
     override fun getItemCount(): Int {
-        return cursor?.count ?: 0
+        if(cursor == null) return 0
+
+        return cursor!!.count
     }
 }

@@ -75,7 +75,7 @@ class ListaMarcasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
             TabelaBDMarcas.TODAS_COLUNAS,
             null,
             null,
-            TabelaBDMarcas.NOME
+            "${TabelaBDMarcas.NOME}"
         )
 
 

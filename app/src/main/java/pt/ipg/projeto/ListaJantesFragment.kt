@@ -70,7 +70,7 @@ class ListaJantesFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-       // val recycleViewJantes = view.findViewById<RecyclerView>(R.id.recycleViewJantes)
+       val recycleViewJantes = view.findViewById<RecyclerView>(R.id.recycleViewJantes)
 
         LoaderManager.getInstance(this)
             .initLoader(ID_LOADER_JANTES, null, this)
@@ -104,7 +104,7 @@ class ListaJantesFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
             TabelaBDJantes.TODAS_COLUNAS,
             null,
             null,
-            TabelaBDJantes.NOME
+            "${TabelaBDJantes.NOME}"
         )
 
 
