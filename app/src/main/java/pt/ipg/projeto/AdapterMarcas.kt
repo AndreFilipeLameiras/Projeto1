@@ -3,11 +3,16 @@ package pt.ipg.projeto
 import android.database.Cursor
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class AdapterMarcas(var cursor: Cursor? = null): RecyclerView.Adapter<AdapterMarcas.ViewHolderMarcas>() {
+class AdapterMarcas(val fragment: ListaMarcasFragment, var cursor: Cursor? = null): RecyclerView.Adapter<AdapterMarcas.ViewHolderMarcas>() {
     class ViewHolderMarcas(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val textViewNome = itemView.findViewById<TextView>(R.id.textViewNomeMarca)
 
+        fun aturalizaMarca(marca: Marca){
+            textViewNome.text = marca.nome
+        }
     }
 
     /**
@@ -34,7 +39,9 @@ class AdapterMarcas(var cursor: Cursor? = null): RecyclerView.Adapter<AdapterMar
      * @see .onBindViewHolder
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderMarcas {
-        TODO("Not yet implemented")
+        val itemMarcas = fragment.layoutInflater.inflate(R.layout.item_marca, parent, false)
+
+        return ViewHolderMarcas((itemMarcas))
     }
 
     /**
@@ -59,7 +66,8 @@ class AdapterMarcas(var cursor: Cursor? = null): RecyclerView.Adapter<AdapterMar
      * @param position The position of the item within the adapter's data set.
      */
     override fun onBindViewHolder(holder: ViewHolderMarcas, position: Int) {
-        TODO("Not yet implemented")
+        cursor!!.moveToPosition(position)
+        holder.aturalizaMarca(Marca.fromCursor(cursor!!))
     }
 
     /**
@@ -68,6 +76,6 @@ class AdapterMarcas(var cursor: Cursor? = null): RecyclerView.Adapter<AdapterMar
      * @return The total number of items in this adapter.
      */
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return cursor?.count ?: 0
     }
 }

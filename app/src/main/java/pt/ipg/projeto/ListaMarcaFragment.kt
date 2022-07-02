@@ -35,7 +35,7 @@ class ListaMarcasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
         super.onViewCreated(view, savedInstanceState)
 
         val recyclerViewMarca = view.findViewById<RecyclerView>(R.id.recyclerViewMarcas)
-        adapterMarcas = AdapterMarcas()
+        adapterMarcas = AdapterMarcas(this)
         recyclerViewMarca.adapter = adapterMarcas
         recyclerViewMarca.layoutManager = LinearLayoutManager(requireContext())
 
