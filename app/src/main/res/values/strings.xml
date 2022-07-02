@@ -29,4 +29,10 @@
     <string name="jantes">Jantes</string>
     <string name="pintura">Pintura</string>
     <string name="estilo_de_estofos">Estilo de Estofos</string>
+
+    <string name="previous">Voltar</string>
+
+    <string name="inserir">Inserir</string>
+    <string name="alterar">Alterar</string>
+    <string name="eliminar">Eliminar</string>
 </resources>
