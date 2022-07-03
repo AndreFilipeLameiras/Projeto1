@@ -35,7 +35,7 @@ class ListaModelosfragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
 
         LoaderManager.getInstance(this).initLoader(ID_LOADER_MODELOS, null, this)
 
-        adapterModelos = AdapterModelos()
+        adapterModelos = AdapterModelos(this)
         binding.recyclerViewModelos.adapter = adapterModelos
         binding.recyclerViewModelos.layoutManager = LinearLayoutManager(requireContext())
 

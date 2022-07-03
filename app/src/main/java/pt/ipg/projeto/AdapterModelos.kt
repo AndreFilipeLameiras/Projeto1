@@ -3,9 +3,10 @@ package pt.ipg.projeto
 import android.database.Cursor
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class AdapterModelos : RecyclerView.Adapter<AdapterModelos.ViewHolderModelo>() {
+class AdapterModelos(val fragment: ListaModelosfragment) : RecyclerView.Adapter<AdapterModelos.ViewHolderModelo>() {
     var cursor: Cursor? = null
         get() = field
         set(value) {
@@ -16,8 +17,20 @@ class AdapterModelos : RecyclerView.Adapter<AdapterModelos.ViewHolderModelo>() {
         }
 
 
-    class ViewHolderModelo(itemView: View) : RecyclerView.ViewHolder(itemView){
+    class ViewHolderModelo(itemModelo: View) : RecyclerView.ViewHolder(itemModelo){
+        val textViewNomeModelo = itemModelo.findViewById<TextView>(R.id.textViewNomeModelo)
+        val textViewMarca = itemModelo.findViewById<TextView>(R.id.textViewMarca)
+        val textViewPrecoModelo = itemModelo.findViewById<TextView>(R.id.textViewPrecoModelo)
 
+        var modelo : Modelo? = null
+            get() = field
+            set(value: Modelo?) {
+                field = value
+
+                textViewNomeModelo.text = modelo?.modelo ?: ""
+                textViewMarca.text = "${modelo?.marca}"
+                textViewPrecoModelo.text = modelo?.preco.toString()
+            }
     }
 
     /**
@@ -44,7 +57,9 @@ class AdapterModelos : RecyclerView.Adapter<AdapterModelos.ViewHolderModelo>() {
      * @see .onBindViewHolder
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderModelo {
-        TODO("Not yet implemented")
+        val itemModelo = fragment.layoutInflater.inflate(R.layout.item_modelo, parent, false)
+        return ViewHolderModelo(itemModelo)
+
     }
 
     /**
@@ -69,7 +84,8 @@ class AdapterModelos : RecyclerView.Adapter<AdapterModelos.ViewHolderModelo>() {
      * @param position The position of the item within the adapter's data set.
      */
     override fun onBindViewHolder(holder: ViewHolderModelo, position: Int) {
-        TODO("Not yet implemented")
+        cursor!!.moveToPosition(position)
+        holder.modelo = Modelo.fromCursor(cursor!!)
     }
 
     /**
@@ -78,6 +94,8 @@ class AdapterModelos : RecyclerView.Adapter<AdapterModelos.ViewHolderModelo>() {
      * @return The total number of items in this adapter.
      */
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        if(cursor == null) return 0
+
+        return cursor!!.count
     }
 }
