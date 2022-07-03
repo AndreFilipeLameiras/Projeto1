@@ -70,6 +70,9 @@
         <action
             android:id="@+id/action_listaModelosfragment_to_navhome"
             app:destination="@id/navhome" />
+        <action
+            android:id="@+id/action_listaModelosfragment_to_inserirModeloFragment"
+            app:destination="@id/inserirModeloFragment" />
     </fragment>
     <fragment
         android:id="@+id/listaTracaoFragment"
@@ -86,5 +89,14 @@
         <action
             android:id="@+id/action_inserirMarcaFragment_to_listaMarcasFragment"
             app:destination="@id/listaMarcasFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/inserirModeloFragment"
+        android:name="pt.ipg.projeto.InserirModeloFragment"
+        android:label="fragment_inserir_modelo"
+        tools:layout="@layout/fragment_inserir_modelo" >
+        <action
+            android:id="@+id/action_inserirModeloFragment_to_listaModelosfragment"
+            app:destination="@id/listaModelosfragment" />
     </fragment>
 </navigation>

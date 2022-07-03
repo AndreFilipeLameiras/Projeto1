@@ -28,7 +28,7 @@ class AdapterModelos(val fragment: ListaModelosfragment) : RecyclerView.Adapter<
                 field = value
 
                 textViewNomeModelo.text = modelo?.modelo ?: ""
-                textViewMarca.text = "${modelo?.marca}"
+                textViewMarca.text = modelo?.marca?.nome?: ""
                 textViewPrecoModelo.text = modelo?.preco.toString()
             }
     }
