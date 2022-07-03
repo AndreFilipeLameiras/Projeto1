@@ -10,11 +10,13 @@ import androidx.fragment.app.Fragment
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
+import androidx.recyclerview.widget.LinearLayoutManager
 import pt.ipg.projeto.databinding.FragmentListaModelosBinding
 
 class ListaModelosfragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
 
     private var _binding: FragmentListaModelosBinding? = null
+    private var adapterModelos : AdapterModelos? = null
 
     private val binding get() = _binding!!
 
@@ -33,6 +35,9 @@ class ListaModelosfragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
 
         LoaderManager.getInstance(this).initLoader(ID_LOADER_MODELOS, null, this)
 
+        adapterModelos = AdapterModelos()
+        binding.recyclerViewModelos.adapter = adapterModelos
+        binding.recyclerViewModelos.layoutManager = LinearLayoutManager(requireContext())
 
 
         val activity = activity as MainActivity
@@ -63,7 +68,7 @@ class ListaModelosfragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
             TabelaBDModelo.TODAS_COLUNAS,
             null,
             null,
-            TabelaBDModelo.CAMPO_MODELO
+            "${TabelaBDModelo.CAMPO_MODELO}"
         )
 
 
