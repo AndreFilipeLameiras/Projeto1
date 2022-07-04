@@ -79,7 +79,7 @@ class ListaModelosfragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
             TabelaBDModelo.TODAS_COLUNAS,
             null,
             null,
-            "${TabelaBDModelo.CAMPO_MODELO}"
+            TabelaBDModelo.CAMPO_MODELO
         )
 
 
@@ -145,22 +145,27 @@ class ListaModelosfragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
         adapterModelos!!.cursor = null
     }
 
-    fun processaOpcaoMenu(item: MenuItem) : Boolean =
-        when(item.itemId){
-            R.id.action_inserir -> {
-                val acao = ListaModelosFragmentDirections.ListaModelosfragmentDirections.actionListaModelosfragmentToInserirModeloFragment()
-                findNavController().navigate(acao)
-                true
-            }
-            R.id.action_alterar -> true
-            R.id.action_eliminar -> {
-                val acao = ListaModelosFragmentDirections.actionListaModelosfragmentToEliminarModeloFragment(modeloSeleccionado!!)
-                findNavController().navigate(acao)
-                true
-            }
-            else -> false
-        }
+    fun navegaInserirModelo(){
+        findNavController().navigate(R.id.action_listaMarcasFragment_to_inserirMarcaFragment)
+    }
 
+    fun navegaAlterarModelo(){
+        findNavController().navigate(R.id.)
+    }
+
+    fun navegaEliminarModelo(){
+        findNavController().navigate(R.id.action_listaModelosfragment_to_eliminarModeloFragment)
+    }
+
+    fun processaOpcaoMenu(item: MenuItem) : Boolean {
+        when (item.itemId) {
+            R.id.action_inserir -> navegaInserirModelo()
+            R.id.action_alterar -> navegaAlterarModelo()
+            R.id.action_eliminar -> navegaEliminarModelo()
+            else -> return false
+        }
+        return true
+    }
     companion object{
         const val ID_LOADER_MODELOS = 0
     }
