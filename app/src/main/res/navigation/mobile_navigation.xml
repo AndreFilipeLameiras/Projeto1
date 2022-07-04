@@ -105,7 +105,7 @@
     <fragment
         android:id="@+id/eliminarModeloFragment"
         android:name="pt.ipg.projeto.EliminarModeloFragment"
-        android:label="eliminar_modelo_label"
+        android:label="@string/eliminar_modelo_label"
         tools:layout="@layout/fragment_eliminar_modelo">
         <action
             android:id="@+id/action_eliminarModeloFragment_to_listaModelosfragment"
