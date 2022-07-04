@@ -1,5 +1,6 @@
 package pt.ipg.projeto
 
+import android.content.DialogInterface
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,6 +9,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import pt.ipg.projeto.databinding.FragmentEliminarModeloBinding
@@ -64,12 +66,25 @@ class EliminarModeloFragment : Fragment() {
         }
 
     private fun eliminaModelo() {
+        val alertDialog = AlertDialog.Builder(requireContext())
+
+        alertDialog.apply {
+            setTitle(R.string.eliminar_modelo_label)
+            setMessage(R.string.confirma_eliminar_modelo)
+            setNegativeButton(android.R.string.cancel, DialogInterface.OnClickListener { dialogInterface, i ->  })
+            setPositiveButton(R.string.eliminar, DialogInterface.OnClickListener { dialogInterface, i -> confirmaEliminarModelo()  })
+            show()
+        }
+    }
+
+    private fun confirmaEliminarModelo() {
+
         val enderecoModelo = Uri.withAppendedPath(ContentProviderCarros.ENDERECO_MODELOS, "${modelo.id}")
         val registosEliminados = requireActivity().contentResolver.delete(enderecoModelo, null, null)
 
         if(registosEliminados != 1){
             Snackbar.make(
-                binding,textViewModelo,
+                binding.textViewModelo,
                 R.string.erro_eliminar_modelo,
                 Snackbar.LENGTH_INDEFINITE
             ).show()
@@ -92,3 +107,4 @@ class EliminarModeloFragment : Fragment() {
 
 
 }
+

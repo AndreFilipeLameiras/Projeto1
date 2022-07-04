@@ -57,4 +57,6 @@
 
     <string name="erro_guardar_modelo">Erro ao guardar modelo</string>
     <string name="erro_eliminar_modelo">Erro ao eliminar modelo</string>
+
+    <string name="confirma_eliminar_modelo">Tem a certeza que pretende eliminar o modelo?</string>
 </resources>
