@@ -176,8 +176,8 @@ class InserirModeloFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
             return
         }
 
-        val preco = binding.editTextPreco.text.toString()
-        if (preco.isBlank()) {
+        val preco = binding.editTextPreco.text.toString().toDouble()
+        if (preco == null) {
             binding.editTextPreco.error = getString(R.string.preco_obrigatorio)
             binding.editTextPreco.requestFocus()
             return
@@ -186,7 +186,7 @@ class InserirModeloFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
         insereModelo(modelo, preco,idMarca)
     }
 
-    private fun insereModelo(modelo: String, preco: String,  idMarca: Long) {
+    private fun insereModelo(modelo: String, preco: Double,  idMarca: Long) {
         val modelo = Modelo(modelo, preco, Marca(id = idMarca))
 
         val enderecoModeloInserido = requireActivity().contentResolver.insert(ContentProviderCarros.ENDERECO_MODELOS, modelo.toContentValues())

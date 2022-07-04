@@ -63,4 +63,6 @@
     <string name="erro_eliminar_modelo">Erro ao eliminar modelo</string>
 
     <string name="confirma_eliminar_modelo">Tem a certeza que pretende eliminar o modelo?</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

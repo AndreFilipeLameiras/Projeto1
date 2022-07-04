@@ -75,7 +75,7 @@
             app:destination="@id/inserirModeloFragment" />
         <action
             android:id="@+id/action_listaModelosfragment_to_eliminarModeloFragment"
-            app:destination="@id/eliminarModeloFragment" />
+            app:destination="@id/EliminarModeloFragment" />
     </fragment>
     <fragment
         android:id="@+id/listaTracaoFragment"
@@ -103,12 +103,15 @@
             app:destination="@id/listaModelosfragment" />
     </fragment>
     <fragment
-        android:id="@+id/eliminarModeloFragment"
+        android:id="@+id/EliminarModeloFragment"
         android:name="pt.ipg.projeto.EliminarModeloFragment"
         android:label="@string/eliminar_modelo_label"
         tools:layout="@layout/fragment_eliminar_modelo">
         <action
             android:id="@+id/action_eliminarModeloFragment_to_listaModelosfragment"
             app:destination="@id/listaModelosfragment" />
+        <argument
+            android:name="modelo"
+            app:argType="pt.ipg.projeto.Modelo" />
     </fragment>
 </navigation>
