@@ -16,11 +16,16 @@ class AdapterModelos(val fragment: ListaModelosfragment) : RecyclerView.Adapter<
             }
         }
 
+    var viewHolderSelecionado : ViewHolderModelo? = null
 
-    class ViewHolderModelo(itemModelo: View) : RecyclerView.ViewHolder(itemModelo){
+    inner class ViewHolderModelo(itemModelo: View) : RecyclerView.ViewHolder(itemModelo), View.OnClickListener{
         val textViewNomeModelo = itemModelo.findViewById<TextView>(R.id.textViewNomeModelo)
         val textViewMarca = itemModelo.findViewById<TextView>(R.id.textViewMarca)
         val textViewPrecoModelo = itemModelo.findViewById<TextView>(R.id.textViewPrecoModelo)
+
+        init {
+            itemModelo.setOnClickListener(this)
+        }
 
         var modelo : Modelo? = null
             get() = field
@@ -31,7 +36,24 @@ class AdapterModelos(val fragment: ListaModelosfragment) : RecyclerView.Adapter<
                 textViewMarca.text = modelo?.marca?.nome?: ""
                 textViewPrecoModelo.text = modelo?.preco.toString()
             }
+
+        override fun onClick(p0: View?) {
+            viewHolderSelecionado?.desseleciona()
+            seleciona()
+        }
+
+        private fun seleciona(){
+            itemView.setBackgroundResource(android.R.color.holo_orange_light)
+            viewHolderSelecionado = this
+        }
+
+        private fun desseleciona(){
+            itemView.setBackgroundResource(android.R.color.white)
+        }
+
+
     }
+
 
     /**
      * Called when RecyclerView needs a new [ViewHolder] of the given type to represent
