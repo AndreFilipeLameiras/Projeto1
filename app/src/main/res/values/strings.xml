@@ -53,5 +53,8 @@
     <string name="marca_obrigatoria">Escolha uma marca</string>
 
     <string name="modelo_guardado_sucesso">Modelo guardado com sucesso</string>
+    <string name="modelo_eliminado_sucesso">Modelo eliminado com sucesso</string>
+
     <string name="erro_guardar_modelo">Erro ao guardar modelo</string>
+    <string name="erro_eliminar_modelo">Erro ao eliminar modelo</string>
 </resources>

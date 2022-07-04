@@ -55,7 +55,7 @@
     <fragment
         android:id="@+id/listaMarcasFragment"
         android:name="pt.ipg.projeto.ListaMarcasFragment"
-        android:label="ListaMarcasFragment" >
+        android:label="@string/lista_modelo_label">
         <action
             android:id="@+id/action_listaMarcasFragment_to_navhome"
             app:destination="@id/navhome" />
@@ -96,7 +96,7 @@
     <fragment
         android:id="@+id/inserirModeloFragment"
         android:name="pt.ipg.projeto.InserirModeloFragment"
-        android:label="inserir_modelo_label"
+        android:label="@string/inserir_modelo_label"
         tools:layout="@layout/fragment_inserir_modelo">
         <action
             android:id="@+id/action_inserirModeloFragment_to_listaModelosfragment"
