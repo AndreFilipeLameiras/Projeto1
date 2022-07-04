@@ -42,4 +42,8 @@
 
     <string name="guardar">Guardar</string>
     <string name="cancelar">Cancelar</string>
+
+    <string name="modelo_obrigatorio">Preencha o Nome do modelo</string>
+    <string name="preco_obrigatorio">Preencha o preço</string>
+    <string name="marca_obrigatoria">Escolha uma marca</string>
 </resources>

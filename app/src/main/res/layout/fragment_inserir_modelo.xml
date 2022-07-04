@@ -23,7 +23,7 @@
             android:textColorHint="#4B4B4B" />
 
         <TextView
-            android:id="@+id/textView16"
+            android:id="@+id/textViewMarcas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/marcas" />

@@ -8,6 +8,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SimpleCursorAdapter
+import android.widget.Spinner
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
@@ -16,11 +17,7 @@ import pt.ipg.projeto.databinding.FragmentInserirModeloBinding
 import pt.ipg.projeto.databinding.FragmentListaModelosBinding
 
 
-/**
- * A simple [Fragment] subclass.
- * Use the [InserirModeloFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class InserirModeloFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     private var _binding: FragmentInserirModeloBinding? = null
 
@@ -41,6 +38,12 @@ class InserirModeloFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_inserir_modelo, container, false)
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -151,12 +154,46 @@ class InserirModeloFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
     fun processaOpcaoMenu(item: MenuItem) : Boolean =
         when(item.itemId) {
             R.id.action_guardar -> {
+                guardar()
                 true
             }
             R.id.action_cancelar -> {
-                findNavController().navigate(R.id.action_inserirModeloFragment_to_listaModelosfragment)
+                voltaListaModelos()
                 true
             }
             else -> false
         }
+
+    private fun guardar() {
+        val modelo = binding.editTextModelo.text.toString()
+        if (modelo.isBlank()) {
+            binding.editTextModelo.error = getString(R.string.modelo_obrigatorio)
+            binding.editTextModelo.requestFocus()
+            return
+        }
+
+        val idMarca = binding.spinnerMarcas.selectedItemId
+        if (idMarca == Spinner.INVALID_ROW_ID) {
+            binding.textViewMarcas.error = getString(R.string.marca_obrigatoria)
+            binding.spinnerMarcas.requestFocus()
+            return
+        }
+
+        val preco = binding.editTextPreco.text.toString()
+        if (preco.isBlank()) {
+            binding.editTextPreco.error = getString(R.string.preco_obrigatorio)
+            binding.editTextPreco.requestFocus()
+            return
+        }
+
+        insereModelo(modelo, idMarca, preco)
+    }
+
+    private fun insereModelo(modelo: String, idCategoria: Long, preco: String) {
+
+    }
+
+    private fun voltaListaModelos() {
+        findNavController().navigate(R.id.action_inserirModeloFragment_to_listaModelosfragment)
+    }
 }
