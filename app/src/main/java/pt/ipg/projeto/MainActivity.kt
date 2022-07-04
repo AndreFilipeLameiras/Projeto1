@@ -82,6 +82,8 @@ class MainActivity : AppCompatActivity() {
             opcaoProcessada = (fragment as ListaModelosfragment).processaOpcaoMenu(item)
         } else if (fragment is InserirModeloFragment) {
             opcaoProcessada = (fragment as InserirModeloFragment).processaOpcaoMenu(item)
+        } else if (fragment is EliminarModeloFragment) {
+            opcaoProcessada = (fragment as EliminarModeloFragment).processaOpcaoMenu(item)
 
         } else {
             opcaoProcessada = false
