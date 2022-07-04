@@ -21,9 +21,10 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="16dp"
             android:text="@string/eliminar_marca_label"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="#FF0000"
             android:textSize="24sp"
-            android:textStyle="bold" />
+            android:textStyle="italic" />
 
         <TextView
             android:id="@+id/textView20"

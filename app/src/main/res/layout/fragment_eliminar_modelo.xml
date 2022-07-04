@@ -20,7 +20,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="16dp"
-            android:text="@string/eliminar_livro_label"
+            android:text="@string/eliminar_modelo_label"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="#FF0000"
             android:textSize="24sp"
