@@ -46,4 +46,7 @@
     <string name="modelo_obrigatorio">Preencha o Nome do modelo</string>
     <string name="preco_obrigatorio">Preencha o preço</string>
     <string name="marca_obrigatoria">Escolha uma marca</string>
+
+    <string name="modelo_guardado_sucesso">Modelo guardado com sucesso</string>
+    <string name="erro_guardar_modelo">Erro ao guardar modelo</string>
 </resources>

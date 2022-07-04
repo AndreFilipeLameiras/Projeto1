@@ -9,13 +9,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SimpleCursorAdapter
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import pt.ipg.projeto.databinding.FragmentInserirModeloBinding
-import pt.ipg.projeto.databinding.FragmentListaModelosBinding
-
 
 
 class InserirModeloFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
@@ -186,10 +186,21 @@ class InserirModeloFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
             return
         }
 
-        insereModelo(modelo, idMarca, preco)
+        insereModelo(modelo, preco,idMarca)
     }
 
-    private fun insereModelo(modelo: String, idCategoria: Long, preco: String) {
+    private fun insereModelo(modelo: String, preco: String,  idMarca: Long) {
+        val modelo = Modelo(modelo, preco, Marca(id = idMarca))
+
+        val enderecoModeloInserido = requireActivity().contentResolver.insert(ContentProviderCarros.ENDERECO_MODELOS, modelo.toContentValues())
+
+        if(enderecoModeloInserido == null){
+            Snackbar.make(binding.editTextModelo, R.string.erro_guardar_modelo, Snackbar.LENGTH_INDEFINITE).show()
+            return
+        }
+
+        Toast.makeText(requireContext(), R.string.modelo_guardado_sucesso, Toast.LENGTH_LONG).show()
+        voltaListaModelos()
 
     }
 
