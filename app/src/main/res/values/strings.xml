@@ -31,6 +31,10 @@
     <string name="estilo_de_estofos">Estilo de Estofos</string>
 
     <string name="nome_marca">Nome da Marca</string>
+    <string name="lista_marca_label">Lista dos marcas</string>
+    <string name="inserir_marca_label">Inserir marca</string>
+    <string name="alterar_marca_label">Alterar marca</string>
+    <string name="eliminar_marca_label">Eliminar marca</string>
 
     <string name="nome_modelo">Nome do Modelo</string>
     <string name="lista_modelo_label">Lista dos modelos</string>
