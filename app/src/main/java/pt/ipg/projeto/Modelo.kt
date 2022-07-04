@@ -3,13 +3,14 @@ package pt.ipg.projeto
 import android.content.ContentValues
 import android.database.Cursor
 import android.provider.BaseColumns
+import java.io.Serializable
 
 data class Modelo(
     var modelo: String,
     var preco: Double,
     var marca: Marca,
     var id: Long = -1
-) {
+) : Serializable{
     fun toContentValues(): ContentValues{
         val valores = ContentValues()
         valores.put(TabelaBDModelo.CAMPO_MODELO, modelo)

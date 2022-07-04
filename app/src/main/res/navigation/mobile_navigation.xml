@@ -73,6 +73,9 @@
         <action
             android:id="@+id/action_listaModelosfragment_to_inserirModeloFragment"
             app:destination="@id/inserirModeloFragment" />
+        <action
+            android:id="@+id/action_listaModelosfragment_to_eliminarModeloFragment"
+            app:destination="@id/eliminarModeloFragment" />
     </fragment>
     <fragment
         android:id="@+id/listaTracaoFragment"
@@ -97,6 +100,15 @@
         tools:layout="@layout/fragment_inserir_modelo" >
         <action
             android:id="@+id/action_inserirModeloFragment_to_listaModelosfragment"
+            app:destination="@id/listaModelosfragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/eliminarModeloFragment"
+        android:name="pt.ipg.projeto.EliminarModeloFragment"
+        android:label="fragment_eliminar_modelo"
+        tools:layout="@layout/fragment_eliminar_modelo" >
+        <action
+            android:id="@+id/action_eliminarModeloFragment_to_listaModelosfragment"
             app:destination="@id/listaModelosfragment" />
     </fragment>
 </navigation>
