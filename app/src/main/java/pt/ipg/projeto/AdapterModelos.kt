@@ -45,6 +45,7 @@ class AdapterModelos(val fragment: ListaModelosfragment) : RecyclerView.Adapter<
         private fun seleciona(){
             itemView.setBackgroundResource(android.R.color.holo_orange_light)
             viewHolderSelecionado = this
+            fragment.modeloSeleccionado = modelo
         }
 
         private fun desseleciona(){

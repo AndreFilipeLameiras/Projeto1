@@ -16,6 +16,16 @@ import pt.ipg.projeto.databinding.FragmentListaModelosBinding
 
 class ListaModelosfragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
 
+    var modeloSeleccionado : Modelo? = null
+        get() = field
+        set(value) {
+            if (value != field) {
+                field = value
+                (requireActivity() as MainActivity).mostraOpcoesAlterarEliminar(field != null)
+            }
+        }
+
+
     private var _binding: FragmentListaModelosBinding? = null
     private var adapterModelos : AdapterModelos? = null
 
