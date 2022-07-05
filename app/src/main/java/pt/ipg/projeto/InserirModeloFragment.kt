@@ -162,10 +162,10 @@ class InserirModeloFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
         }
 
     private fun guardar() {
-        val modelo = binding.editTextModelo.text.toString()
+        val modelo = binding.editTextNomeModelo.text.toString()
         if (modelo.isBlank()) {
-            binding.editTextModelo.error = getString(R.string.modelo_obrigatorio)
-            binding.editTextModelo.requestFocus()
+            binding.editTextNomeModelo.error = getString(R.string.modelo_obrigatorio)
+            binding.editTextNomeModelo.requestFocus()
             return
         }
 
@@ -192,7 +192,7 @@ class InserirModeloFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
         val enderecoModeloInserido = requireActivity().contentResolver.insert(ContentProviderCarros.ENDERECO_MODELOS, modelo.toContentValues())
 
         if(enderecoModeloInserido == null){
-            Snackbar.make(binding.editTextModelo, R.string.erro_guardar_modelo, Snackbar.LENGTH_INDEFINITE).show()
+            Snackbar.make(binding.editTextNomeModelo, R.string.erro_guardar_modelo, Snackbar.LENGTH_INDEFINITE).show()
             return
         }
 

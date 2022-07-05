@@ -16,7 +16,7 @@
         android:layout_marginRight="8dp">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextModelo"
+            android:id="@+id/editTextNomeModelo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/nome_modelo"
@@ -31,7 +31,7 @@
         <Spinner
             android:id="@+id/spinnerMarcas"
             android:layout_width="match_parent"
-            android:layout_height="64dp"
+            android:layout_height="wrap_content"
             android:minHeight="48dp" />
 
         <com.google.android.material.textfield.TextInputLayout

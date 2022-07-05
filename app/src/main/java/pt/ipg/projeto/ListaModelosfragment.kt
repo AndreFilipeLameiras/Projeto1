@@ -146,11 +146,11 @@ class ListaModelosfragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
     }
 
     fun navegaInserirModelo(){
-        findNavController().navigate(R.id.action_listaMarcasFragment_to_inserirMarcaFragment)
+        findNavController().navigate(R.id.action_listaModelosfragment_to_inserirModeloFragment)
     }
 
     fun navegaAlterarModelo(){
-        findNavController().navigate(R.id.)
+        findNavController().navigate(R.id.action_listaModelosfragment_to_editarModeloFragment)
     }
 
     fun navegaEliminarModelo(){
