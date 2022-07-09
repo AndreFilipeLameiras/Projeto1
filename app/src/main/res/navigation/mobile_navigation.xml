@@ -51,6 +51,9 @@
         <action
             android:id="@+id/action_listaJantesFragment_to_navhome"
             app:destination="@id/navhome" />
+        <action
+            android:id="@+id/action_listaJantesFragment_to_inserirJantesFragment"
+            app:destination="@id/inserirJantesFragment" />
     </fragment>
     <fragment
         android:id="@+id/listaMarcasFragment"
@@ -128,5 +131,14 @@
         <argument
             android:name="modelo"
             app:argType="pt.ipg.projeto.Modelo" />
+    </fragment>
+    <fragment
+        android:id="@+id/inserirJantesFragment"
+        android:name="pt.ipg.projeto.InserirJantesFragment"
+        android:label="fragment_inserir_jantes"
+        tools:layout="@layout/fragment_inserir_jantes" >
+        <action
+            android:id="@+id/action_inserirJantesFragment_to_listaJantesFragment"
+            app:destination="@id/listaJantesFragment" />
     </fragment>
 </navigation>

@@ -17,13 +17,16 @@ class AdapterJantes(val fragment: ListaJantesFragment) : RecyclerView.Adapter<Ad
         }
 
 
+    var selecionado: ViewHolderJantes? = null
 
-    class ViewHolderJantes(itemJantes: View) : RecyclerView.ViewHolder(itemJantes),View.OnClickListener{
+    inner class ViewHolderJantes(itemJantes: View) : RecyclerView.ViewHolder(itemJantes),View.OnClickListener{
         val textViewNome = itemJantes.findViewById<TextView>(R.id.textViewNome)
         val textViewLargura = itemJantes.findViewById<TextView>(R.id.textViewLargura)
         val textViewAltura = itemJantes.findViewById<TextView>(R.id.textViewAltura)
         val textViewRaio = itemJantes.findViewById<TextView>(R.id.textViewRaio)
         val textViewPreco = itemJantes.findViewById<TextView>(R.id.textViewPreco)
+
+        private lateinit var jante: Jante
 
         init {
             itemView.setOnClickListener(this)
@@ -31,6 +34,8 @@ class AdapterJantes(val fragment: ListaJantesFragment) : RecyclerView.Adapter<Ad
 
 
         fun atualizaJante(jante: Jante){
+            this.jante = jante
+
             textViewNome.text = jante.nome
             textViewLargura.text = jante.largura.toString()
             textViewAltura.text = jante.altura.toString()
@@ -45,7 +50,9 @@ class AdapterJantes(val fragment: ListaJantesFragment) : RecyclerView.Adapter<Ad
 
         private fun seleciona() {
             selecionado = this
-            itemView.setBackgroundResource(R.color.purple_200)
+            itemView.setBackgroundResource(android.R.color.holo_orange_light)
+            fragment.janteSeleccionada = jante
+
         }
 
         private fun desSeleciona(){
@@ -54,9 +61,7 @@ class AdapterJantes(val fragment: ListaJantesFragment) : RecyclerView.Adapter<Ad
         }
 
 
-        companion object{
-            var selecionado: ViewHolderJantes? = null
-        }
+
 
     }
 

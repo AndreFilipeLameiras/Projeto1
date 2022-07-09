@@ -3,6 +3,7 @@ package pt.ipg.projeto
 import android.database.Cursor
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
@@ -15,6 +16,13 @@ import androidx.navigation.fragment.findNavController
 import pt.ipg.projeto.databinding.FragmentListaJantesBinding
 
 class ListaJantesFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
+
+    var janteSeleccionada : Jante? = null
+        get() = field
+        set(value) {
+            field = value
+            (requireActivity() as MainActivity).mostraOpcoesAlterarEliminar(field != null)
+        }
 
     private var _binding: FragmentListaJantesBinding? = null
     private var adapterJantes : AdapterJantes? = null
@@ -76,8 +84,36 @@ class ListaJantesFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
             .initLoader(ID_LOADER_JANTES, null, this)
 
         adapterJantes = AdapterJantes(this)
-        binding.recycleViewJantes.adapter = adapterJantes
-        binding.recycleViewJantes.layoutManager = LinearLayoutManager(requireContext())
+        recycleViewJantes.adapter = adapterJantes
+        recycleViewJantes.layoutManager = LinearLayoutManager(requireContext())
+
+        val activity = activity as MainActivity
+        activity.fragment = this
+        activity.idMenuAtual = R.menu.menu_lista
+    }
+
+
+    fun processaOpcaoMenu(item: MenuItem): Boolean{
+        when(item.itemId){
+            R.id.action_inserir -> navegaInserirJante()
+            R.id.action_alterar -> navegaAlterarJante()
+            R.id.action_eliminar -> navegaEliminarJante()
+            else -> return false
+        }
+
+        return true
+    }
+
+    private fun navegaEliminarJante() {
+        TODO("Not yet implemented")
+    }
+
+    private fun navegaAlterarJante() {
+        TODO("Not yet implemented")
+    }
+
+    private fun navegaInserirJante() {
+        findNavController().navigate(R.id.action_listaJantesFragment_to_inserirJantesFragment)
     }
 
 

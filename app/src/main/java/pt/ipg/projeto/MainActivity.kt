@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
 
+
     var idMenuAtual = R.menu.main
         get() = field
         set(value) {
@@ -58,6 +59,8 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -84,7 +87,10 @@ class MainActivity : AppCompatActivity() {
             opcaoProcessada = (fragment as InserirModeloFragment).processaOpcaoMenu(item)
         } else if (fragment is EliminarModeloFragment) {
             opcaoProcessada = (fragment as EliminarModeloFragment).processaOpcaoMenu(item)
-
+        }else if (fragment is ListaJantesFragment) {
+            opcaoProcessada = (fragment as ListaJantesFragment).processaOpcaoMenu(item)
+        } else if (fragment is InserirJantesFragment) {
+            opcaoProcessada = (fragment as InserirJantesFragment).processaOpcaoMenu(item)
         } else {
             opcaoProcessada = false
         }
