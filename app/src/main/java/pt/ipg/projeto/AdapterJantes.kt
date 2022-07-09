@@ -25,18 +25,16 @@ class AdapterJantes(val fragment: ListaJantesFragment) : RecyclerView.Adapter<Ad
         val textViewRaio = itemJantes.findViewById<TextView>(R.id.textViewRaio)
         val textViewPreco = itemJantes.findViewById<TextView>(R.id.textViewPreco)
 
-        var jante: Jante? = null
-            get() = field
-            set(value: Jante?) {
-                field = value
 
-                textViewNome.text = jante!!.nome
-                textViewLargura.text = jante!!.largura.toString()
-                textViewAltura.text = jante!!.altura.toString()
-                textViewRaio.text = jante!!.raio.toString()
-                textViewPreco.text = jante!!.preco.toString()
+        fun atualizaJante(jante: Jante){
+            textViewNome.text = jante.nome
+            textViewLargura.text = jante.largura.toString()
+            textViewAltura.text = jante.altura.toString()
+            textViewRaio.text = jante.raio.toString()
+            textViewPreco.text = jante.preco.toString()
+        }
 
-            }
+
     }
 
     /**
@@ -91,7 +89,7 @@ class AdapterJantes(val fragment: ListaJantesFragment) : RecyclerView.Adapter<Ad
      */
     override fun onBindViewHolder(holder: ViewHolderJantes, position: Int) {
         cursor!!.moveToPosition(position)
-        holder.jante = Jante.fromCursor(cursor!!)
+        holder.atualizaJante(Jante.fromCursor(cursor!!))
     }
 
     /**
