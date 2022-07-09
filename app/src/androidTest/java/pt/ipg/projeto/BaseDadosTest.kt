@@ -30,14 +30,18 @@ class BaseDadosTest {
         return openHelper.writableDatabase
     }*/
 
-    private fun insereMarca(db: SQLiteDatabase, marca: Marca) {
-        marca.id = TabelaBDMarcas(db).insert(marca.toContentValues())
-        assertNotEquals(-1, marca.id)
+    private fun insereMarca(tabela: TabelaBDMarcas, marca: Marca): Long {
+        val id = tabela.insert(marca.toContentValues())
+        assertNotEquals(-1, id)
+
+        return id
     }
 
-    private fun insereModelo(db: SQLiteDatabase, modelo: Modelo){
-        modelo.id = TabelaBDModelo(db).insert(modelo.toContentValues())
-        assertNotEquals(-1, modelo.id)
+    private fun insereModelo(tabela: TabelaBDModelo, modelo: Modelo): Long {
+        val id = tabela.insert(modelo.toContentValues())
+        assertNotEquals(-1, id)
+
+        return id
     }
 
     private fun insereTransmissao(db: SQLiteDatabase, transmissao: Transmissao){
@@ -77,7 +81,7 @@ class BaseDadosTest {
 
     @Before
     fun apagaBaseDados(){
-        //appContext().deleteDatabase(BDCarrosOpenHelper.NOME)
+        getAppContext().deleteDatabase(BDCarrosOpenHelper.NOME)
     }
 
     @Test
@@ -107,7 +111,7 @@ class BaseDadosTest {
         val db = getBdCarrosOpenHelper().writableDatabase
 
         val marca = Marca("Teste")
-        insereMarca(db, marca)
+        marca.id = insereMarca(TabelaBDMarcas(db), marca)
 
         marca.nome = "Mercedes"
 
@@ -126,7 +130,7 @@ class BaseDadosTest {
         val db = getBdCarrosOpenHelper().writableDatabase
 
         val marca = Marca("Teste")
-        insereMarca(db, marca)
+        marca.id = insereMarca(TabelaBDMarcas(db), marca)
 
         marca.nome = "Mercedes"
 
@@ -144,7 +148,7 @@ class BaseDadosTest {
         val db = getBdCarrosOpenHelper().writableDatabase
 
         val marca = Marca("Audi")
-        insereMarca(db, marca)
+        marca.id = insereMarca(TabelaBDMarcas(db), marca)
 
         val cursor = TabelaBDMarcas(db).query(
             TabelaBDMarcas.TODAS_COLUNAS,
@@ -172,11 +176,12 @@ class BaseDadosTest {
         val db = getBdCarrosOpenHelper().writableDatabase
 
         val marca = Marca("Audi")
-        insereMarca(db, marca)
+        marca.id = insereMarca(TabelaBDMarcas(db), marca)
 
-        val modelo = Modelo("Serie 1 ", 23574.28, marca)
-        insereModelo(db, modelo)
+        val modelo = Modelo("Serie 1 ", 23574.28,  idMarca = marca.id, nomeMarca = marca.nome)
+        //insereModelo(db, modelo)
 
+        TabelaBDModelo(db).insert(modelo.toContentValues())
         db.close()
     }
 
@@ -184,23 +189,29 @@ class BaseDadosTest {
     fun consegueAlterarModelo(){
         val db = getBdCarrosOpenHelper().writableDatabase
 
-        val marcaNissam = Marca("Nissan")
-        insereMarca(db, marcaNissam)
+        val tabelaModelo = TabelaBDModelo(db)
 
-        val marcaSeat = Marca("Seat")
-        insereMarca(db, marcaSeat)
+        val marca = Marca("Nissan")
+        marca.id = insereMarca(TabelaBDMarcas(db), marca)
 
-        val modelo = Modelo("Teste", 25444.2, marcaNissam)
-        insereModelo(db, modelo)
+        //val marcaSeat = Marca("Seat")
+        //insereMarca(db, marcaSeat)
 
-        modelo.modelo = "Navara"
-        modelo.preco = 35444.4
-        modelo.marca = marcaNissam
+        val modelo = Modelo("Teste", 25444.2, idMarca = marca.id, nomeMarca = marca.nome)
+        modelo.id = insereModelo(tabelaModelo, modelo)
+       // TabelaBDModelo(db).insert(modelo.toContentValues())
+
+
+        modelo.nomeModelo = "Teste"
+        modelo.preco = 25444.2
+        modelo.idMarca = marca.id
+        modelo.nomeMarca = marca.nome
 
         val registosAlterados = TabelaBDModelo(db).update(
             modelo.toContentValues(),
-            "${TabelaBDModelo.CAMPO_ID}=?",
-            arrayOf("${modelo.id}"))
+            "${BaseColumns._ID}=?",
+            arrayOf(modelo.id.toString())
+        )
 
 
 
@@ -214,37 +225,33 @@ class BaseDadosTest {
         val db = getBdCarrosOpenHelper().writableDatabase
 
         val marca = Marca("Opel")
-        insereMarca(db, marca)
+        marca.id = insereMarca(TabelaBDMarcas(db), marca)
 
-
-        val modelo = Modelo("Teste", 25214.2, marca)
-        insereModelo(db, modelo)
-
+        val modelo = Modelo("Teste", 25214.2, idMarca = marca.id, nomeMarca = marca.nome)
+        modelo.id = insereModelo(TabelaBDModelo(db), modelo)
+        //TabelaBDModelo(db).insert(modelo.toContentValues())
 
         val registosEliminados = TabelaBDModelo(db).delete(
-            "${TabelaBDModelo.CAMPO_ID}=?",
+            "${BaseColumns._ID}=?",
             arrayOf("${modelo.id}"))
-
-
 
         assertEquals(1, registosEliminados)
 
         db.close()
     }
-
     @Test
     fun consegueLerModelo(){
         val db = getBdCarrosOpenHelper().writableDatabase
 
         val marca = Marca("Ferrari")
-        insereMarca(db, marca)
+        marca.id = insereMarca(TabelaBDMarcas(db), marca)
 
-        val modelo = Modelo("F8 Tributo", 78451.21, marca)
-        insereModelo(db, modelo)
+        val modelo = Modelo("F8 Tributo", 78451.21, idMarca = marca.id, nomeMarca = marca.nome)
+        modelo.id = insereModelo(TabelaBDModelo(db), modelo)
 
         val cursor = TabelaBDModelo(db).query(
             TabelaBDModelo.TODAS_COLUNAS,
-            "${TabelaBDModelo.CAMPO_ID}=?",
+            "${BaseColumns._ID}",
             arrayOf("${modelo.id}"),
             null,
             null,

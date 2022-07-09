@@ -32,6 +32,7 @@ class EditarModeloFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     ): View? {
         _binding = FragmentEditarModeloBinding.inflate(inflater, container, false)
 
+
         return binding.root
     }
     override fun onDestroyView() {
@@ -46,12 +47,15 @@ class EditarModeloFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         activity.fragment = this
         activity.idMenuAtual = R.menu.menu_edicao
 
+
+
+
         if(arguments!= null) {
-            modelo = editarModeloFragmentArgs.fromBundle(arguments!!).modelo
+            modelo = EditarModeloFragmentArgs.fromBundle(arguments!!).modelo
 
             if (modelo != null) {
-                binding.editTextNomeModelo.setText(modelo!!.modelo)
-                binding.editTextPrecoModelo.setText(modelo!!.preco)
+                binding.editTextNomeModelo.setText(modelo!!.nomeModelo)
+                binding.editTextPrecoModelo.setText(modelo!!.preco.toDouble().toString())
             }
         }
 
@@ -80,7 +84,7 @@ class EditarModeloFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
             TabelaBDMarcas.TODAS_COLUNAS,
             null,
             null,
-        "${TabelaBDMarcas.MARCAS}"
+        "${TabelaBDMarcas.CAMPO_NOME}"
         )
 
 
@@ -132,7 +136,7 @@ class EditarModeloFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
             requireContext(),
             android.R.layout.simple_list_item_1,
             data,
-            arrayOf(TabelaBDMarcas.MARCAS),
+            arrayOf(TabelaBDMarcas.CAMPO_NOME),
             intArrayOf(android.R.id.text1),
             0
         )
@@ -145,7 +149,7 @@ class EditarModeloFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
     private fun atualizaMarcasSelecionada() {
         if (modelo == null)return
-        val idMarca = modelo!!.marca.id
+        val idMarca = modelo!!.idMarca
 
         val ultimaMarca = binding.spinnerMarca.count - 1
 
@@ -225,7 +229,7 @@ class EditarModeloFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     }
 
     private fun alteraModelo(modelo: String, idMarca: Long, preco: Double): Boolean {
-        val modelo = Modelo(modelo, Marca(id = idMarca), preco)
+        val modelo = Modelo(modelo,preco, idMarca)
 
         val enderecoModelo = Uri.withAppendedPath(ContentProviderCarros.ENDERECO_MODELOS, "${this.modelo!!.id}")
 

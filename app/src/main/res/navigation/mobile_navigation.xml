@@ -55,7 +55,7 @@
     <fragment
         android:id="@+id/listaMarcasFragment"
         android:name="pt.ipg.projeto.ListaMarcasFragment"
-        android:label="@string/lista_modelo_label">
+        android:label="@string/lista_marca_label">
         <action
             android:id="@+id/action_listaMarcasFragment_to_navhome"
             app:destination="@id/navhome" />

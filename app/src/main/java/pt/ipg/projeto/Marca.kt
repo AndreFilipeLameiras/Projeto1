@@ -12,7 +12,7 @@ data class Marca(
     fun toContentValues(): ContentValues{
         val valores = ContentValues()
 
-        valores.put(TabelaBDMarcas.MARCAS, nome)
+        valores.put(TabelaBDMarcas.CAMPO_NOME, nome)
 
         return valores
 
@@ -21,7 +21,7 @@ data class Marca(
     companion object {
         fun fromCursor(cursor: Cursor): Marca {
             val posId = cursor.getColumnIndex(BaseColumns._ID)
-            val posNome = cursor.getColumnIndex(TabelaBDMarcas.MARCAS)
+            val posNome = cursor.getColumnIndex(TabelaBDMarcas.CAMPO_NOME)
 
             val id = cursor.getLong(posId)
             val nome = cursor.getString(posNome)

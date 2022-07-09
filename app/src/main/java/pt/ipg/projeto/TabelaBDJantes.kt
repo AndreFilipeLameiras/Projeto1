@@ -18,7 +18,7 @@ class TabelaBDJantes (db: SQLiteDatabase): TabelaBD(db, NOME){
         const val RAIO = "raio"
         const val PRECO = "preco"
 
-        val TODAS_COLUNAS = arrayOf(CAMPO_ID, JANTES, LARGURA, ALTURA, RAIO, PRECO)
+        val TODAS_COLUNAS = arrayOf(BaseColumns._ID, JANTES, LARGURA, ALTURA, RAIO, PRECO)
 
     }
 

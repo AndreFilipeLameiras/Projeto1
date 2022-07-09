@@ -31,17 +31,18 @@ class InserirModeloFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val activity = requireActivity() as MainActivity
+        activity.fragment = this
+        (activity as MainActivity).idMenuAtual = R.menu.menu_edicao
+
         _binding = FragmentInserirModeloBinding.inflate(inflater, container, false)
 
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_inserir_modelo, container, false)
+
+
         return binding.root
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -74,7 +75,7 @@ class InserirModeloFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
             TabelaBDMarcas.TODAS_COLUNAS,
             null,
             null,
-            "${TabelaBDMarcas.MARCAS}"
+            "${TabelaBDMarcas.CAMPO_NOME}"
         )
 
 
@@ -126,7 +127,7 @@ class InserirModeloFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
             requireContext(),
             android.R.layout.simple_list_item_1,
             data,
-            arrayOf(TabelaBDMarcas.MARCAS),
+            arrayOf(TabelaBDMarcas.CAMPO_NOME),
             intArrayOf(android.R.id.text1),
             0
         )
@@ -145,6 +146,7 @@ class InserirModeloFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
      * @param loader The Loader that is being reset.
      */
     override fun onLoaderReset(loader: Loader<Cursor>) {
+       if(_binding == null) return
         binding.spinnerMarcas.adapter = null
     }
 
@@ -187,7 +189,7 @@ class InserirModeloFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
     }
 
     private fun insereModelo(modelo: String, preco: Double,  idMarca: Long) {
-        val modelo = Modelo(modelo, preco, Marca(id = idMarca))
+        val modelo = Modelo(modelo, preco, idMarca)
 
         val enderecoModeloInserido = requireActivity().contentResolver.insert(ContentProviderCarros.ENDERECO_MODELOS, modelo.toContentValues())
 

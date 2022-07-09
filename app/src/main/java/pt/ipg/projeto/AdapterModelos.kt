@@ -27,13 +27,15 @@ class AdapterModelos(val fragment: ListaModelosfragment) : RecyclerView.Adapter<
             itemModelo.setOnClickListener(this)
         }
 
+
+
         var modelo : Modelo? = null
             get() = field
             set(value: Modelo?) {
                 field = value
 
-                textViewNomeModelo.text = modelo?.modelo ?: ""
-                textViewMarca.text = modelo?.marca?.nome?: ""
+                textViewNomeModelo.text = modelo?.nomeModelo ?: ""
+                textViewMarca.text = modelo?.nomeMarca?: ""
                 textViewPrecoModelo.text = modelo?.preco.toString()
             }
 

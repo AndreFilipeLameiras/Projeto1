@@ -5,7 +5,7 @@ import android.provider.BaseColumns
 
 class TabelaBDMarcas (db: SQLiteDatabase): TabelaBD(db, NOME) {
     override fun cria() {
-        db.execSQL("CREATE TABLE $nome (${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT, $MARCAS TEXT NOT NULL )")
+        db.execSQL("CREATE TABLE $nome (${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT, $CAMPO_NOME TEXT NOT NULL )")
 
     }
 
@@ -14,9 +14,9 @@ class TabelaBDMarcas (db: SQLiteDatabase): TabelaBD(db, NOME) {
         const val NOME = "marcas"
 
         const val CAMPO_ID = "$NOME.${BaseColumns._ID}"
-        const val MARCAS = "nome"
+        const val CAMPO_NOME = "nome"
 
-        val TODAS_COLUNAS = arrayOf(CAMPO_ID, MARCAS)
+        val TODAS_COLUNAS = arrayOf(CAMPO_ID, CAMPO_NOME)
 
     }
 }

@@ -6,13 +6,34 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class AdapterMarcas(val fragment: ListaMarcasFragment, var cursor: Cursor? = null): RecyclerView.Adapter<AdapterMarcas.ViewHolderMarcas>() {
+class AdapterMarcas(val fragment: ListaMarcasFragment): RecyclerView.Adapter<AdapterMarcas.ViewHolderMarcas>() {
+    public var cursor: Cursor? = null
+        get() = field
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
+
+
+
     class ViewHolderMarcas(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val textViewNome = itemView.findViewById<TextView>(R.id.textViewNomeMarca)
 
+        private lateinit var marca: Marca
+
+
+
+
         fun aturalizaMarca(marca: Marca){
+            this.marca = marca
+
             textViewNome.text = marca.nome
         }
+
+
+
+
+
     }
 
     /**

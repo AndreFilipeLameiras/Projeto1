@@ -36,7 +36,7 @@ class ContentProviderCarros : ContentProvider() {
 
         val cursor = when (getUriMatcher().match(uri)){
             URI_MODELOS -> TabelaBDModelo(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
-            URI_MARCAS -> TabelaBDMarcas(db).query(colunas, selection, argsSeleccao, null, null, null)
+            URI_MARCAS -> TabelaBDMarcas(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
             URI_JANTES -> TabelaBDJantes(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
             URI_MOTORIZACOES -> TabelaBDMotorizacoes(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
             URI_COMBUSTIVEIS -> TabelaBDCombustivel(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
@@ -218,8 +218,8 @@ class ContentProviderCarros : ContentProvider() {
         const val MULTIPLOS_REGISTOS = "vnd.android.cursor.dir"
 
         val ENDERECO_BASE = Uri.parse("content://$AUTHORITY")
-        val ENDERECO_MODELOS = Uri.withAppendedPath(ENDERECO_BASE, TabelaBDModelo.NOME)
-        val ENDERECO_MARCAS = Uri.withAppendedPath(ENDERECO_BASE, TabelaBDMarcas.NOME)
+        val ENDERECO_MODELOS = Uri.withAppendedPath(ENDERECO_BASE, TabelaBDModelo.CAMPO_MODELO)
+        val ENDERECO_MARCAS = Uri.withAppendedPath(ENDERECO_BASE, TabelaBDMarcas.CAMPO_NOME)
         val ENDERECO_JANTES = Uri.withAppendedPath(ENDERECO_BASE, TabelaBDJantes.NOME)
         val ENDERECO_MOTORIZACOES = Uri.withAppendedPath(ENDERECO_BASE, TabelaBDMotorizacoes.NOME)
         val ENDERECO_COMBUSTIVEIS = Uri.withAppendedPath(ENDERECO_BASE, TabelaBDCombustivel.NOME)
