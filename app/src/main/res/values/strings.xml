@@ -42,6 +42,13 @@
     <string name="alterar_modelo_label">Alterar modelo</string>
     <string name="eliminar_modelo_label">Eliminar modelo</string>
 
+
+    <string name="nome_jante">Nome do Jante</string>
+    <string name="lista_jante_label">Lista das Jantes</string>
+    <string name="inserir_jante_label">Inserir jante</string>
+    <string name="alterar_jante_label">Alterar jante</string>
+    <string name="eliminar_jante_label">Eliminar jante</string>
+
     <string name="previous">Voltar</string>
 
     <string name="inserir">Inserir</string>
@@ -71,6 +78,10 @@
     <string name="erro_guardar_marca">Erro ao guardar marca</string>
 
 
+    <string name="nome_jante_obrigatorio">Preencha o Nome da jante</string>
+    <string name="jante_guardada_sucesso">Jante guardada com sucesso</string>
+    <string name="jante_eliminada_sucesso">Jante eliminada com sucesso</string>
+    <string name="erro_guardar_jante">Erro ao guardar jante</string>
 
 
 </resources>

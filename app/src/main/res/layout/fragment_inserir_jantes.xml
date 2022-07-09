@@ -21,5 +21,73 @@
             android:layout_marginRight="8dp"
             android:hint="@string/nomejante"
             android:inputType="text" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextLargura"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:hint="@string/largura"
+                android:inputType="number" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextAltura"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margem_campos"
+                    android:layout_marginLeft="@dimen/margem_campos"
+                    android:layout_marginTop="@dimen/margem_campos"
+                    android:layout_marginEnd="@dimen/margem_campos"
+                    android:layout_marginRight="@dimen/margem_campos"
+                    android:hint="@string/altura"
+                    android:inputType="number" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editTextRaio"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margem_campos"
+                        android:layout_marginLeft="@dimen/margem_campos"
+                        android:layout_marginTop="@dimen/margem_campos"
+                        android:layout_marginEnd="@dimen/margem_campos"
+                        android:layout_marginRight="@dimen/margem_campos"
+                        android:hint="@string/raio"
+                        android:inputType="number" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/editTextPreco"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/margem_campos"
+                            android:layout_marginLeft="@dimen/margem_campos"
+                            android:layout_marginTop="@dimen/margem_campos"
+                            android:layout_marginEnd="@dimen/margem_campos"
+                            android:layout_marginRight="@dimen/margem_campos"
+                            android:hint="Preco"
+                            android:inputType="number" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
     </com.google.android.material.textfield.TextInputLayout>
 </LinearLayout>
