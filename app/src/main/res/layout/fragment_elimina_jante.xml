@@ -3,12 +3,154 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FF0000"
+    android:orientation="vertical"
     tools:context=".EliminaJanteFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_margin="16dp"
+        android:background="#FFFFFF"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView32"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margem_campos"
+            android:layout_marginLeft="@dimen/margem_campos"
+            android:layout_marginTop="@dimen/margem_campos"
+            android:layout_marginEnd="@dimen/margem_campos"
+            android:layout_marginRight="@dimen/margem_campos"
+            android:text="@string/elimina_jantes"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#FF0000" />
+
+        <TextView
+            android:id="@+id/textView22"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margem_campos"
+            android:layout_marginLeft="@dimen/margem_campos"
+            android:layout_marginTop="@dimen/margem_campos"
+            android:layout_marginEnd="@dimen/margem_campos"
+            android:layout_marginRight="@dimen/margem_campos"
+            android:text="@string/nome_jante"
+            android:textColor="#6A6A6A" />
+
+        <TextView
+            android:id="@+id/textViewNomeJante"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margem_campos"
+            android:layout_marginLeft="@dimen/margem_campos"
+            android:layout_marginTop="@dimen/margem_campos"
+            android:layout_marginEnd="@dimen/margem_campos"
+            android:layout_marginRight="@dimen/margem_campos"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="#000000"
+            tools:text="Raios Bicolores" />
+
+        <TextView
+            android:id="@+id/textView24"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margem_campos"
+            android:layout_marginLeft="@dimen/margem_campos"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="@dimen/margem_campos"
+            android:layout_marginRight="@dimen/margem_campos"
+            android:text="@string/largura"
+            android:textColor="#6A6A6A" />
+
+        <TextView
+            android:id="@+id/textViewLargura"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margem_campos"
+            android:layout_marginLeft="@dimen/margem_campos"
+            android:layout_marginTop="@dimen/margem_campos"
+            android:layout_marginEnd="@dimen/margem_campos"
+            android:layout_marginRight="@dimen/margem_campos"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="#000000"
+            tools:text="255" />
+
+        <TextView
+            android:id="@+id/textView26"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margem_campos"
+            android:layout_marginLeft="@dimen/margem_campos"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="@dimen/margem_campos"
+            android:layout_marginRight="@dimen/margem_campos"
+            android:text="@string/altura"
+            android:textColor="#6A6A6A" />
+
+        <TextView
+            android:id="@+id/textViewAltura"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margem_campos"
+            android:layout_marginLeft="@dimen/margem_campos"
+            android:layout_marginTop="@dimen/margem_campos"
+            android:layout_marginEnd="@dimen/margem_campos"
+            android:layout_marginRight="@dimen/margem_campos"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="#000000"
+            tools:text="35" />
+
+        <TextView
+            android:id="@+id/textView28"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margem_campos"
+            android:layout_marginLeft="@dimen/margem_campos"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="@dimen/margem_campos"
+            android:layout_marginRight="@dimen/margem_campos"
+            android:text="@string/raio"
+            android:textColor="#6A6A6A" />
+
+        <TextView
+            android:id="@+id/textViewRaio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margem_campos"
+            android:layout_marginLeft="@dimen/margem_campos"
+            android:layout_marginTop="@dimen/margem_campos"
+            android:layout_marginEnd="@dimen/margem_campos"
+            android:layout_marginRight="@dimen/margem_campos"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="#000000"
+            tools:text="20" />
+
+        <TextView
+            android:id="@+id/textView30"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margem_campos"
+            android:layout_marginLeft="@dimen/margem_campos"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="@dimen/margem_campos"
+            android:layout_marginRight="@dimen/margem_campos"
+            android:text="@string/preco"
+            android:textColor="#6A6A6A" />
+
+        <TextView
+            android:id="@+id/textViewPreco"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margem_campos"
+            android:layout_marginLeft="@dimen/margem_campos"
+            android:layout_marginTop="@dimen/margem_campos"
+            android:layout_marginEnd="@dimen/margem_campos"
+            android:layout_marginRight="@dimen/margem_campos"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="#000000"
+            tools:text="1500.9€" />
+    </LinearLayout>
 
 </FrameLayout>
