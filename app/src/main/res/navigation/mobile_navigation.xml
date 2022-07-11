@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_navhome_to_listaJantesFragment"
             app:destination="@id/listaJantesFragment" />
+        <action
+            android:id="@+id/action_navhome_to_listaEstofosFragment"
+            app:destination="@id/listaEstofosFragment" />
     </fragment>
 
     <fragment
@@ -39,7 +42,14 @@
     <fragment
         android:id="@+id/listaEstofosFragment"
         android:name="pt.ipg.projeto.ListaEstofosFragment"
-        android:label="ListaEstofosFragment" />
+        android:label="ListaEstofosFragment" >
+        <action
+            android:id="@+id/action_listaEstofosFragment_to_inserirEstofoFragment"
+            app:destination="@id/inserirEstofoFragment" />
+        <action
+            android:id="@+id/action_listaEstofosFragment_to_navhome"
+            app:destination="@id/navhome" />
+    </fragment>
     <fragment
         android:id="@+id/listaCoresFragment"
         android:name="pt.ipg.projeto.ListaCoresFragment"
@@ -54,6 +64,12 @@
         <action
             android:id="@+id/action_listaJantesFragment_to_inserirJantesFragment"
             app:destination="@id/inserirJantesFragment" />
+        <action
+            android:id="@+id/action_listaJantesFragment_to_editaJanteFragment"
+            app:destination="@id/editaJanteFragment" />
+        <action
+            android:id="@+id/action_listaJantesFragment_to_eliminaJanteFragment"
+            app:destination="@id/eliminaJanteFragment" />
     </fragment>
     <fragment
         android:id="@+id/listaMarcasFragment"
@@ -140,5 +156,32 @@
         <action
             android:id="@+id/action_inserirJantesFragment_to_listaJantesFragment"
             app:destination="@id/listaJantesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editaJanteFragment"
+        android:name="pt.ipg.projeto.EditaJanteFragment"
+        android:label="fragment_edita_jante"
+        tools:layout="@layout/fragment_edita_jante" >
+        <action
+            android:id="@+id/action_editaJanteFragment_to_listaJantesFragment"
+            app:destination="@id/listaJantesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/eliminaJanteFragment"
+        android:name="pt.ipg.projeto.EliminaJanteFragment"
+        android:label="fragment_elimina_jante"
+        tools:layout="@layout/fragment_elimina_jante" >
+        <action
+            android:id="@+id/action_eliminaJanteFragment_to_listaJantesFragment"
+            app:destination="@id/listaJantesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/inserirEstofoFragment"
+        android:name="pt.ipg.projeto.InserirEstofoFragment"
+        android:label="fragment_inserir_estofo"
+        tools:layout="@layout/fragment_inserir_estofo" >
+        <action
+            android:id="@+id/action_inserirEstofoFragment_to_listaEstofosFragment"
+            app:destination="@id/listaEstofosFragment" />
     </fragment>
 </navigation>
