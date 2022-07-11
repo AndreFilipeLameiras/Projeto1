@@ -1,11 +1,15 @@
 package pt.ipg.projeto
 
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import pt.ipg.projeto.databinding.FragmentEliminarTracaoBinding
 
 
@@ -54,15 +58,37 @@ class EliminarTracaoFragment : Fragment() {
     fun processaOpcaoMenu(item: MenuItem): Boolean =
         when(item.itemId){
             R.id.action_eliminar -> {
-
+                eliminaTracao()
                 true
             }
             R.id.action_cancelar -> {
-
+                navegaListaTracao()
                 true
             }
             else -> false
         }
+
+    private fun eliminaTracao() {
+        val enderecoTracao = Uri.withAppendedPath(ContentProviderCarros.ENDERECO_TRACOES, "${tracao.id}")
+        val registosEliminados = requireActivity().contentResolver.delete(enderecoTracao, null, null)
+
+        if(registosEliminados != 1){
+            Snackbar.make(
+                binding.textViewNomeTracao,
+                R.string.erro_eliminar_tracao,
+                Snackbar.LENGTH_INDEFINITE
+            ).show()
+            return
+        }
+
+        Toast.makeText(requireContext(),R.string.tracao_eliminada_sucesso, Toast.LENGTH_LONG).show()
+        navegaListaTracao()
+    }
+
+    private fun navegaListaTracao() {
+        val acao = EliminarTracaoFragmentDirections.actionEliminarTracaoFragmentToListaTracaoFragment()
+        findNavController().navigate(acao)
+    }
 
 
 }
