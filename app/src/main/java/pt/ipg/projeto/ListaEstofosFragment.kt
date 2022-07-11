@@ -153,11 +153,13 @@ class ListaEstofosFragment : Fragment() , LoaderManager.LoaderCallbacks<Cursor>{
             R.id.action_inserir -> {
                 val acao = ListaEstofosFragmentDirections.actionListaEstofosFragmentToEditarEstofoFragment()
                 findNavController().navigate(acao)
+                (activity as MainActivity).atualizaTitulo(R.string.inserir_estofo_label)
                 true
             }
             R.id.action_alterar -> {
                 val acao = ListaEstofosFragmentDirections.actionListaEstofosFragmentToEditarEstofoFragment(estofoSelecionado)
                 findNavController().navigate(acao)
+                (activity as MainActivity).atualizaTitulo(R.string.alterar_estofo_label)
                 true
             }
             R.id.action_eliminar -> {

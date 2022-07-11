@@ -50,7 +50,7 @@
     <string name="eliminar_jante_label">Eliminar jante</string>
 
     <string name="lista_estofo_label">Lista dos Estofos</string>
-    <string name="editar_estofo_label">Editar estofo</string>
+    <string name="inserir_estofo_label">Inserir estofo</string>
     <string name="alterar_estofo_label">Alterar estofo</string>
     <string name="eliminar_estofo_label">Eliminar estofo</string>
 

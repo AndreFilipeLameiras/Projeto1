@@ -123,4 +123,8 @@ class MainActivity : AppCompatActivity() {
         menu!!.findItem(R.id.action_eliminar).setVisible(mostra)
     }
 
+    fun atualizaTitulo(id_sting_titulo: Int){
+        binding.appBarMain.toolbar.setTitle(id_sting_titulo)
+    }
+
 }
