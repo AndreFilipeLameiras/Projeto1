@@ -40,6 +40,9 @@ class ListaTracaoFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
         binding.recyclerViewTracao.adapter = adapterTracoes
         binding.recyclerViewTracao.layoutManager = LinearLayoutManager(requireContext())
 
+        val activity = activity as MainActivity
+        activity.idMenuAtual = R.menu.menu_lista
+
 
     }
 
