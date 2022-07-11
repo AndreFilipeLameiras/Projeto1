@@ -6,7 +6,16 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class AdapterTransmissoes(val fragment: ListaTransmissoesFragment,var cursor: Cursor? = null): RecyclerView.Adapter<AdapterTransmissoes.ViewHolderTransmissoes>() {
+class AdapterTransmissoes(val fragment: ListaTransmissoesFragment): RecyclerView.Adapter<AdapterTransmissoes.ViewHolderTransmissoes>() {
+    var cursor: Cursor? = null
+        get() = field
+        set(value) {
+            if (field != value) {
+                field = value
+                notifyDataSetChanged()
+            }
+        }
+
     class ViewHolderTransmissoes (itemView: View): RecyclerView.ViewHolder(itemView){
         private val textViewNomeTransmissao = itemView.findViewById<TextView>(R.id.textViewNomeTransmissao)
 
