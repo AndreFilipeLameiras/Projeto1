@@ -23,6 +23,7 @@ class EditarEstofoFragment : Fragment() {
     //onDestroyView
     private val binding get() = _binding!!
 
+    private var estofo: Estofos? = null
 
 
     override fun onCreateView(
@@ -46,6 +47,15 @@ class EditarEstofoFragment : Fragment() {
         val activity = requireActivity() as MainActivity
         activity.fragment = this
         activity.idMenuAtual = R.menu.menu_edicao
+
+        if(arguments != null){
+            estofo = EditarEstofoFragmentArgs.fromBundle(arguments!!).estofo
+
+            if( estofo != null){
+                binding.editTextNomeEstofo.setText(estofo!!.nome)
+                binding.editTextPrecoEstofo.setText(estofo!!.preco.toString())
+            }
+        }
 
     }
 
