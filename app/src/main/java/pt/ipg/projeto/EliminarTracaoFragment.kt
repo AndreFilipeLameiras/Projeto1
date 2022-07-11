@@ -1,5 +1,7 @@
 package pt.ipg.projeto
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -69,7 +71,23 @@ class EliminarTracaoFragment : Fragment() {
         }
 
     private fun eliminaTracao() {
-        val enderecoTracao = Uri.withAppendedPath(ContentProviderCarros.ENDERECO_TRACOES, "${tracao.id}")
+        val alertDialog = AlertDialog.Builder(requireContext())
+
+        alertDialog.apply {
+            setTitle(R.string.eliminar_tracao_label)
+            setMessage(R.string.confirma_eliminar_tracao)
+            setNegativeButton(
+                android.R.string.cancel,
+                DialogInterface.OnClickListener { dialogInterface, i -> })
+            setPositiveButton(
+                R.string.eliminar,
+                DialogInterface.OnClickListener { dialogInterface, i -> confirmaEliminarTracao() })
+            show()
+        }
+    }
+
+     private fun confirmaEliminarTracao(){
+    val enderecoTracao = Uri.withAppendedPath(ContentProviderCarros.ENDERECO_TRACOES, "${tracao.id}")
         val registosEliminados = requireActivity().contentResolver.delete(enderecoTracao, null, null)
 
         if(registosEliminados != 1){
