@@ -33,13 +33,14 @@ class ListaTracaoFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val recyclerViewTracao = view.findViewById<RecyclerView>(R.id.recyclerViewTracao)
-        adapterTracoes = AdapterTracoes(this)
-        recyclerViewTracao.adapter = adapterTracoes
-        recyclerViewTracao.layoutManager = LinearLayoutManager(requireContext())
+        LoaderManager.getInstance(this).initLoader(ID_LOADER_TRACOES, null, this)
 
-        LoaderManager.getInstance(this)
-            .initLoader(ID_LOADER_TRACOES, null, this)
+
+        adapterTracoes = AdapterTracoes(this)
+        binding.recyclerViewTracao.adapter = adapterTracoes
+        binding.recyclerViewTracao.layoutManager = LinearLayoutManager(requireContext())
+
+
     }
 
     override fun onDestroyView() {
