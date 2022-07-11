@@ -34,7 +34,12 @@ class InserirEstofoFragment : Fragment() {
         _binding = FragmentInserirEstofoBinding.inflate(inflater, container, false)
 
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_inserir_estofo, container, false)
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -49,12 +54,42 @@ class InserirEstofoFragment : Fragment() {
     fun processaOpcaoMenu(item: MenuItem): Boolean =
         when(item.itemId){
             R.id.action_guardar -> {
+                guardar()
                 true
             }
             R.id.action_cancelar -> {
-                findNavController().navigate(R.id.action_inserirEstofoFragment_to_listaEstofosFragment)
+                navegaListaEstofo()
                 true
             }
             else -> false
         }
+
+    private fun guardar() {
+        val nome = binding.editTextNomeEstofo.text.toString()
+        if(nome.isBlank()){
+            binding.editTextNomeEstofo.error = getString(R.string.nome_estofo_obrigatorio)
+            binding.editTextNomeEstofo.requestFocus()
+            return
+        }
+
+        val preco = binding.editTextPrecoEstofo.text.toString().toDouble()
+        if(preco.toString().isBlank()){
+            binding.editTextPrecoEstofo.error = getString(R.string.preco_obrigatorio)
+            binding.editTextPrecoEstofo.requestFocus()
+            return
+        }
+
+
+        insereEstofo(nome, preco)
+    }
+
+    private fun insereEstofo(nome: String, preco: Double) {
+
+    }
+
+    private fun navegaListaEstofo() {
+        findNavController().navigate(R.id.action_inserirEstofoFragment_to_listaEstofosFragment)
+    }
+
+
 }

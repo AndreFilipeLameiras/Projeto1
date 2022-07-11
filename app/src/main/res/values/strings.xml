@@ -96,8 +96,8 @@
     <string name="erro_eliminar_jante">Erro a eliminar jante</string>
     <string name="elimina_jantes">Elimina Jantes</string>
 
-
-
+    <string name="nome_estofo_obrigatorio">Preencha o Nome de estofo</string>
+    <string name="nome_preco_obrigatorio">Preencha o preço</string>
 
 
 </resources>
