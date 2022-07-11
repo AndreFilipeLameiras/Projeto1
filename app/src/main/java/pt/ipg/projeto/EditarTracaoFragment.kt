@@ -1,5 +1,6 @@
 package pt.ipg.projeto
 
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -83,25 +84,41 @@ class EditarTracaoFragment : Fragment() {
             return
         }
 
-        insereTracao(nome)
+       val tracaoGuardada =
+           if(tracao == null){
+               insereTracao(nome)
+           }else{
+               alteraTracao(nome)
+           }
+
+       if(tracaoGuardada){
+           Toast.makeText(requireContext(), R.string.tracao_guardada_sucesso, Toast.LENGTH_LONG)
+               .show()
+           navegaListaTracao()
+       }else{
+           Snackbar.make(binding.editTextTracao, R.string.erro_guardar_tracao, Snackbar.LENGTH_INDEFINITE).show()
+           return
+       }
+
+
     }
 
-    private fun insereTracao(nome: String) {
+    private fun alteraTracao(nome: String) : Boolean{
+        val tracao = Tracao(nome)
+
+        val enderecoTracao = Uri.withAppendedPath(ContentProviderCarros.ENDERECO_TRACOES, "${this.tracao!!.id}")
+
+        val registosAlterados = requireActivity().contentResolver.update(enderecoTracao, tracao.toContentValues(), null, null)
+
+        return registosAlterados == 1
+    }
+
+    private fun insereTracao(nome: String) : Boolean{
         val tracao = Tracao(nome)
 
         val enderecoTracaoInserida = requireActivity().contentResolver.insert(ContentProviderCarros.ENDERECO_TRACOES, tracao.toContentValues())
 
-        if(enderecoTracaoInserida == null) {
-            Snackbar.make(
-                binding.editTextTracao,
-                R.string.erro_guardar_tracao,
-                Snackbar.LENGTH_INDEFINITE
-            ).show()
-            return
-        }
-
-        Toast.makeText(requireContext(), R.string.tracao_guardada_sucesso, Toast.LENGTH_LONG).show()
-        navegaListaTracao()
+        return enderecoTracaoInserida != null
     }
 
     private fun navegaListaTracao() {
