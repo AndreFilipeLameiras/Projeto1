@@ -101,6 +101,8 @@ class MainActivity : AppCompatActivity() {
             opcaoProcessada = (fragment as ListaEstofosFragment).processaOpcaoMenu(item)
         }else if (fragment is InserirEstofoFragment) {
             opcaoProcessada = (fragment as InserirEstofoFragment).processaOpcaoMenu(item)
+        }else if (fragment is EliminarEstofoFragment) {
+            opcaoProcessada = (fragment as EliminarEstofoFragment).processaOpcaoMenu(item)
         }
         else {
             opcaoProcessada = false
