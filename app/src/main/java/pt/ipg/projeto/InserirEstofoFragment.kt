@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import pt.ipg.projeto.databinding.FragmentInserirEstofoBinding
 import pt.ipg.projeto.databinding.FragmentListaEstofosBinding
 
@@ -84,6 +86,18 @@ class InserirEstofoFragment : Fragment() {
     }
 
     private fun insereEstofo(nome: String, preco: Double) {
+        val estofo = Estofos(nome, preco)
+
+        val enderecoEstofoInserido = requireActivity().contentResolver.insert(ContentProviderCarros.ENDERECO_ESTOFOS, estofo.toContentValues())
+
+        if(enderecoEstofoInserido == null){
+            Snackbar.make(binding.editTextNomeEstofo, R.string.erro_guardar_estofo, Snackbar.LENGTH_INDEFINITE).show()
+            return
+        }
+
+        Toast.makeText(requireContext(), R.string.estofo_guardado_sucesso, Toast.LENGTH_LONG).show()
+        navegaListaEstofo()
+
 
     }
 

@@ -98,6 +98,8 @@
 
     <string name="nome_estofo_obrigatorio">Preencha o Nome de estofo</string>
     <string name="nome_preco_obrigatorio">Preencha o preço</string>
+    <string name="erro_guardar_estofo">Erro ao guardar estofo</string>
+    <string name="estofo_guardado_sucesso">Estofo guardado com sucesso</string>
 
 
 </resources>
