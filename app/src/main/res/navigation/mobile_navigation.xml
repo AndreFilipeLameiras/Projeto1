@@ -216,8 +216,8 @@
     <fragment
         android:id="@+id/inserirTracaoFragment"
         android:name="pt.ipg.projeto.InserirTracaoFragment"
-        android:label="fragment_inserir_tracao"
-        tools:layout="@layout/fragment_inserir_tracao" >
+        android:label="@string/inserir_tracao_label"
+        tools:layout="@layout/fragment_inserir_tracao">
         <action
             android:id="@+id/action_inserirTracaoFragment_to_listaTracaoFragment"
             app:destination="@id/listaTracaoFragment" />

@@ -54,6 +54,11 @@
     <string name="alterar_estofo_label">Alterar estofo</string>
     <string name="eliminar_estofo_label">Eliminar estofo</string>
 
+    <string name="lista_tracao_label">Lista das Traçoes</string>
+    <string name="inserir_tracao_label">Inserir traçao</string>
+    <string name="alterar_tracao_label">Alterar traçao</string>
+    <string name="eliminar_tracao_label">Eliminar traçao</string>
+
 
     <string name="previous">Voltar</string>
 
