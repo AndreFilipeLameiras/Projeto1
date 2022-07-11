@@ -3,6 +3,7 @@ package pt.ipg.projeto
 import android.database.Cursor
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
@@ -41,6 +42,7 @@ class ListaTracaoFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
         binding.recyclerViewTracao.layoutManager = LinearLayoutManager(requireContext())
 
         val activity = activity as MainActivity
+        activity.fragment = this
         activity.idMenuAtual = R.menu.menu_lista
 
 
@@ -132,6 +134,16 @@ class ListaTracaoFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
     override fun onLoaderReset(loader: Loader<Cursor>) {
         adapterTracoes!!.cursor = null
     }
+
+    fun processaOpcaoMenu(item: MenuItem): Boolean =
+        when(item.itemId){
+            R.id.action_inserir -> true
+            R.id.action_alterar -> true
+            R.id.action_eliminar -> true
+            else -> false
+        }
+
+
 
     companion object{
         const val ID_LOADER_TRACOES = 0

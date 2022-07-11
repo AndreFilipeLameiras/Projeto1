@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_navhome_to_listaEstofosFragment"
             app:destination="@id/listaEstofosFragment" />
+        <action
+            android:id="@+id/action_navhome_to_listaTracaoFragment"
+            app:destination="@id/listaTracaoFragment" />
     </fragment>
 
     <fragment
@@ -105,7 +108,14 @@
     <fragment
         android:id="@+id/listaTracaoFragment"
         android:name="pt.ipg.projeto.ListaTracaoFragment"
-        android:label="ListaTracaoFragment" />
+        android:label="ListaTracaoFragment" >
+        <action
+            android:id="@+id/action_listaTracaoFragment_to_navhome"
+            app:destination="@id/navhome" />
+        <action
+            android:id="@+id/action_listaTracaoFragment_to_inserirTracaoFragment"
+            app:destination="@id/inserirTracaoFragment" />
+    </fragment>
     <fragment
         android:id="@+id/listaTransmissoesFragment"
         android:name="pt.ipg.projeto.ListaTransmissoesFragment"
@@ -202,5 +212,14 @@
         <argument
             android:name="estofo"
             app:argType="pt.ipg.projeto.Estofos" />
+    </fragment>
+    <fragment
+        android:id="@+id/inserirTracaoFragment"
+        android:name="pt.ipg.projeto.InserirTracaoFragment"
+        android:label="fragment_inserir_tracao"
+        tools:layout="@layout/fragment_inserir_tracao" >
+        <action
+            android:id="@+id/action_inserirTracaoFragment_to_listaTracaoFragment"
+            app:destination="@id/listaTracaoFragment" />
     </fragment>
 </navigation>
