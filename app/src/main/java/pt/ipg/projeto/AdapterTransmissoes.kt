@@ -16,12 +16,16 @@ class AdapterTransmissoes(val fragment: ListaTransmissoesFragment): RecyclerView
             }
         }
 
-    class ViewHolderTransmissoes (itemView: View): RecyclerView.ViewHolder(itemView){
+    class ViewHolderTransmissoes (itemTransmissao: View): RecyclerView.ViewHolder(itemTransmissao){
         private val textViewNomeTransmissao = itemView.findViewById<TextView>(R.id.textViewNomeTransmissao)
 
-        fun atualizaTransmissao(transmissao: Transmissao){
-            textViewNomeTransmissao.text = transmissao.nome
-        }
+        var transmissao : Transmissao? = null
+            get() = field
+            set(value: Transmissao?) {
+                field = value
+
+                textViewNomeTransmissao.text = transmissao?.nome ?: ""
+            }
     }
 
     /**
@@ -76,7 +80,7 @@ class AdapterTransmissoes(val fragment: ListaTransmissoesFragment): RecyclerView
      */
     override fun onBindViewHolder(holder: ViewHolderTransmissoes, position: Int) {
         cursor!!.moveToPosition(position)
-        holder.atualizaTransmissao(Transmissao.fromCursor(cursor!!))
+        holder.transmissao= Transmissao.fromCursor(cursor!!)
     }
 
     /**
@@ -85,6 +89,8 @@ class AdapterTransmissoes(val fragment: ListaTransmissoesFragment): RecyclerView
      * @return The total number of items in this adapter.
      */
     override fun getItemCount(): Int {
-        return cursor?.count ?: 0
+        if(cursor == null) return 0
+
+        return cursor!!.count
     }
 }

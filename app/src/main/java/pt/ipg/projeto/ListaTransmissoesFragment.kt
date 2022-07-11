@@ -34,13 +34,16 @@ class ListaTransmissoesFragment: Fragment(), LoaderManager.LoaderCallbacks<Curso
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val recycleViewTransmissao = view.findViewById<RecyclerView>(R.id.recyclerViewTransmissoes)
+
 
         LoaderManager.getInstance(this).initLoader(ID_LOAD_TRANSMISSOES, null, this)
 
         adapterTransmissoes = AdapterTransmissoes(this)
-        recycleViewTransmissao.adapter = adapterTransmissoes
-        recycleViewTransmissao.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerViewTransmissoes.adapter = adapterTransmissoes
+        binding.recyclerViewTransmissoes.layoutManager = LinearLayoutManager(requireContext())
+
+        val activity = activity as MainActivity
+        activity.idMenuAtual = R.menu.menu_lista
 
 
     }

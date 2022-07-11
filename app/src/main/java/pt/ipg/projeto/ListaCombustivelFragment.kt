@@ -34,13 +34,16 @@ class ListaCombustivelFragment: Fragment(), LoaderManager.LoaderCallbacks<Cursor
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val recyclerViewCombustivel = view.findViewById<RecyclerView>(R.id.recyclerViewCombustivel)
+        LoaderManager.getInstance(this).initLoader(ID_LOAD_COMBUSTIVEIS, null, this)
 
         adapterCombustiveis = AdapterCombustiveis(this)
-        recyclerViewCombustivel.adapter = adapterCombustiveis
-        recyclerViewCombustivel.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerViewCombustivel.adapter = adapterCombustiveis
+        binding.recyclerViewCombustivel.layoutManager = LinearLayoutManager(requireContext())
 
-        LoaderManager.getInstance(this).initLoader(ID_LOAD_COMBUSTIVEIS, null, this)
+        val activity = activity as MainActivity
+        activity.idMenuAtual = R.menu.menu_lista
+
+
     }
 
     override fun onDestroy() {
