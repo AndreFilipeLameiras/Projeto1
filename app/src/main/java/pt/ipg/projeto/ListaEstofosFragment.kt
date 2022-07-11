@@ -155,7 +155,11 @@ class ListaEstofosFragment : Fragment() , LoaderManager.LoaderCallbacks<Cursor>{
                 findNavController().navigate(acao)
                 true
             }
-            R.id.action_alterar -> true
+            R.id.action_alterar -> {
+                val acao = ListaEstofosFragmentDirections.actionListaEstofosFragmentToEditarEstofoFragment(estofoSelecionado)
+                findNavController().navigate(acao)
+                true
+            }
             R.id.action_eliminar -> {
                 val acao = ListaEstofosFragmentDirections.actionListaEstofosFragmentToEliminarEstofoFragment(estofoSelecionado!!)
                 findNavController().navigate(acao)
