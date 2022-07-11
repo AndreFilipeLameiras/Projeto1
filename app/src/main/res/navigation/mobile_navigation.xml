@@ -49,6 +49,9 @@
         <action
             android:id="@+id/action_listaEstofosFragment_to_navhome"
             app:destination="@id/navhome" />
+        <action
+            android:id="@+id/action_listaEstofosFragment_to_eliminarEstofoFragment"
+            app:destination="@id/eliminarEstofoFragment" />
     </fragment>
     <fragment
         android:id="@+id/listaCoresFragment"
@@ -183,5 +186,17 @@
         <action
             android:id="@+id/action_inserirEstofoFragment_to_listaEstofosFragment"
             app:destination="@id/listaEstofosFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/eliminarEstofoFragment"
+        android:name="pt.ipg.projeto.EliminarEstofoFragment"
+        android:label="fragment_eliminar_estofo"
+        tools:layout="@layout/fragment_eliminar_estofo" >
+        <action
+            android:id="@+id/action_eliminarEstofoFragment_to_listaEstofosFragment"
+            app:destination="@id/listaEstofosFragment" />
+        <argument
+            android:name="estofo"
+            app:argType="pt.ipg.projeto.Estofos" />
     </fragment>
 </navigation>
