@@ -19,17 +19,28 @@ class AdapterEstofos(val fragment: ListaEstofosFragment ) : RecyclerView.Adapter
     var viewHolderSelecionado: ViewHolderEstofos? = null
 
 
-    inner class ViewHolderEstofos(itemView: View) :RecyclerView.ViewHolder(itemView), View.OnClickListener {
-        private val textViewNomeEstofos = itemView.findViewById<TextView>(R.id.textViewNomeEstofo)
+    inner class ViewHolderEstofos(itemEstofo: View) :RecyclerView.ViewHolder(itemEstofo), View.OnClickListener {
+        val textViewNomeEstofos = itemEstofo.findViewById<TextView>(R.id.textViewNomeEstofo)
+        val textViewPreco = itemEstofo.findViewById<TextView>(R.id.textViewPrecoEstofo)
 
         init {
-            itemView.setOnClickListener(this)
+            itemEstofo.setOnClickListener(this)
         }
 
-        fun atualizaEstofo(estofos: Estofos){
+        /*fun atualizaEstofo(estofos: Estofos){
 
             textViewNomeEstofos.text = estofos.nome
-        }
+        }*/
+
+        var estofo : Estofos? = null
+            get() = field
+            set(value: Estofos?) {
+                field = value
+
+
+                textViewNomeEstofos.text = estofo?.nome?: ""
+                textViewPreco.text = estofo?.preco.toString()
+            }
 
         override fun onClick(v: View?) {
             viewHolderSelecionado?.desSeleciona()
@@ -39,6 +50,7 @@ class AdapterEstofos(val fragment: ListaEstofosFragment ) : RecyclerView.Adapter
         private fun seleciona() {
             itemView.setBackgroundResource(android.R.color.holo_orange_light)
             viewHolderSelecionado = this
+            fragment.estofoSelecionado = estofo
         }
 
         private fun desSeleciona(){
@@ -98,7 +110,7 @@ class AdapterEstofos(val fragment: ListaEstofosFragment ) : RecyclerView.Adapter
      */
     override fun onBindViewHolder(holder: ViewHolderEstofos, position: Int) {
         cursor!!.moveToPosition(position)
-        holder.atualizaEstofo(Estofos.fromCursor(cursor!!))
+        holder.estofo = Estofos.fromCursor(cursor!!)
     }
 
     /**

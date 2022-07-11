@@ -16,6 +16,16 @@ import androidx.recyclerview.widget.RecyclerView
 import pt.ipg.projeto.databinding.FragmentListaEstofosBinding
 
 class ListaEstofosFragment : Fragment() , LoaderManager.LoaderCallbacks<Cursor>{
+    var estofoSelecionado: Estofos? = null
+        get() = field
+        set(value) {
+            if (value != field){
+                field = value
+                (requireActivity() as MainActivity).mostraOpcoesAlterarEliminar(field != null)
+            }
+        }
+
+
 
     private var _binding: FragmentListaEstofosBinding? = null
     private var adapterEstofos: AdapterEstofos? = null
