@@ -41,6 +41,7 @@ class AdapterTracoes(val fragment: ListaTracaoFragment) : RecyclerView.Adapter<A
         private fun seleciona() {
             itemView.setBackgroundResource(android.R.color.holo_orange_light)
             viewHolderSelecionado = this
+            fragment.tracaoSelecionada = tracao
         }
 
         private fun desSeleciona(){

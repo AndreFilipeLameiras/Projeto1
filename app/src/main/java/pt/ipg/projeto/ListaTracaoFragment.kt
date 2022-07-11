@@ -16,6 +16,16 @@ import androidx.recyclerview.widget.RecyclerView
 import pt.ipg.projeto.databinding.FragmentListaTracaoBinding
 
 class ListaTracaoFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
+    var tracaoSelecionada : Tracao? = null
+        get() = field
+        set(value) {
+            if(value != field){
+                field = value
+                (requireActivity() as MainActivity).mostraOpcoesAlterarEliminar(field != null)
+            }
+        }
+
+
     private var _binding: FragmentListaTracaoBinding? = null
     private var adapterTracoes : AdapterTracoes? = null
 

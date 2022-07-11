@@ -118,5 +118,7 @@
     <string name="erro_eliminar_tracao">Erro ao eliminar tracao</string>
     <string name="tracao_eliminada_sucesso">Tracao eliminada com sucesso</string>
     <string name="confirma_eliminar_tracao">Tem a certeza que pretende eliminar esta tracao?</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
