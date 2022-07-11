@@ -1,5 +1,7 @@
 package pt.ipg.projeto
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -68,6 +70,21 @@ class EliminarEstofoFragment : Fragment() {
         }
 
     private fun eliminaEstofo() {
+        var alertDialog = AlertDialog.Builder(requireContext())
+
+        alertDialog.apply {
+            setTitle(R.string.eliminar_estofo_label)
+            setMessage(R.string.confirma_eliminar_estof)
+            setNegativeButton(
+                android.R.string.cancel,
+                DialogInterface.OnClickListener { dialogInterface, i -> })
+            setPositiveButton(
+                R.string.eliminar,
+                DialogInterface.OnClickListener { dialogInterface, i -> confirmaEliminarEstofo() })
+        }
+    }
+
+        private fun confirmaEliminarEstofo(){
         val enderecoEstofo = Uri.withAppendedPath(ContentProviderCarros.ENDERECO_ESTOFOS, "${estofos.id}")
         val registosEliminados = requireActivity().contentResolver.delete(enderecoEstofo, null, null)
 

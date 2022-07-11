@@ -103,5 +103,7 @@
     <string name="elimina_estofos">Elimina Estofos</string>
     <string name="erro_eliminar_estofo">Erro ao eliminar estofo</string>
     <string name="estofo_eliminado_sucesso">Estofo eliminado com sucesso</string>
+    <string name="confirma_eliminar_estof">Tem a certeza que pretende eliminar este estofo?</string>
+
 
 </resources>
