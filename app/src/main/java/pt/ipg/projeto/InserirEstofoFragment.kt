@@ -3,10 +3,12 @@ package pt.ipg.projeto
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import pt.ipg.projeto.databinding.FragmentInserirEstofoBinding
-
+import pt.ipg.projeto.databinding.FragmentListaEstofosBinding
 
 /**
  * A simple [Fragment] subclass.
@@ -35,7 +37,24 @@ class InserirEstofoFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_inserir_estofo, container, false)
     }
 
-    companion object {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val activity = activity as MainActivity
+        activity.fragment = this
+        activity.idMenuAtual = R.menu.menu_edicao
 
     }
+
+    fun processaOpcaoMenu(item: MenuItem): Boolean =
+        when(item.itemId){
+            R.id.action_guardar -> {
+                true
+            }
+            R.id.action_cancelar -> {
+                findNavController().navigate(R.id.action_inserirEstofoFragment_to_listaEstofosFragment)
+                true
+            }
+            else -> false
+        }
 }
