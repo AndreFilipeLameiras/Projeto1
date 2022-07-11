@@ -101,6 +101,7 @@
     <string name="erro_guardar_estofo">Erro ao guardar estofo</string>
     <string name="estofo_guardado_sucesso">Estofo guardado com sucesso</string>
     <string name="elimina_estofos">Elimina Estofos</string>
-
+    <string name="erro_eliminar_estofo">Erro ao eliminar estofo</string>
+    <string name="estofo_eliminado_sucesso">Estofo eliminado com sucesso</string>
 
 </resources>

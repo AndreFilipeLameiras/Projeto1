@@ -1,11 +1,15 @@
 package pt.ipg.projeto
 
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import pt.ipg.projeto.databinding.FragmentEliminarEstofoBinding
 
 
@@ -53,13 +57,38 @@ class EliminarEstofoFragment : Fragment() {
     fun processaOpcaoMenu(item: MenuItem) : Boolean=
         when(item.itemId){
             R.id.action_eliminar -> {
-
+                eliminaEstofo()
                 true
             }
             R.id.action_cancelar -> {
+                navegaListaEstofo()
                 true
             }
             else -> false
         }
 
+    private fun eliminaEstofo() {
+        val enderecoEstofo = Uri.withAppendedPath(ContentProviderCarros.ENDERECO_ESTOFOS, "${estofos.id}")
+        val registosEliminados = requireActivity().contentResolver.delete(enderecoEstofo, null, null)
+
+        if(registosEliminados != 1){
+            Snackbar.make(
+                binding.textViewNomeEstofos,
+                R.string.erro_eliminar_estofo,
+                Snackbar.LENGTH_INDEFINITE
+            ).show()
+            return
+        }
+
+        Toast.makeText(requireContext(), R.string.estofo_eliminado_sucesso, Toast.LENGTH_LONG).show()
+        navegaListaEstofo()
+
+
     }
+
+    private fun navegaListaEstofo() {
+        val acao = EliminarEstofoFragmentDirections.actionEliminarEstofoFragmentToListaEstofosFragment()
+        findNavController().navigate(acao)
+    }
+
+}
