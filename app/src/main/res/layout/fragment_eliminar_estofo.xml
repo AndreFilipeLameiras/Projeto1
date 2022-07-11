@@ -3,12 +3,78 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FF0000"
     tools:context=".EliminarEstofoFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_margin="16dp"
+        android:background="#FFFFFF"
+        android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/textView23"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margem_campos"
+            android:layout_marginLeft="@dimen/margem_campos"
+            android:layout_marginTop="@dimen/margem_campos"
+            android:layout_marginEnd="@dimen/margem_campos"
+            android:layout_marginRight="@dimen/margem_campos"
+            android:text="@string/elimina_estofos"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#FB0000" />
+
+        <TextView
+            android:id="@+id/textView25"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margem_campos"
+            android:layout_marginLeft="@dimen/margem_campos"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="@dimen/margem_campos"
+            android:layout_marginRight="@dimen/margem_campos"
+            android:text="@string/nome_estofo"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="#000000"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textViewNomeEstofos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margem_campos"
+            android:layout_marginLeft="@dimen/margem_campos"
+            android:layout_marginTop="@dimen/margem_campos"
+            android:layout_marginEnd="@dimen/margem_campos"
+            android:layout_marginRight="@dimen/margem_campos"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            tools:text="Pele sintetica com costuras em preto" />
+
+        <TextView
+            android:id="@+id/textView29"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margem_campos"
+            android:layout_marginLeft="@dimen/margem_campos"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="@dimen/margem_campos"
+            android:layout_marginRight="@dimen/margem_campos"
+            android:text="@string/preco_estofo"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="#000000"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textViewPrecoEstofo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margem_campos"
+            android:layout_marginLeft="@dimen/margem_campos"
+            android:layout_marginTop="@dimen/margem_campos"
+            android:layout_marginEnd="@dimen/margem_campos"
+            android:layout_marginRight="@dimen/margem_campos"
+            tools:text="1500.2€" />
+    </LinearLayout>
 </FrameLayout>

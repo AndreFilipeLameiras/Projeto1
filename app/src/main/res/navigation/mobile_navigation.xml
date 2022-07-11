@@ -42,7 +42,7 @@
     <fragment
         android:id="@+id/listaEstofosFragment"
         android:name="pt.ipg.projeto.ListaEstofosFragment"
-        android:label="ListaEstofosFragment" >
+        android:label="@string/lista_estofo_label">
         <action
             android:id="@+id/action_listaEstofosFragment_to_inserirEstofoFragment"
             app:destination="@id/inserirEstofoFragment" />
@@ -190,8 +190,8 @@
     <fragment
         android:id="@+id/eliminarEstofoFragment"
         android:name="pt.ipg.projeto.EliminarEstofoFragment"
-        android:label="fragment_eliminar_estofo"
-        tools:layout="@layout/fragment_eliminar_estofo" >
+        android:label="@string/eliminar_estofo_label"
+        tools:layout="@layout/fragment_eliminar_estofo">
         <action
             android:id="@+id/action_eliminarEstofoFragment_to_listaEstofosFragment"
             app:destination="@id/listaEstofosFragment" />
