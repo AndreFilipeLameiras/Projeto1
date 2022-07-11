@@ -151,7 +151,11 @@ class ListaTracaoFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
                 findNavController().navigate(acao)
                 true
             }
-            R.id.action_alterar -> true
+            R.id.action_alterar -> {
+                val acao = ListaTracaoFragmentDirections.actionListaTracaoFragmentToEditarTracaoFragment(tracaoSelecionada!!)
+                findNavController().navigate(acao)
+                true
+            }
             R.id.action_eliminar ->{
                 val acao = ListaTracaoFragmentDirections.actionListaTracaoFragmentToEliminarTracaoFragment(tracaoSelecionada!!)
                 findNavController().navigate(acao)

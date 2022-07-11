@@ -224,6 +224,11 @@
         <action
             android:id="@+id/action_editarTracaoFragment_to_listaTracaoFragment"
             app:destination="@id/listaTracaoFragment" />
+        <argument
+            android:name="tracao"
+            app:argType="pt.ipg.projeto.Tracao"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
     <fragment
         android:id="@+id/eliminarTracaoFragment"
