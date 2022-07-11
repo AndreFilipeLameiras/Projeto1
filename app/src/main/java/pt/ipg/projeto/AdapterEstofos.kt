@@ -6,7 +6,19 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class AdapterEstofos(val fragment: ListaEstofosFragment ,var cursor: Cursor? = null) : RecyclerView.Adapter<AdapterEstofos.ViewHolderEstofos>() {
+class AdapterEstofos(val fragment: ListaEstofosFragment ) : RecyclerView.Adapter<AdapterEstofos.ViewHolderEstofos>() {
+    var cursor: Cursor? = null
+        get() = field
+        set(value) {
+            if (field != value) {
+                field = value
+                notifyDataSetChanged()
+            }
+        }
+
+
+
+
     class ViewHolderEstofos(itemView: View) :RecyclerView.ViewHolder(itemView) {
         private val textViewNomeEstofos = itemView.findViewById<TextView>(R.id.textViewNomeEstofo)
 
@@ -76,7 +88,9 @@ class AdapterEstofos(val fragment: ListaEstofosFragment ,var cursor: Cursor? = n
      * @return The total number of items in this adapter.
      */
     override fun getItemCount(): Int {
-        return cursor?.count ?: 0
+        if(cursor == null) return 0
+
+        return cursor!!.count
     }
 
 }
