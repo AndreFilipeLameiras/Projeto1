@@ -81,6 +81,7 @@ class EliminarEstofoFragment : Fragment() {
             setPositiveButton(
                 R.string.eliminar,
                 DialogInterface.OnClickListener { dialogInterface, i -> confirmaEliminarEstofo() })
+            show()
         }
     }
 

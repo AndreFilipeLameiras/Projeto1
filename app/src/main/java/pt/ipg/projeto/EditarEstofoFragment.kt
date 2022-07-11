@@ -1,5 +1,6 @@
 package pt.ipg.projeto
 
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -87,22 +88,43 @@ class EditarEstofoFragment : Fragment() {
             return
         }
 
+        val estofoGuardado =
+            if(estofo == null){
+                insereEstofo(nome, preco)
+            }else{
+                alteraEstofo(nome, preco)
+            }
 
-        insereEstofo(nome, preco)
+
+        if(estofoGuardado){
+            Toast.makeText(requireContext(), R.string.estofo_guardado_sucesso, Toast.LENGTH_LONG).show()
+            navegaListaEstofo()
+        }else {
+            Snackbar.make(binding.editTextNomeEstofo, R.string.erro_guardar_estofo, Snackbar.LENGTH_INDEFINITE).show()
+            return
+        }
     }
 
-    private fun insereEstofo(nome: String, preco: Double) {
+    private fun alteraEstofo(nome: String, preco: Double): Boolean {
+        val estofo = Estofos(nome, preco)
+
+        val enderecoEstofo = Uri.withAppendedPath(ContentProviderCarros.ENDERECO_ESTOFOS, "${this.estofo!!.id}")
+
+        val registosAlterados = requireActivity().contentResolver.update(enderecoEstofo, estofo.toContentValues(),null, null)
+
+        return registosAlterados == 1
+    }
+
+
+    private fun insereEstofo(nome: String, preco: Double) : Boolean{
         val estofo = Estofos(nome, preco)
 
         val enderecoEstofoInserido = requireActivity().contentResolver.insert(ContentProviderCarros.ENDERECO_ESTOFOS, estofo.toContentValues())
 
-        if(enderecoEstofoInserido == null){
-            Snackbar.make(binding.editTextNomeEstofo, R.string.erro_guardar_estofo, Snackbar.LENGTH_INDEFINITE).show()
-            return
-        }
 
-        Toast.makeText(requireContext(), R.string.estofo_guardado_sucesso, Toast.LENGTH_LONG).show()
-        navegaListaEstofo()
+        return enderecoEstofoInserido != null
+
+
 
 
     }
