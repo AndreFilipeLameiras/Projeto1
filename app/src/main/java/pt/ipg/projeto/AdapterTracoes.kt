@@ -17,11 +17,15 @@ class AdapterTracoes(val fragment: ListaTracaoFragment) : RecyclerView.Adapter<A
         }
 
 
-    class ViewHolderTracoes (itemView: View) :RecyclerView.ViewHolder(itemView){
-        private val textViewNomeTracao = itemView.findViewById<TextView>(R.id.textViewNomeTracao)
+    class ViewHolderTracoes (itemTracao: View) :RecyclerView.ViewHolder(itemTracao){
+        val textViewNomeTracao = itemTracao.findViewById<TextView>(R.id.textViewNomeTracao)
 
-        fun atualizaTracao(tracao: Tracao){
-            textViewNomeTracao.text = tracao.nome
+        var tracao : Tracao? = null
+            get() = field
+            set(value: Tracao?) {
+                field = value
+
+                textViewNomeTracao.text = tracao?.nome ?: ""
         }
     }
 
@@ -77,7 +81,7 @@ class AdapterTracoes(val fragment: ListaTracaoFragment) : RecyclerView.Adapter<A
      */
     override fun onBindViewHolder(holder: ViewHolderTracoes, position: Int) {
         cursor!!.moveToPosition(position)
-        holder.atualizaTracao(Tracao.fromCursor(cursor!!))
+        holder.tracao = Tracao.fromCursor(cursor!!)
     }
 
     /**
