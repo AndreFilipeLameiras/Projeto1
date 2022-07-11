@@ -115,6 +115,9 @@
         <action
             android:id="@+id/action_listaTracaoFragment_to_inserirTracaoFragment"
             app:destination="@id/inserirTracaoFragment" />
+        <action
+            android:id="@+id/action_listaTracaoFragment_to_eliminarTracaoFragment"
+            app:destination="@id/eliminarTracaoFragment" />
     </fragment>
     <fragment
         android:id="@+id/listaTransmissoesFragment"
@@ -220,6 +223,15 @@
         tools:layout="@layout/fragment_inserir_tracao">
         <action
             android:id="@+id/action_inserirTracaoFragment_to_listaTracaoFragment"
+            app:destination="@id/listaTracaoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/eliminarTracaoFragment"
+        android:name="pt.ipg.projeto.EliminarTracaoFragment"
+        android:label="fragment_eliminar_tracao"
+        tools:layout="@layout/fragment_eliminar_tracao" >
+        <action
+            android:id="@+id/action_eliminarTracaoFragment_to_listaTracaoFragment"
             app:destination="@id/listaTracaoFragment" />
     </fragment>
 </navigation>
