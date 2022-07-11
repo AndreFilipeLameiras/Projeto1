@@ -3,7 +3,6 @@ package pt.ipg.projeto
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -99,8 +98,8 @@ class MainActivity : AppCompatActivity() {
             opcaoProcessada = (fragment as EliminaJanteFragment).processaOpcaoMenu(item)
         }else if (fragment is ListaEstofosFragment) {
             opcaoProcessada = (fragment as ListaEstofosFragment).processaOpcaoMenu(item)
-        }else if (fragment is InserirEstofoFragment) {
-            opcaoProcessada = (fragment as InserirEstofoFragment).processaOpcaoMenu(item)
+        }else if (fragment is EditarEstofoFragment) {
+            opcaoProcessada = (fragment as EditarEstofoFragment).processaOpcaoMenu(item)
         }else if (fragment is EliminarEstofoFragment) {
             opcaoProcessada = (fragment as EliminarEstofoFragment).processaOpcaoMenu(item)
         }

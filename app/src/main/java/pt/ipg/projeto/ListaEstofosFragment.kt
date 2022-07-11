@@ -151,7 +151,7 @@ class ListaEstofosFragment : Fragment() , LoaderManager.LoaderCallbacks<Cursor>{
     fun processaOpcaoMenu(item: MenuItem) : Boolean =
         when(item.itemId) {
             R.id.action_inserir -> {
-                val acao = ListaEstofosFragmentDirections.actionListaEstofosFragmentToInserirEstofoFragment()
+                val acao = ListaEstofosFragmentDirections.actionListaEstofosFragmentToEditarEstofoFragment()
                 findNavController().navigate(acao)
                 true
             }

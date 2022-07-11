@@ -9,16 +9,15 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
-import pt.ipg.projeto.databinding.FragmentInserirEstofoBinding
-import pt.ipg.projeto.databinding.FragmentListaEstofosBinding
+import pt.ipg.projeto.databinding.FragmentEditarEstofoBinding
 
 /**
  * A simple [Fragment] subclass.
- * Use the [InserirEstofoFragment.newInstance] factory method to
+ * Use the [EditarEstofoFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class InserirEstofoFragment : Fragment() {
-    private var _binding: FragmentInserirEstofoBinding?= null
+class EditarEstofoFragment : Fragment() {
+    private var _binding: FragmentEditarEstofoBinding?= null
 
     //This property is only valid between onCreateView and
     //onDestroyView
@@ -30,7 +29,7 @@ class InserirEstofoFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentInserirEstofoBinding.inflate(inflater, container, false)
+        _binding = FragmentEditarEstofoBinding.inflate(inflater, container, false)
 
         // Inflate the layout for this fragment
         return binding.root

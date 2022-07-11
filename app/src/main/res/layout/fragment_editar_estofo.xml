@@ -9,7 +9,7 @@
     android:layout_marginEnd="@dimen/margem_campos"
     android:layout_marginRight="@dimen/margem_campos"
     android:orientation="vertical"
-    tools:context=".InserirEstofoFragment">
+    tools:context=".EditarEstofoFragment">
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"

@@ -44,8 +44,8 @@
         android:name="pt.ipg.projeto.ListaEstofosFragment"
         android:label="@string/lista_estofo_label">
         <action
-            android:id="@+id/action_listaEstofosFragment_to_inserirEstofoFragment"
-            app:destination="@id/inserirEstofoFragment" />
+            android:id="@+id/action_listaEstofosFragment_to_editarEstofoFragment"
+            app:destination="@id/editarEstofoFragment" />
         <action
             android:id="@+id/action_listaEstofosFragment_to_navhome"
             app:destination="@id/navhome" />
@@ -179,13 +179,18 @@
             app:destination="@id/listaJantesFragment" />
     </fragment>
     <fragment
-        android:id="@+id/inserirEstofoFragment"
-        android:name="pt.ipg.projeto.InserirEstofoFragment"
-        android:label="@string/inserir_estofo_label"
-        tools:layout="@layout/fragment_inserir_estofo">
+        android:id="@+id/editarEstofoFragment"
+        android:name="pt.ipg.projeto.EditarEstofoFragment"
+        android:label="@string/editar_estofo_label"
+        tools:layout="@layout/fragment_editar_estofo">
         <action
             android:id="@+id/action_inserirEstofoFragment_to_listaEstofosFragment"
             app:destination="@id/listaEstofosFragment" />
+        <argument
+            android:name="estofo"
+            app:argType="pt.ipg.projeto.Estofos"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
     <fragment
         android:id="@+id/eliminarEstofoFragment"
