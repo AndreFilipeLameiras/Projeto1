@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import pt.ipg.projeto.databinding.FragmentInserirTracaoBinding
 
 
@@ -29,8 +31,14 @@ class InserirTracaoFragment : Fragment() {
     ): View? {
         _binding = FragmentInserirTracaoBinding.inflate(inflater, container, false)
 
-        return inflater.inflate(R.layout.fragment_inserir_tracao, container, false)
+        return binding.root
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -45,16 +53,49 @@ class InserirTracaoFragment : Fragment() {
     fun processaOpcaoMenu(item: MenuItem): Boolean =
         when(item.itemId){
             R.id.action_guardar -> {
+                guardar()
                 true
             }
             R.id.action_cancelar -> {
-                findNavController().navigate(R.id.action_inserirTracaoFragment_to_listaTracaoFragment)
-
+                navegaListaTracao()
                 true
             }
             else -> false
 
         }
+
+    private fun guardar() {
+        val nome = binding.editTextTracao.text.toString()
+        if(nome.isBlank()){
+            binding.editTextTracao.error = getString(R.string.nome_tracao_obrigatorio)
+            binding.editTextTracao.requestFocus()
+            return
+        }
+
+        insereTracao(nome)
+    }
+
+    private fun insereTracao(nome: String) {
+        val tracao = Tracao(nome)
+
+        val enderecoTracaoInserida = requireActivity().contentResolver.insert(ContentProviderCarros.ENDERECO_TRACOES, tracao.toContentValues())
+
+        if(enderecoTracaoInserida == null) {
+            Snackbar.make(
+                binding.editTextTracao,
+                R.string.erro_guardar_tracao,
+                Snackbar.LENGTH_INDEFINITE
+            ).show()
+            return
+        }
+
+        Toast.makeText(requireContext(), R.string.tracao_guardada_sucesso, Toast.LENGTH_LONG).show()
+        navegaListaTracao()
+    }
+
+    private fun navegaListaTracao() {
+        findNavController().navigate(R.id.action_inserirTracaoFragment_to_listaTracaoFragment)
+    }
 
 
 }

@@ -109,8 +109,14 @@
     <string name="erro_eliminar_estofo">Erro ao eliminar estofo</string>
     <string name="estofo_eliminado_sucesso">Estofo eliminado com sucesso</string>
     <string name="confirma_eliminar_estof">Tem a certeza que pretende eliminar este estofo?</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
+
+    <string name="nome_tracao_obrigatorio">Preencha o Nome da traçao</string>
+    <string name="erro_guardar_tracao">Erro ao guardar tracao</string>
+    <string name="tracao_guardada_sucesso">Tracao guardada com sucesso</string>
+    <string name="elimina_tracao">Elimina Tracao</string>
+    <string name="erro_eliminar_tracao">Erro ao eliminar tracao</string>
+    <string name="tracao_eliminada_sucesso">Tracao eliminada com sucesso</string>
+    <string name="confirma_eliminar_tracao">Tem a certeza que pretende eliminar esta tracao?</string>
 
 </resources>
