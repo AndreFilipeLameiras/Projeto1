@@ -49,10 +49,10 @@
     <string name="alterar_jante_label">Alterar jante</string>
     <string name="eliminar_jante_label">Eliminar jante</string>
 
-    <string name="lista_estofo_label">Lista das Jantes</string>
-    <string name="inserir_estofo_label">Inserir jante</string>
-    <string name="alterar_estofo_label">Alterar jante</string>
-    <string name="eliminar_estofo_label">Eliminar jante</string>
+    <string name="lista_estofo_label">Lista dos Estofos</string>
+    <string name="inserir_estofo_label">Inserir estofo</string>
+    <string name="alterar_estofo_label">Alterar estofo</string>
+    <string name="eliminar_estofo_label">Eliminar estofo</string>
 
 
     <string name="previous">Voltar</string>
@@ -100,6 +100,7 @@
     <string name="nome_preco_obrigatorio">Preencha o preço</string>
     <string name="erro_guardar_estofo">Erro ao guardar estofo</string>
     <string name="estofo_guardado_sucesso">Estofo guardado com sucesso</string>
+    <string name="elimina_estofos">Elimina Estofos</string>
 
 
 </resources>

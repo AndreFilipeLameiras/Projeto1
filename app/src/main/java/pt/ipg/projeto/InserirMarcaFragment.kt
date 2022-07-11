@@ -26,15 +26,18 @@ class InserirMarcaFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentInserirMarcaBinding.inflate(inflater, container, false)
+
+        val activity = activity as MainActivity
+        activity.fragment = this
+        activity.idMenuAtual = R.menu.menu_edicao
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val activity = activity as MainActivity
-        activity.fragment = this
-        activity.idMenuAtual = R.menu.menu_edicao
+
 
         editTextNomeMarca = view.findViewById(R.id.editTextNome)
 
@@ -45,46 +48,47 @@ class InserirMarcaFragment : Fragment() {
         _binding = null
     }
 
-    fun processaOpcaoMenu(item: MenuItem): Boolean =
-        when (item.itemId) {
-            R.id.action_guardar -> {
-                guardar()
-                true
-            }
-            R.id.action_cancelar -> {
-                navegaListaMarcas()
-                true
-            }
-            else -> false
-        }
 
 
 
 
-    private fun guardar() {
-        val nomeMarca = binding.editTextNome.text.toString()
+    fun guardar() {
+        val nomeMarca = editTextNomeMarca.text.toString()
         if (nomeMarca.isBlank()) {
-            binding.editTextNome.error = getString(R.string.nome_marca_obrigatorio)
-            binding.editTextNome.requestFocus()
+            editTextNomeMarca.error = getString(R.string.nome_marca_obrigatorio)
+            editTextNomeMarca.requestFocus()
             return
 
         }
 
+        val marca = Marca(nome = nomeMarca)
 
-        insereMarca(nomeMarca)
+        val enderecoMarcaInserida = activity?.contentResolver?.insert(ContentProviderCarros.ENDERECO_MARCAS, marca.toContentValues())
+
+        /*if(enderecoMarcaInserida == null) {
+            Snackbar.make(
+                editTextNomeMarca,
+                R.string.erro_guardar_marca,
+                Snackbar.LENGTH_LONG
+            ).show()
+            return
+        }*/
+
+        Toast.makeText(requireContext(), R.string.marca_guardada_sucesso, Toast.LENGTH_LONG).show()
+        navegaListaMarcas()
 
     }
-
-    private fun insereMarca(nomeMarca: String) {
+/*
+    fun insereMarca(nomeMarca: String) {
         val marca = Marca(nomeMarca)
 
         val enderecoMarcaInserida = requireActivity().contentResolver.insert(ContentProviderCarros.ENDERECO_MARCAS, marca.toContentValues())
 
         if(enderecoMarcaInserida == null) {
             Snackbar.make(
-                binding.editTextNome,
+                editTextNomeMarca,
                 R.string.erro_guardar_marca,
-                Snackbar.LENGTH_INDEFINITE
+                Snackbar.LENGTH_LONG
             ).show()
             return
         }
@@ -92,8 +96,18 @@ class InserirMarcaFragment : Fragment() {
         Toast.makeText(requireContext(), R.string.marca_guardada_sucesso, Toast.LENGTH_LONG).show()
         navegaListaMarcas()
     }
-
+*/
     private fun navegaListaMarcas() {
         findNavController().navigate(R.id.action_inserirMarcaFragment_to_listaMarcasFragment)
+    }
+
+    fun processaOpcaoMenu(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_guardar ->guardar()
+            R.id.action_cancelar ->navegaListaMarcas()
+            else -> return false
+        }
+
+        return true
     }
 }

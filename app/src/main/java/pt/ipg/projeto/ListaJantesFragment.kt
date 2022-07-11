@@ -78,19 +78,26 @@ class ListaJantesFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        LoaderManager.getInstance(this).initLoader(ID_LOADER_JANTES, null, this)
+
+
        val recycleViewJantes = view.findViewById<RecyclerView>(R.id.recycleViewJantes)
 
-        LoaderManager.getInstance(this)
-            .initLoader(ID_LOADER_JANTES, null, this)
+
 
         adapterJantes = AdapterJantes(this)
         recycleViewJantes.adapter = adapterJantes
         recycleViewJantes.layoutManager = LinearLayoutManager(requireContext())
 
+
+
+
         val activity = activity as MainActivity
         activity.fragment = this
         activity.idMenuAtual = R.menu.menu_lista
     }
+
+
 
 
     fun processaOpcaoMenu(item: MenuItem): Boolean{
@@ -105,11 +112,11 @@ class ListaJantesFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
     }
 
     private fun navegaEliminarJante() {
-        TODO("Not yet implemented")
+        findNavController().navigate(R.id.action_listaJantesFragment_to_eliminaJanteFragment)
     }
 
     private fun navegaAlterarJante() {
-        TODO("Not yet implemented")
+        findNavController().navigate(R.id.action_listaJantesFragment_to_editaJanteFragment)
     }
 
     private fun navegaInserirJante() {
@@ -134,13 +141,13 @@ class ListaJantesFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
      * @return Return a new Loader instance that is ready to start loading.
      */
     override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> =
-        CursorLoader(
+         CursorLoader(
             requireContext(),
             ContentProviderCarros.ENDERECO_JANTES,
             TabelaBDJantes.TODAS_COLUNAS,
             null,
             null,
-            "${TabelaBDJantes.NOME}"
+            "${TabelaBDJantes.CAMPO_NOME}"
         )
 
 
@@ -202,6 +209,7 @@ class ListaJantesFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
      * @param loader The Loader that is being reset.
      */
     override fun onLoaderReset(loader: Loader<Cursor>) {
+        if(_binding == null ) return
         adapterJantes!!.cursor = null
     }
 

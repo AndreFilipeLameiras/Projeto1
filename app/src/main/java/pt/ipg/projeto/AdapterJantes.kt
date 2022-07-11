@@ -19,12 +19,12 @@ class AdapterJantes(val fragment: ListaJantesFragment) : RecyclerView.Adapter<Ad
 
     var selecionado: ViewHolderJantes? = null
 
-    inner class ViewHolderJantes(itemJantes: View) : RecyclerView.ViewHolder(itemJantes),View.OnClickListener{
-        val textViewNome = itemJantes.findViewById<TextView>(R.id.textViewNome)
-        val textViewLargura = itemJantes.findViewById<TextView>(R.id.textViewLargura)
-        val textViewAltura = itemJantes.findViewById<TextView>(R.id.textViewAltura)
-        val textViewRaio = itemJantes.findViewById<TextView>(R.id.textViewRaio)
-        val textViewPreco = itemJantes.findViewById<TextView>(R.id.textViewPreco)
+    inner class ViewHolderJantes(itemView: View) : RecyclerView.ViewHolder(itemView),View.OnClickListener{
+        val textViewNome = itemView.findViewById<TextView>(R.id.textViewNome)
+        val textViewLargura = itemView.findViewById<TextView>(R.id.textViewLargura)
+        val textViewAltura = itemView.findViewById<TextView>(R.id.textViewAltura)
+        val textViewRaio = itemView.findViewById<TextView>(R.id.textViewRaio)
+        val textViewPreco = itemView.findViewById<TextView>(R.id.textViewPreco)
 
         private lateinit var jante: Jante
 

@@ -3,6 +3,7 @@ package pt.ipg.projeto
 import android.content.ContentValues
 import android.database.Cursor
 import android.provider.BaseColumns
+import java.io.Serializable
 
 data class Jante (
     var nome: String,
@@ -11,12 +12,12 @@ data class Jante (
     var raio: Long,
     var preco: Double,
     var id: Long = -1
-    ){
+    ): Serializable{
 
     fun toContentValues(): ContentValues {
         val valores = ContentValues()
 
-        valores.put(TabelaBDJantes.JANTES, nome)
+        valores.put(TabelaBDJantes.CAMPO_NOME, nome)
         valores.put(TabelaBDJantes.LARGURA, largura)
         valores.put(TabelaBDJantes.ALTURA, altura)
         valores.put(TabelaBDJantes.RAIO, raio)
@@ -30,18 +31,18 @@ data class Jante (
     companion object {
         fun fromCursor(cursor: Cursor): Jante{
             val posId = cursor.getColumnIndex(BaseColumns._ID)
-            val posJantes = cursor.getColumnIndex(TabelaBDJantes.JANTES)
+            val posJantes = cursor.getColumnIndex(TabelaBDJantes.CAMPO_NOME)
             val posLargura = cursor.getColumnIndex(TabelaBDJantes.LARGURA)
             val posAltura = cursor.getColumnIndex(TabelaBDJantes.ALTURA)
             val posRaio = cursor.getColumnIndex(TabelaBDJantes.RAIO)
             val posPreco = cursor.getColumnIndex(TabelaBDJantes.PRECO)
 
-            var id = cursor.getLong(posId)
-            var jantes = cursor.getString(posJantes)
-            var largura = cursor.getLong(posLargura)
-            var altura = cursor.getLong(posAltura)
-            var raio = cursor.getLong(posRaio)
-            var preco = cursor.getDouble(posPreco)
+            val id = cursor.getLong(posId)
+            val jantes = cursor.getString(posJantes)
+            val largura = cursor.getLong(posLargura)
+            val altura = cursor.getLong(posAltura)
+            val raio = cursor.getLong(posRaio)
+            val preco = cursor.getDouble(posPreco)
 
 
             return Jante(jantes, largura, altura, raio, preco, id)

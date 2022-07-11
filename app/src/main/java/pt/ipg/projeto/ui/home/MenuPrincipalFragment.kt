@@ -55,6 +55,12 @@ class MenuPrincipalFragment : Fragment() {
             findNavController().navigate(R.id.action_navhome_to_listaJantesFragment)
         }
 
+        binding.buttonEstofos.setOnClickListener{
+            findNavController().navigate(R.id.action_navhome_to_listaEstofosFragment)
+        }
+
+
+
         val activity = activity as MainActivity
         activity.fragment = this
         activity.idMenuAtual = R.menu.main

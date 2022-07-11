@@ -17,6 +17,14 @@ import pt.ipg.projeto.databinding.FragmentListaMarcasBinding
 
 class ListaMarcasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
 
+    var marcaSeleccionada : Marca? = null
+        get() = field
+        set(value) {
+            field = value
+            (requireActivity() as MainActivity).mostraOpcoesAlterarEliminar(field != null)
+        }
+
+
     private var _binding: FragmentListaMarcasBinding? = null
     private var adapterMarcas : AdapterMarcas? = null
 
@@ -27,7 +35,7 @@ class ListaMarcasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View ?{
         _binding = FragmentListaMarcasBinding.inflate(inflater, container, false)
 
         return binding.root
@@ -52,10 +60,40 @@ class ListaMarcasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
    /* fun navegaInserirMarca(){
         findNavController().navigate(R.id.action_listaMarcasFragment_to_inserirMarcaFragment)
     }*/
-
+/*
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }*/
+
+    fun processaOpcaoMenu(item: MenuItem): Boolean{
+        when(item.itemId){
+            R.id.action_inserir -> navegaInserirMarca()
+            R.id.action_alterar -> navegaAlterarMarca()
+            R.id.action_eliminar -> navegaEliminarMarca()
+            else -> return false
+        }
+
+        return true
+    }
+
+    private fun navegaEliminarMarca() {
+        TODO("Not yet implemented")
+    }
+
+    private fun navegaAlterarMarca() {
+        TODO("Not yet implemented")
+    }
+
+    private fun navegaInserirMarca() {
+        findNavController().navigate(R.id.action_listaMarcasFragment_to_inserirMarcaFragment)
+    }
+
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+
     }
 
     /**
@@ -140,7 +178,7 @@ class ListaMarcasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
         if(_binding == null ) return
         adapterMarcas!!.cursor = null
     }
-
+/*
     fun processaOpcaoMenu(item: MenuItem) : Boolean =
         when(item.itemId){
             R.id.action_inserir -> {
@@ -151,7 +189,7 @@ class ListaMarcasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
             R.id.action_eliminar -> true
             else -> false
         }
-
+*/
     companion object{
         const val ID_LOADER_MARCAS = 0
     }

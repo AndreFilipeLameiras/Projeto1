@@ -83,7 +83,7 @@
                             android:layout_marginTop="@dimen/margem_campos"
                             android:layout_marginEnd="@dimen/margem_campos"
                             android:layout_marginRight="@dimen/margem_campos"
-                            android:hint="Preco"
+                            android:hint="@string/preco"
                             android:inputType="number" />
                     </com.google.android.material.textfield.TextInputLayout>
                 </com.google.android.material.textfield.TextInputLayout>

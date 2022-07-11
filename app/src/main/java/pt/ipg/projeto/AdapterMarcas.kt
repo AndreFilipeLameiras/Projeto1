@@ -15,8 +15,9 @@ class AdapterMarcas(val fragment: ListaMarcasFragment): RecyclerView.Adapter<Ada
         }
 
 
+    var selecionado: ViewHolderMarcas? = null
 
-    class ViewHolderMarcas(itemView: View) : RecyclerView.ViewHolder(itemView) {
+   inner class ViewHolderMarcas(itemView: View) : RecyclerView.ViewHolder(itemView) , View.OnClickListener{
         private val textViewNome = itemView.findViewById<TextView>(R.id.textViewNomeMarca)
 
         private lateinit var marca: Marca
@@ -30,8 +31,21 @@ class AdapterMarcas(val fragment: ListaMarcasFragment): RecyclerView.Adapter<Ada
             textViewNome.text = marca.nome
         }
 
+        override fun onClick(p0: View?) {
+            selecionado?.desSelecionado()
+            seleciona()
+        }
 
+       private fun desSelecionado() {
+           selecionado = null
+           itemView.setBackgroundResource(android.R.color.white)
+       }
 
+       private fun seleciona() {
+            selecionado = this
+            itemView.setBackgroundResource(android.R.color.holo_orange_light)
+            fragment.marcaSeleccionada = marca
+        }
 
 
     }
@@ -62,7 +76,7 @@ class AdapterMarcas(val fragment: ListaMarcasFragment): RecyclerView.Adapter<Ada
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderMarcas {
         val itemMarcas = fragment.layoutInflater.inflate(R.layout.item_marca, parent, false)
 
-        return ViewHolderMarcas((itemMarcas))
+        return ViewHolderMarcas(itemMarcas)
     }
 
     /**

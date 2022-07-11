@@ -82,12 +82,12 @@
         android:textColor="#0B0B0B"
         app:backgroundTint="#49F30B"
         app:iconTint="#000000"
-        app:layout_constraintEnd_toStartOf="@+id/buttonEstilo"
+        app:layout_constraintEnd_toStartOf="@+id/buttonEstofos"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonMotorizacoes" />
 
     <Button
-        android:id="@+id/buttonEstilo"
+        android:id="@+id/buttonEstofos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
