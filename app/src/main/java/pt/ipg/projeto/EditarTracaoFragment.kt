@@ -24,6 +24,8 @@ class EditarTracaoFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
+    private var tracao: Tracao? = null
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,6 +48,15 @@ class EditarTracaoFragment : Fragment() {
         val activity = requireActivity() as MainActivity
         activity.fragment = this
         activity.idMenuAtual = R.menu.menu_edicao
+
+        if(arguments != null){
+            tracao = EditarTracaoFragmentArgs.fromBundle(arguments!!).tracao
+
+            if(tracao != null){
+                binding.editTextTracao.setText(tracao!!.nome)
+            }
+
+        }
 
     }
 
