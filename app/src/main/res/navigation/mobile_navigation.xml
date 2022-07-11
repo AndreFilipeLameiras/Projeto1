@@ -228,8 +228,8 @@
     <fragment
         android:id="@+id/eliminarTracaoFragment"
         android:name="pt.ipg.projeto.EliminarTracaoFragment"
-        android:label="fragment_eliminar_tracao"
-        tools:layout="@layout/fragment_eliminar_tracao" >
+        android:label="@string/eliminar_tracao_label"
+        tools:layout="@layout/fragment_eliminar_tracao">
         <action
             android:id="@+id/action_eliminarTracaoFragment_to_listaTracaoFragment"
             app:destination="@id/listaTracaoFragment" />
