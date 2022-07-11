@@ -6,15 +6,18 @@
         <entry key="..\:/Users/1700017/AndroidStudioProjects/Projeto/app/src/main/res/layout/fragment_gallery.xml" value="0.5546875" />
         <entry key="..\:/Users/Lameiras/AndroidStudioProjects/Projeto/app/src/main/res/drawable-v21/ic_menu_camera.xml" value="0.2555" />
         <entry key="..\:/Users/Lameiras/AndroidStudioProjects/Projeto/app/src/main/res/drawable/ic_carroPaginaInicial_background.xml" value="0.2" />
+        <entry key="..\:/Users/Lameiras/AndroidStudioProjects/Projeto/app/src/main/res/drawable/side_nav_bar.xml" value="0.2255" />
         <entry key="..\:/Users/Lameiras/AndroidStudioProjects/Projeto/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Lameiras/AndroidStudioProjects/Projeto/app/src/main/res/layout/app_bar_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Lameiras/AndroidStudioProjects/Projeto/app/src/main/res/layout/content_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Lameiras/AndroidStudioProjects/Projeto/app/src/main/res/layout/fragment_edita_jante.xml" value="0.1694915254237288" />
+        <entry key="..\:/Users/Lameiras/AndroidStudioProjects/Projeto/app/src/main/res/layout/fragment_editar_estofo.xml" value="0.23278985507246377" />
         <entry key="..\:/Users/Lameiras/AndroidStudioProjects/Projeto/app/src/main/res/layout/fragment_editar_modelo.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Lameiras/AndroidStudioProjects/Projeto/app/src/main/res/layout/fragment_elimina_jante.xml" value="0.29257246376811596" />
         <entry key="..\:/Users/Lameiras/AndroidStudioProjects/Projeto/app/src/main/res/layout/fragment_eliminar_estofo.xml" value="0.27853260869565216" />
         <entry key="..\:/Users/Lameiras/AndroidStudioProjects/Projeto/app/src/main/res/layout/fragment_eliminar_marca.xml" value="0.25" />
         <entry key="..\:/Users/Lameiras/AndroidStudioProjects/Projeto/app/src/main/res/layout/fragment_eliminar_modelo.xml" value="0.33" />
+        <entry key="..\:/Users/Lameiras/AndroidStudioProjects/Projeto/app/src/main/res/layout/fragment_gallery.xml" value="0.254981884057971" />
         <entry key="..\:/Users/Lameiras/AndroidStudioProjects/Projeto/app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="..\:/Users/Lameiras/AndroidStudioProjects/Projeto/app/src/main/res/layout/fragment_inserir_estofo.xml" value="0.19010416666666666" />
         <entry key="..\:/Users/Lameiras/AndroidStudioProjects/Projeto/app/src/main/res/layout/fragment_inserir_jantes.xml" value="0.22" />
@@ -38,6 +41,7 @@
         <entry key="..\:/Users/Lameiras/AndroidStudioProjects/Projeto/app/src/main/res/layout/item_modelo.xml" value="0.33" />
         <entry key="..\:/Users/Lameiras/AndroidStudioProjects/Projeto/app/src/main/res/layout/item_tracao.xml" value="0.33" />
         <entry key="..\:/Users/Lameiras/AndroidStudioProjects/Projeto/app/src/main/res/layout/item_transmissao.xml" value="0.67" />
+        <entry key="..\:/Users/Lameiras/AndroidStudioProjects/Projeto/app/src/main/res/layout/nav_header_main.xml" value="0.254981884057971" />
         <entry key="..\:/Users/Lameiras/AndroidStudioProjects/Projeto/app/src/main/res/menu/activity_main_drawer.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Lameiras/AndroidStudioProjects/Projeto/app/src/main/res/menu/main.xml" value="0.25" />
         <entry key="..\:/Users/Lameiras/AndroidStudioProjects/Projeto/app/src/main/res/menu/menu_edicao.xml" value="0.33" />

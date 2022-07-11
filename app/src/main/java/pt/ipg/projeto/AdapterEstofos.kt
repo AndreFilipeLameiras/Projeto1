@@ -39,7 +39,7 @@ class AdapterEstofos(val fragment: ListaEstofosFragment ) : RecyclerView.Adapter
 
 
                 textViewNomeEstofos.text = estofo?.nome?: ""
-                textViewPreco.text = estofo?.preco.toString()
+                textViewPreco.text = (estofo?.preco?: "" ).toString()
             }
 
         override fun onClick(v: View?) {
