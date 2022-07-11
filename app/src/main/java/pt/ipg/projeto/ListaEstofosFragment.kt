@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import pt.ipg.projeto.databinding.FragmentListaEstofosBinding
@@ -139,7 +140,10 @@ class ListaEstofosFragment : Fragment() , LoaderManager.LoaderCallbacks<Cursor>{
 
     fun processaOpcaoMenu(item: MenuItem) : Boolean =
         when(item.itemId) {
-            R.id.action_inserir -> true
+            R.id.action_inserir -> {
+                findNavController().navigate(R.id.action_listaEstofosFragment_to_inserirEstofoFragment)
+                true
+            }
             R.id.action_alterar -> true
             R.id.action_eliminar -> true
             else -> false

@@ -178,8 +178,8 @@
     <fragment
         android:id="@+id/inserirEstofoFragment"
         android:name="pt.ipg.projeto.InserirEstofoFragment"
-        android:label="fragment_inserir_estofo"
-        tools:layout="@layout/fragment_inserir_estofo" >
+        android:label="@string/inserir_estofo_label"
+        tools:layout="@layout/fragment_inserir_estofo">
         <action
             android:id="@+id/action_inserirEstofoFragment_to_listaEstofosFragment"
             app:destination="@id/listaEstofosFragment" />
