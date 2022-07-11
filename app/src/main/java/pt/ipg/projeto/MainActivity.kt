@@ -104,8 +104,8 @@ class MainActivity : AppCompatActivity() {
             opcaoProcessada = (fragment as EliminarEstofoFragment).processaOpcaoMenu(item)
         }else if (fragment is ListaTracaoFragment) {
             opcaoProcessada = (fragment as ListaTracaoFragment).processaOpcaoMenu(item)
-        }else if (fragment is InserirTracaoFragment) {
-            opcaoProcessada = (fragment as InserirTracaoFragment).processaOpcaoMenu(item)
+        }else if (fragment is EditarTracaoFragment) {
+            opcaoProcessada = (fragment as EditarTracaoFragment).processaOpcaoMenu(item)
         }else if (fragment is EliminarTracaoFragment) {
             opcaoProcessada = (fragment as EliminarTracaoFragment).processaOpcaoMenu(item)
         }

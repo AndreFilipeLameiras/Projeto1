@@ -9,16 +9,16 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
-import pt.ipg.projeto.databinding.FragmentInserirTracaoBinding
+import pt.ipg.projeto.databinding.FragmentEditarTracaoBinding
 
 
 /**
  * A simple [Fragment] subclass.
- * Use the [InserirTracaoFragment.newInstance] factory method to
+ * Use the [EditarTracaoFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class InserirTracaoFragment : Fragment() {
-    private var _binding: FragmentInserirTracaoBinding? = null
+class EditarTracaoFragment : Fragment() {
+    private var _binding: FragmentEditarTracaoBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -29,7 +29,7 @@ class InserirTracaoFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentInserirTracaoBinding.inflate(inflater, container, false)
+        _binding = FragmentEditarTracaoBinding.inflate(inflater, container, false)
 
         return binding.root
     }
@@ -94,7 +94,7 @@ class InserirTracaoFragment : Fragment() {
     }
 
     private fun navegaListaTracao() {
-        findNavController().navigate(R.id.action_inserirTracaoFragment_to_listaTracaoFragment)
+        findNavController().navigate(R.id.action_editarTracaoFragment_to_listaTracaoFragment)
     }
 
 

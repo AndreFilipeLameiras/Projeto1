@@ -19,10 +19,8 @@ class ListaTracaoFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
     var tracaoSelecionada : Tracao? = null
         get() = field
         set(value) {
-            if(value != field){
                 field = value
                 (requireActivity() as MainActivity).mostraOpcoesAlterarEliminar(field != null)
-            }
         }
 
 
@@ -149,7 +147,7 @@ class ListaTracaoFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
     fun processaOpcaoMenu(item: MenuItem): Boolean =
         when(item.itemId){
             R.id.action_inserir -> {
-                val acao = ListaTracaoFragmentDirections.actionListaTracaoFragmentToInserirTracaoFragment()
+                val acao = ListaTracaoFragmentDirections.actionListaTracaoFragmentToEditarTracaoFragment()
                 findNavController().navigate(acao)
                 true
             }

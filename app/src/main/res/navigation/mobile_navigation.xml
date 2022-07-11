@@ -113,8 +113,8 @@
             android:id="@+id/action_listaTracaoFragment_to_navhome"
             app:destination="@id/navhome" />
         <action
-            android:id="@+id/action_listaTracaoFragment_to_inserirTracaoFragment"
-            app:destination="@id/inserirTracaoFragment" />
+            android:id="@+id/action_listaTracaoFragment_to_editarTracaoFragment"
+            app:destination="@id/editarTracaoFragment" />
         <action
             android:id="@+id/action_listaTracaoFragment_to_eliminarTracaoFragment"
             app:destination="@id/eliminarTracaoFragment" />
@@ -217,12 +217,12 @@
             app:argType="pt.ipg.projeto.Estofos" />
     </fragment>
     <fragment
-        android:id="@+id/inserirTracaoFragment"
-        android:name="pt.ipg.projeto.InserirTracaoFragment"
+        android:id="@+id/editarTracaoFragment"
+        android:name="pt.ipg.projeto.EditarTracaoFragment"
         android:label="@string/inserir_tracao_label"
-        tools:layout="@layout/fragment_inserir_tracao">
+        tools:layout="@layout/fragment_editar_tracao">
         <action
-            android:id="@+id/action_inserirTracaoFragment_to_listaTracaoFragment"
+            android:id="@+id/action_editarTracaoFragment_to_listaTracaoFragment"
             app:destination="@id/listaTracaoFragment" />
     </fragment>
     <fragment
