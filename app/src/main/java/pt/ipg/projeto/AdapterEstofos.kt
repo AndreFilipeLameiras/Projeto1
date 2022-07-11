@@ -16,14 +16,33 @@ class AdapterEstofos(val fragment: ListaEstofosFragment ) : RecyclerView.Adapter
             }
         }
 
+    var viewHolderSelecionado: ViewHolderEstofos? = null
 
 
-
-    class ViewHolderEstofos(itemView: View) :RecyclerView.ViewHolder(itemView) {
+    inner class ViewHolderEstofos(itemView: View) :RecyclerView.ViewHolder(itemView), View.OnClickListener {
         private val textViewNomeEstofos = itemView.findViewById<TextView>(R.id.textViewNomeEstofo)
 
+        init {
+            itemView.setOnClickListener(this)
+        }
+
         fun atualizaEstofo(estofos: Estofos){
+
             textViewNomeEstofos.text = estofos.nome
+        }
+
+        override fun onClick(v: View?) {
+            viewHolderSelecionado?.desSeleciona()
+            seleciona()
+        }
+
+        private fun seleciona() {
+            itemView.setBackgroundResource(android.R.color.holo_orange_light)
+            viewHolderSelecionado = this
+        }
+
+        private fun desSeleciona(){
+            itemView.setBackgroundResource(android.R.color.white)
         }
     }
 
