@@ -95,7 +95,12 @@ class MainActivity : AppCompatActivity() {
             opcaoProcessada = (fragment as InserirJantesFragment).processaOpcaoMenu(item)
         } else if (fragment is EditaJanteFragment) {
             opcaoProcessada = (fragment as EditaJanteFragment).processaOpcaoMenu(item)
-        } else {
+        } else if (fragment is EliminaJanteFragment) {
+            opcaoProcessada = (fragment as EliminaJanteFragment).processaOpcaoMenu(item)
+        }else if (fragment is ListaEstofosFragment) {
+            opcaoProcessada = (fragment as ListaEstofosFragment).processaOpcaoMenu(item)
+        }
+        else {
             opcaoProcessada = false
         }
 

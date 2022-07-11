@@ -3,6 +3,7 @@ package pt.ipg.projeto
 import android.database.Cursor
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
@@ -33,13 +34,19 @@ class ListaEstofosFragment : Fragment() , LoaderManager.LoaderCallbacks<Cursor>{
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        LoaderManager.getInstance(this).initLoader(ID_LOADER_ESTOFOS, null, this)
+
         val recyclerViewEstofos = view.findViewById<RecyclerView>(R.id.recyclerViewEstofos)
         adapterEstofos = AdapterEstofos(this)
         recyclerViewEstofos.adapter = adapterEstofos
         recyclerViewEstofos.layoutManager = LinearLayoutManager(requireContext())
 
-        LoaderManager.getInstance(this)
-            .initLoader(ID_LOADER_ESTOFOS, null, this)
+
+
+        val activity = activity as MainActivity
+        activity.fragment = this
+        activity.idMenuAtual = R.menu.menu_lista
+
 
     }
 
@@ -65,7 +72,7 @@ class ListaEstofosFragment : Fragment() , LoaderManager.LoaderCallbacks<Cursor>{
             TabelaBDEstofos.TODAS_COLUNAS,
             null,
             null,
-            TabelaBDEstofos.NOME
+            TabelaBDEstofos.ESTOFOS
         )
     }
 
@@ -129,6 +136,17 @@ class ListaEstofosFragment : Fragment() , LoaderManager.LoaderCallbacks<Cursor>{
     override fun onLoaderReset(loader: Loader<Cursor>) {
         adapterEstofos!!.cursor = null
     }
+
+    fun processaOpcaoMenu(item: MenuItem) : Boolean =
+        when(item.itemId) {
+            R.id.action_inserir -> true
+            R.id.action_alterar -> true
+            R.id.action_eliminar -> true
+            else -> false
+        }
+
+
+
 
     companion object{
         const val ID_LOADER_ESTOFOS = 0
