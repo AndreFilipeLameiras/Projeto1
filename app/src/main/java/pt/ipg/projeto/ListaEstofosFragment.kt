@@ -19,10 +19,8 @@ class ListaEstofosFragment : Fragment() , LoaderManager.LoaderCallbacks<Cursor>{
     var estofoSelecionado: Estofos? = null
         get() = field
         set(value) {
-            if (value != field){
                 field = value
                 (requireActivity() as MainActivity).mostraOpcoesAlterarEliminar(field != null)
-            }
         }
 
 
@@ -145,6 +143,8 @@ class ListaEstofosFragment : Fragment() , LoaderManager.LoaderCallbacks<Cursor>{
      * @param loader The Loader that is being reset.
      */
     override fun onLoaderReset(loader: Loader<Cursor>) {
+        if(_binding == null) return
+
         adapterEstofos!!.cursor = null
     }
 
