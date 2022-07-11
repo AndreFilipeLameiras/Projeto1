@@ -16,9 +16,14 @@ class AdapterTracoes(val fragment: ListaTracaoFragment) : RecyclerView.Adapter<A
             }
         }
 
+    var viewHolderSelecionado: ViewHolderTracoes? = null
 
-    class ViewHolderTracoes (itemTracao: View) :RecyclerView.ViewHolder(itemTracao){
+    inner class ViewHolderTracoes (itemTracao: View) :RecyclerView.ViewHolder(itemTracao), View.OnClickListener{
         val textViewNomeTracao = itemTracao.findViewById<TextView>(R.id.textViewNomeTracao)
+
+        init {
+            itemTracao.setOnClickListener(this)
+        }
 
         var tracao : Tracao? = null
             get() = field
@@ -27,6 +32,21 @@ class AdapterTracoes(val fragment: ListaTracaoFragment) : RecyclerView.Adapter<A
 
                 textViewNomeTracao.text = tracao?.nome ?: ""
         }
+
+        override fun onClick(v: View?) {
+            viewHolderSelecionado?.desSeleciona()
+            seleciona()
+        }
+
+        private fun seleciona() {
+            itemView.setBackgroundResource(android.R.color.holo_orange_light)
+            viewHolderSelecionado = this
+        }
+
+        private fun desSeleciona(){
+            itemView.setBackgroundResource(android.R.color.white)
+        }
+
     }
 
     /**
