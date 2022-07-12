@@ -155,11 +155,13 @@ class ListaTransmissoesFragment: Fragment(), LoaderManager.LoaderCallbacks<Curso
             R.id.action_inserir -> {
                 val acao = ListaTransmissoesFragmentDirections.actionListaTransmissoesFragmentToEditarTransmissaoFragment()
                 findNavController().navigate(acao)
+                (activity as MainActivity).atualizaTitulo(R.string.inserir_transmissao_label)
                 true
             }
             R.id.action_alterar -> {
                 val acao = ListaTransmissoesFragmentDirections.actionListaTransmissoesFragmentToEditarTransmissaoFragment(transmissaoSelecionada)
                 findNavController().navigate(acao)
+                (activity as MainActivity).atualizaTitulo(R.string.alterar_transmissao_label)
                 true
             }
             R.id.action_eliminar -> {

@@ -153,11 +153,13 @@ class ListaCombustivelFragment: Fragment(), LoaderManager.LoaderCallbacks<Cursor
             R.id.action_inserir -> {
                 val acao = ListaCombustivelFragmentDirections.actionListaCombustivelFragmentToEditarCombustivelFragment()
                 findNavController().navigate(acao)
+                (activity as MainActivity).atualizaTitulo(R.string.inserir_combustivel_label)
                 true
             }
             R.id.action_alterar -> {
                 val acao = ListaCombustivelFragmentDirections.actionListaCombustivelFragmentToEditarCombustivelFragment(combustivelSelecionado)
                 findNavController().navigate(acao)
+                (activity as MainActivity).atualizaTitulo(R.string.alterar_combustivel_label)
                 true
             }
             R.id.action_eliminar -> {
