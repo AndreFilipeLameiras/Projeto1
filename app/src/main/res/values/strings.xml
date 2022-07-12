@@ -29,6 +29,8 @@
     <string name="jantes">Jantes</string>
     <string name="pintura">Pintura</string>
     <string name="estilo_de_estofos">Estilo de Estofos</string>
+    <string name="nome_transmissao">Nome da Transmissao</string>
+    <string name="nome_combustivel">Nome do Combustivel</string>
 
     <string name="nome_marca">Nome da Marca</string>
     <string name="lista_marca_label">Lista dos marcas</string>
@@ -58,6 +60,16 @@
     <string name="inserir_tracao_label">Inserir traçao</string>
     <string name="alterar_tracao_label">Alterar traçao</string>
     <string name="eliminar_tracao_label">Eliminar traçao</string>
+
+    <string name="lista_transmissao_label">Lista das Transmissoes</string>
+    <string name="inserir_transmissao_label">Inserir transmissao</string>
+    <string name="alterar_transmissao_label">Alterar transmissao</string>
+    <string name="eliminar_transmissao_label">Eliminar transmissao</string>
+
+    <string name="lista_combustivel_label">Lista dos Combustiveis</string>
+    <string name="inserir_combustivel_label">Inserir combustivel</string>
+    <string name="alterar_combustivel_label">Alterar combustivel</string>
+    <string name="eliminar_combustivel_label">Eliminar combustivel</string>
 
 
     <string name="previous">Voltar</string>
@@ -118,7 +130,6 @@
     <string name="erro_eliminar_tracao">Erro ao eliminar tracao</string>
     <string name="tracao_eliminada_sucesso">Tracao eliminada com sucesso</string>
     <string name="confirma_eliminar_tracao">Tem a certeza que pretende eliminar esta tracao?</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 
 </resources>
