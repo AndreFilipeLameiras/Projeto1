@@ -16,6 +16,16 @@ import androidx.recyclerview.widget.RecyclerView
 import pt.ipg.projeto.databinding.FragmentListaTransmissaoBinding
 
 class ListaTransmissoesFragment: Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
+    var transmissaoSelecionada : Transmissao? = null
+        get() = field
+        set(value) {
+            if (value != field) {
+                field = value
+                (requireActivity() as MainActivity).mostraOpcoesAlterarEliminar(field != null)
+            }
+        }
+
+
     private var _binding: FragmentListaTransmissaoBinding? = null
     private var adapterTransmissoes: AdapterTransmissoes? = null
 

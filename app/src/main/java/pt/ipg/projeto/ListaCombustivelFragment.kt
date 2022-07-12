@@ -16,6 +16,16 @@ import androidx.recyclerview.widget.RecyclerView
 import pt.ipg.projeto.databinding.FragmentListaCombustivelBinding
 
 class ListaCombustivelFragment: Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
+    var combustivelSelecionado : Combustivel? = null
+        get() = field
+        set(value) {
+            if (value != field) {
+                field = value
+                (requireActivity() as MainActivity).mostraOpcoesAlterarEliminar(field != null)
+            }
+        }
+
+
     private var _binding: FragmentListaCombustivelBinding? = null
     private var adapterCombustiveis : AdapterCombustiveis? = null
 

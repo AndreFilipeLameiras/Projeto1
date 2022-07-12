@@ -42,6 +42,8 @@ class AdapterCombustiveis(val fragment: ListaCombustivelFragment): RecyclerView.
 
         private fun seleciona() {
             itemView.setBackgroundResource(android.R.color.holo_orange_light)
+            viewHolderSelecionado = this
+            fragment.combustivelSelecionado = combustivel
         }
 
         private fun desSeleciona(){

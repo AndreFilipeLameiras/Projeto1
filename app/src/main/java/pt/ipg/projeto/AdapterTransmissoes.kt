@@ -40,6 +40,8 @@ class AdapterTransmissoes(val fragment: ListaTransmissoesFragment): RecyclerView
 
         private fun seleciona() {
             itemView.setBackgroundResource(android.R.color.holo_orange_light)
+            viewHolderSelecionado = this
+            fragment.transmissaoSelecionada = transmissao
         }
 
         private fun desSeleciona(){
