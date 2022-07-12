@@ -153,11 +153,16 @@ class ListaTransmissoesFragment: Fragment(), LoaderManager.LoaderCallbacks<Curso
     fun processaOpcaoMenu(item: MenuItem) : Boolean =
         when(item.itemId) {
             R.id.action_inserir -> {
-                findNavController().navigate(R.id.action_listaTransmissoesFragment_to_inserirTransmissaoFragment)
+                val acao = ListaTransmissoesFragmentDirections.actionListaTransmissoesFragmentToInserirTransmissaoFragment()
+                findNavController().navigate(acao)
                 true
             }
             R.id.action_alterar -> true
-            R.id.action_eliminar -> true
+            R.id.action_eliminar -> {
+                val acao = ListaTransmissoesFragmentDirections.actionListaTransmissoesFragmentToEliminarTransmisssaoFragment(transmissaoSelecionada!!)
+                findNavController().navigate(acao)
+                true
+            }
             else -> false
         }
 
