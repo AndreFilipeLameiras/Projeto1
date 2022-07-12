@@ -16,7 +16,9 @@ class AdapterTransmissoes(val fragment: ListaTransmissoesFragment): RecyclerView
             }
         }
 
-    class ViewHolderTransmissoes (itemTransmissao: View): RecyclerView.ViewHolder(itemTransmissao){
+    var viewHolderSelecionado : ViewHolderTransmissoes? = null
+
+    inner class ViewHolderTransmissoes (itemTransmissao: View): RecyclerView.ViewHolder(itemTransmissao), View.OnClickListener{
         private val textViewNomeTransmissao = itemView.findViewById<TextView>(R.id.textViewNomeTransmissao)
 
         var transmissao : Transmissao? = null
@@ -26,6 +28,23 @@ class AdapterTransmissoes(val fragment: ListaTransmissoesFragment): RecyclerView
 
                 textViewNomeTransmissao.text = transmissao?.nome ?: ""
             }
+
+        init {
+            itemTransmissao.setOnClickListener(this)
+        }
+
+        override fun onClick(p0: View?) {
+            viewHolderSelecionado?.desSeleciona()
+            seleciona()
+        }
+
+        private fun seleciona() {
+            itemView.setBackgroundResource(android.R.color.holo_orange_light)
+        }
+
+        private fun desSeleciona(){
+            itemView.setBackgroundResource(android.R.color.white)
+        }
     }
 
     /**

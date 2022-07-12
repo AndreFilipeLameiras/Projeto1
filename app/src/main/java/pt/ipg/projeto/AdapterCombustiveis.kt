@@ -17,9 +17,14 @@ class AdapterCombustiveis(val fragment: ListaCombustivelFragment): RecyclerView.
         }
     }
 
+    var viewHolderSelecionado : ViewHolderCombustiveis? = null
 
-    class ViewHolderCombustiveis(itemCombustivel: View): RecyclerView.ViewHolder(itemCombustivel){
+    inner class ViewHolderCombustiveis(itemCombustivel: View): RecyclerView.ViewHolder(itemCombustivel), View.OnClickListener{
         val textViewNome = itemCombustivel.findViewById<TextView>(R.id.textViewNomeCombustivel)
+
+        init {
+            itemCombustivel.setOnClickListener(this)
+        }
 
         var combustivel : Combustivel? = null
             get() = field
@@ -29,6 +34,20 @@ class AdapterCombustiveis(val fragment: ListaCombustivelFragment): RecyclerView.
                 textViewNome.text = combustivel?.nome ?: ""
 
             }
+
+        override fun onClick(p0: View?) {
+            viewHolderSelecionado?.desSeleciona()
+            seleciona()
+        }
+
+        private fun seleciona() {
+            itemView.setBackgroundResource(android.R.color.holo_orange_light)
+        }
+
+        private fun desSeleciona(){
+            itemView.setBackgroundResource(android.R.color.white)
+        }
+
     }
 
 
