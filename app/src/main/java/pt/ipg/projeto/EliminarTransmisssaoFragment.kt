@@ -79,6 +79,7 @@ class EliminarTransmisssaoFragment : Fragment() {
             setMessage(R.string.confirma_eliminar_transmissao)
             setNegativeButton(android.R.string.cancel, DialogInterface.OnClickListener { dialogInterface, i ->  })
             setPositiveButton(R.string.eliminar, DialogInterface.OnClickListener { dialogInterface, i -> confirmaEliminarTransmissao() })
+                .show()
         }
 
     }

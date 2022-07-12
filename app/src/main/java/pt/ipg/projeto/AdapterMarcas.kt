@@ -7,11 +7,13 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class AdapterMarcas(val fragment: ListaMarcasFragment): RecyclerView.Adapter<AdapterMarcas.ViewHolderMarcas>() {
-    public var cursor: Cursor? = null
+    var cursor: Cursor? = null
         get() = field
         set(value) {
-            field = value
-            notifyDataSetChanged()
+            if (field != value) {
+                field = value
+                notifyDataSetChanged()
+            }
         }
 
 
@@ -28,17 +30,14 @@ class AdapterMarcas(val fragment: ListaMarcasFragment): RecyclerView.Adapter<Ada
 
        var marca : Marca? = null
             get() = field
-            set(value) {
+            set(value: Marca?) {
+                field = value
                 textViewNome.text = marca?.nome ?: ""
             }
 
 
 
-        fun aturalizaMarca(marca: Marca){
-            this.marca = marca
 
-            textViewNome.text = marca.nome
-        }
 
         override fun onClick(p0: View?) {
             viewHolderSelecionado?.desSelecionado()
@@ -53,6 +52,7 @@ class AdapterMarcas(val fragment: ListaMarcasFragment): RecyclerView.Adapter<Ada
        private fun seleciona() {
             itemView.setBackgroundResource(android.R.color.holo_orange_light)
             viewHolderSelecionado = this
+           fragment.marcaSeleccionada = marca
         }
 
 

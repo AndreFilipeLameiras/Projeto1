@@ -24,9 +24,6 @@ class EditarJantesFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        /*(activity as MainActivity).fragment = this
-        (activity as MainActivity).idMenuAtual = R.menu.menu_edicao*/
-
 
         _binding = FragmentEditarJantesBinding.inflate(inflater, container, false)
 
