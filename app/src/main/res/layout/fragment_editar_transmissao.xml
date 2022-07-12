@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".InserirCombustivelFragment" >
+    tools:context=".EditarTransmissaoFragment" >
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -16,10 +16,10 @@
         android:layout_marginRight="@dimen/margem_campos">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextNomeCombustivel"
+            android:id="@+id/editTextNomeTransmissao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/nome_combustivel"
-            android:textColor="#757575" />
+            android:hint="@string/nome_transmissao"
+            android:textColorHint="#757575" />
     </com.google.android.material.textfield.TextInputLayout>
 </LinearLayout>

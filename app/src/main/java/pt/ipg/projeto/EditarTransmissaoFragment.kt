@@ -9,16 +9,17 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
-import pt.ipg.projeto.databinding.FragmentInserirCombustivelBinding
+import pt.ipg.projeto.databinding.FragmentEditarTransmissaoBinding
+
 
 
 /**
  * A simple [Fragment] subclass.
- * Use the [InserirCombustivelFragment.newInstance] factory method to
+ * Use the [EditarTransmissaoFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class InserirCombustivelFragment : Fragment() {
-    private var _binding: FragmentInserirCombustivelBinding? = null
+class EditarTransmissaoFragment : Fragment() {
+    private var _binding: FragmentEditarTransmissaoBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -28,7 +29,7 @@ class InserirCombustivelFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentInserirCombustivelBinding.inflate(inflater, container, false)
+        _binding = FragmentEditarTransmissaoBinding.inflate(inflater, container, false)
 
         return binding.root
     }
@@ -46,47 +47,49 @@ class InserirCombustivelFragment : Fragment() {
         activity.idMenuAtual = R.menu.menu_edicao
     }
 
+
     fun processaOpcaoMenu(item: MenuItem) : Boolean =
         when(item.itemId) {
             R.id.action_guardar -> {
                 guardar()
-
                 true
             }
             R.id.action_cancelar -> {
-                navegaListaCombustivel()
+                navegalistaTransmissao()
                 true
             }
             else -> false
         }
 
     private fun guardar() {
-        val nomeCombustivel = binding.editTextNomeCombustivel.text.toString()
-        if(nomeCombustivel.isBlank()){
-            binding.editTextNomeCombustivel.error = getString(R.string.nome_combustivel_obrigatorio)
-            binding.editTextNomeCombustivel.requestFocus()
+        val nomeTransmissao = binding.editTextNomeTransmissao.text.toString()
+        if(nomeTransmissao.isBlank()){
+            binding.editTextNomeTransmissao.error = getString(R.string.nome_combustivel_obrigatorio)
+            binding.editTextNomeTransmissao.requestFocus()
             return
         }
 
-        insereCombustivel(nomeCombustivel)
+        insereTransmissao(nomeTransmissao)
     }
 
-    private fun insereCombustivel(nomeCombustivel: String) {
-        val combustivel = Combustivel(nomeCombustivel)
+    private fun insereTransmissao(nomeTransmissao: String) {
+        val transmissao = Transmissao(nomeTransmissao)
 
-        val enderecoCombustivelInserido = requireActivity().contentResolver.insert(ContentProviderCarros.ENDERECO_COMBUSTIVEIS, combustivel.toContentValues())
+        val enderecoTransmissaoInserida = requireActivity().contentResolver.insert(ContentProviderCarros.ENDERECO_TRASNMISSOES, transmissao.toContentValues())
 
-        if (enderecoCombustivelInserido == null){
-            Snackbar.make(binding.editTextNomeCombustivel, R.string.erro_guardar_combustivel, Snackbar.LENGTH_INDEFINITE).show()
+        if(enderecoTransmissaoInserida == null){
+            Snackbar.make(binding.editTextNomeTransmissao, R.string.erro_guardar_transmissao, Snackbar.LENGTH_INDEFINITE).show()
             return
         }
 
-        Toast.makeText(requireContext(), R.string.combustivel_guardada_sucesso, Toast.LENGTH_LONG).show()
-        navegaListaCombustivel()
+        Toast.makeText(requireContext(), R.string.transmissao_guardada_sucesso, Toast.LENGTH_LONG).show()
+        navegalistaTransmissao()
+
     }
 
-    private fun navegaListaCombustivel() {
-        findNavController().navigate(R.id.action_inserirCombustivelFragment_to_listaCombustivelFragment)
+
+    private fun navegalistaTransmissao() {
+        findNavController().navigate(R.id.action_editarTransmissaoFragment_to_listaTransmissoesFragment)
     }
 
 

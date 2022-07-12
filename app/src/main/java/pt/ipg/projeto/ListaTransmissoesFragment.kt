@@ -153,7 +153,7 @@ class ListaTransmissoesFragment: Fragment(), LoaderManager.LoaderCallbacks<Curso
     fun processaOpcaoMenu(item: MenuItem) : Boolean =
         when(item.itemId) {
             R.id.action_inserir -> {
-                val acao = ListaTransmissoesFragmentDirections.actionListaTransmissoesFragmentToInserirTransmissaoFragment()
+                val acao = ListaTransmissoesFragmentDirections.actionListaTransmissoesFragmentToEditarTransmissaoFragment()
                 findNavController().navigate(acao)
                 true
             }

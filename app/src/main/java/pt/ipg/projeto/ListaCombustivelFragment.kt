@@ -151,7 +151,7 @@ class ListaCombustivelFragment: Fragment(), LoaderManager.LoaderCallbacks<Cursor
     fun processaOpcaoMenu(item: MenuItem) : Boolean =
         when(item.itemId) {
             R.id.action_inserir -> {
-                val acao = ListaCombustivelFragmentDirections.actionListaCombustivelFragmentToInserirCombustivelFragment()
+                val acao = ListaCombustivelFragmentDirections.actionListaCombustivelFragmentToEditarCombustivelFragment()
                 findNavController().navigate(acao)
                 true
             }
