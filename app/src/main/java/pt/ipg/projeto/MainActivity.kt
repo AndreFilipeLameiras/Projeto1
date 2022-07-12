@@ -80,9 +80,11 @@ class MainActivity : AppCompatActivity() {
             opcaoProcessada = (fragment as MenuPrincipalFragment).processaOpcaoMenu(item)
         } else if (fragment is ListaMarcasFragment) {
             opcaoProcessada = (fragment as ListaMarcasFragment).processaOpcaoMenu(item)
-        } else if (fragment is InserirMarcaFragment) {
-            opcaoProcessada = (fragment as InserirMarcaFragment).processaOpcaoMenu(item)
-        } else if (fragment is ListaModelosfragment) {
+        } else if (fragment is EditarMarcaFragment) {
+            opcaoProcessada = (fragment as EditarMarcaFragment).processaOpcaoMenu(item)
+        }else if (fragment is EliminarMarcaFragment) {
+            opcaoProcessada = (fragment as EliminarMarcaFragment).processaOpcaoMenu(item)
+        }else if (fragment is ListaModelosfragment) {
             opcaoProcessada = (fragment as ListaModelosfragment).processaOpcaoMenu(item)
         } else if (fragment is InserirModeloFragment) {
             opcaoProcessada = (fragment as InserirModeloFragment).processaOpcaoMenu(item)
@@ -90,10 +92,8 @@ class MainActivity : AppCompatActivity() {
             opcaoProcessada = (fragment as EliminarModeloFragment).processaOpcaoMenu(item)
         }else if (fragment is ListaJantesFragment) {
             opcaoProcessada = (fragment as ListaJantesFragment).processaOpcaoMenu(item)
-        } else if (fragment is InserirJantesFragment) {
-            opcaoProcessada = (fragment as InserirJantesFragment).processaOpcaoMenu(item)
-        } else if (fragment is EditaJanteFragment) {
-            opcaoProcessada = (fragment as EditaJanteFragment).processaOpcaoMenu(item)
+        } else if (fragment is EditarJantesFragment) {
+            opcaoProcessada = (fragment as EditarJantesFragment).processaOpcaoMenu(item)
         } else if (fragment is EliminaJanteFragment) {
             opcaoProcessada = (fragment as EliminaJanteFragment).processaOpcaoMenu(item)
         }else if (fragment is ListaEstofosFragment) {

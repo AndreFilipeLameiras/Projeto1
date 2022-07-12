@@ -59,6 +59,17 @@ class MenuPrincipalFragment : Fragment() {
             findNavController().navigate(R.id.action_navhome_to_listaEstofosFragment)
         }
 
+        binding.buttonTransmissao.setOnClickListener{
+            findNavController().navigate(R.id.action_navhome_to_listaTransmissoesFragment)
+        }
+
+        binding.buttonTracao.setOnClickListener{
+            findNavController().navigate(R.id.action_navhome_to_listaTracaoFragment)
+        }
+
+        binding.buttonCombustivel.setOnClickListener{
+            findNavController().navigate(R.id.action_navhome_to_listaCombustivelFragment)
+        }
 
 
         val activity = activity as MainActivity

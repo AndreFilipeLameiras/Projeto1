@@ -15,13 +15,22 @@ class AdapterMarcas(val fragment: ListaMarcasFragment): RecyclerView.Adapter<Ada
         }
 
 
-    var selecionado: ViewHolderMarcas? = null
+    var viewHolderSelecionado: ViewHolderMarcas? = null
 
-   inner class ViewHolderMarcas(itemView: View) : RecyclerView.ViewHolder(itemView) , View.OnClickListener{
-        private val textViewNome = itemView.findViewById<TextView>(R.id.textViewNomeMarca)
+   inner class ViewHolderMarcas(itemMarca: View) : RecyclerView.ViewHolder(itemMarca) , View.OnClickListener{
+        private val textViewNome = itemMarca.findViewById<TextView>(R.id.textViewNomeMarca)
 
-        private lateinit var marca: Marca
 
+
+        init {
+            itemMarca.setOnClickListener(this)
+        }
+
+       var marca : Marca? = null
+            get() = field
+            set(value) {
+                textViewNome.text = marca?.nome ?: ""
+            }
 
 
 
@@ -32,19 +41,18 @@ class AdapterMarcas(val fragment: ListaMarcasFragment): RecyclerView.Adapter<Ada
         }
 
         override fun onClick(p0: View?) {
-            selecionado?.desSelecionado()
+            viewHolderSelecionado?.desSelecionado()
             seleciona()
         }
 
        private fun desSelecionado() {
-           selecionado = null
+           //viewHolderSelecionado = null
            itemView.setBackgroundResource(android.R.color.white)
        }
 
        private fun seleciona() {
-            selecionado = this
             itemView.setBackgroundResource(android.R.color.holo_orange_light)
-            fragment.marcaSeleccionada = marca
+            viewHolderSelecionado = this
         }
 
 
@@ -102,7 +110,7 @@ class AdapterMarcas(val fragment: ListaMarcasFragment): RecyclerView.Adapter<Ada
      */
     override fun onBindViewHolder(holder: ViewHolderMarcas, position: Int) {
         cursor!!.moveToPosition(position)
-        holder.aturalizaMarca(Marca.fromCursor(cursor!!))
+        holder.marca = Marca.fromCursor(cursor!!)
     }
 
     /**

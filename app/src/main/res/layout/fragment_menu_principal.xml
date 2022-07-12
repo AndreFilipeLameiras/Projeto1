@@ -77,12 +77,13 @@
         android:id="@+id/buttonPintura"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="80dp"
         android:text="@string/pintura"
         android:textColor="#0B0B0B"
         app:backgroundTint="#49F30B"
         app:iconTint="#000000"
-        app:layout_constraintEnd_toStartOf="@+id/buttonEstofos"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonMotorizacoes" />
 
@@ -92,11 +93,45 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
         android:layout_marginLeft="64dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="32dp"
         android:text="@string/estilo_de_estofos"
         android:textColor="#050505"
         app:backgroundTint="#07FA91"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/buttonPintura"
         app:layout_constraintTop_toBottomOf="@+id/buttonJantes" />
+
+    <Button
+        android:id="@+id/buttonTracao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="32dp"
+        android:text="Tracao"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonPintura" />
+
+    <Button
+        android:id="@+id/buttonTransmissao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:text="@string/transmissao"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonEstofos" />
+
+    <Button
+        android:id="@+id/buttonCombustivel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/combustivel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonTracao" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -46,10 +46,10 @@ class ListaMarcasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
 
         LoaderManager.getInstance(this).initLoader(ID_LOADER_MARCAS, null, this)
 
-        val recyclerViewMarca = view.findViewById<RecyclerView>(R.id.recyclerViewMarcas)
+
         adapterMarcas = AdapterMarcas(this)
-        recyclerViewMarca.adapter = adapterMarcas
-        recyclerViewMarca.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerViewMarcas.adapter = adapterMarcas
+        binding.recyclerViewMarcas.layoutManager = LinearLayoutManager(requireContext())
 
         val activity = activity as MainActivity
         activity.fragment = this
@@ -57,44 +57,15 @@ class ListaMarcasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
 
     }
 
-   /* fun navegaInserirMarca(){
-        findNavController().navigate(R.id.action_listaMarcasFragment_to_inserirMarcaFragment)
-    }*/
-/*
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
-    }*/
-
-    fun processaOpcaoMenu(item: MenuItem): Boolean{
-        when(item.itemId){
-            R.id.action_inserir -> navegaInserirMarca()
-            R.id.action_alterar -> navegaAlterarMarca()
-            R.id.action_eliminar -> navegaEliminarMarca()
-            else -> return false
-        }
-
-        return true
-    }
-
-    private fun navegaEliminarMarca() {
-        TODO("Not yet implemented")
-    }
-
-    private fun navegaAlterarMarca() {
-        TODO("Not yet implemented")
-    }
-
-    private fun navegaInserirMarca() {
-        findNavController().navigate(R.id.action_listaMarcasFragment_to_inserirMarcaFragment)
-    }
 
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-
     }
+
+
+
 
     /**
      * Instantiate and return a new Loader for the given ID.
@@ -113,7 +84,7 @@ class ListaMarcasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
             TabelaBDMarcas.TODAS_COLUNAS,
             null,
             null,
-            "${TabelaBDMarcas.NOME}"
+            "${TabelaBDMarcas.CAMPO_NOME}"
         )
 
 
@@ -178,18 +149,35 @@ class ListaMarcasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
         if(_binding == null ) return
         adapterMarcas!!.cursor = null
     }
-/*
-    fun processaOpcaoMenu(item: MenuItem) : Boolean =
+
+
+
+    fun processaOpcaoMenu(item: MenuItem): Boolean =
         when(item.itemId){
             R.id.action_inserir -> {
-                findNavController().navigate(R.id.action_listaMarcasFragment_to_inserirMarcaFragment)
+                val acao = ListaMarcasFragmentDirections.actionListaMarcasFragmentToEditarMarcaFragment()
+                findNavController().navigate(acao)
+                (activity as MainActivity).atualizaTitulo(R.string.inserir_marca_label)
                 true
             }
-            R.id.action_alterar -> true
-            R.id.action_eliminar -> true
-            else -> false
+            R.id.action_alterar -> {
+                val acao = ListaMarcasFragmentDirections.actionListaMarcasFragmentToEditarMarcaFragment(marcaSeleccionada)
+                findNavController().navigate(acao)
+                (activity as MainActivity).atualizaTitulo(R.string.alterar_marca_label)
+                true
+            }
+            R.id.action_eliminar -> {
+                val acao = ListaMarcasFragmentDirections.actionListaMarcasFragmentToEliminarMarcaFragment(marcaSeleccionada!!)
+                findNavController().navigate(acao)
+                true
+            }
+            else ->  false
         }
-*/
+
+
+
+
+
     companion object{
         const val ID_LOADER_MARCAS = 0
     }

@@ -54,9 +54,6 @@
         <action
             android:id="@+id/action_listaCombustivelFragment_to_editarCombustivelFragment"
             app:destination="@id/editarCombustivelFragment" />
-        <argument
-            android:name="transmissao"
-            app:argType="pt.ipg.projeto.Transmissao" />
         <action
             android:id="@+id/action_listaCombustivelFragment_to_eliminarCombustivelFragment"
             app:destination="@id/eliminarCombustivelFragment" />
@@ -87,11 +84,8 @@
             android:id="@+id/action_listaJantesFragment_to_navhome"
             app:destination="@id/navhome" />
         <action
-            android:id="@+id/action_listaJantesFragment_to_inserirJantesFragment"
-            app:destination="@id/inserirJantesFragment" />
-        <action
-            android:id="@+id/action_listaJantesFragment_to_editaJanteFragment"
-            app:destination="@id/editaJanteFragment" />
+            android:id="@+id/action_listaJantesFragment_to_editarJantesFragment"
+            app:destination="@id/editarJantesFragment" />
         <action
             android:id="@+id/action_listaJantesFragment_to_eliminaJanteFragment"
             app:destination="@id/eliminaJanteFragment" />
@@ -104,8 +98,8 @@
             android:id="@+id/action_listaMarcasFragment_to_navhome"
             app:destination="@id/navhome" />
         <action
-            android:id="@+id/action_listaMarcasFragment_to_inserirMarcaFragment"
-            app:destination="@id/inserirMarcaFragment" />
+            android:id="@+id/action_listaMarcasFragment_to_editarMarcaFragment"
+            app:destination="@id/editarMarcaFragment" />
         <action
             android:id="@+id/action_listaMarcasFragment_to_eliminarMarcaFragment"
             app:destination="@id/eliminarMarcaFragment" />
@@ -149,9 +143,6 @@
             android:id="@+id/action_listaTransmissoesFragment_to_navhome"
             app:destination="@id/navhome" />
         <action
-            android:id="@+id/action_listaTransmissoesFragment_to_inserirTransmissaoFragment"
-            app:destination="@id/inserirTransmissaoFragment" />
-        <action
             android:id="@+id/action_listaTransmissoesFragment_to_eliminarTransmisssaoFragment"
             app:destination="@id/eliminarTransmisssaoFragment" />
         <action
@@ -160,12 +151,16 @@
 
     </fragment>
     <fragment
-        android:id="@+id/inserirMarcaFragment"
-        android:name="pt.ipg.projeto.InserirMarcaFragment"
-        android:label="InserirMarcaFragment" >
+        android:id="@+id/editarMarcaFragment"
+        android:name="pt.ipg.projeto.EditarMarcaFragment">
         <action
-            android:id="@+id/action_inserirMarcaFragment_to_listaMarcasFragment"
+            android:id="@+id/action_editarMarcaFragment_to_listaMarcasFragment"
             app:destination="@id/listaMarcasFragment" />
+        <argument
+            android:name="marca"
+            app:argType="pt.ipg.projeto.Marca"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
     <fragment
         android:id="@+id/inserirModeloFragment"
@@ -201,22 +196,18 @@
             app:argType="pt.ipg.projeto.Modelo" />
     </fragment>
     <fragment
-        android:id="@+id/inserirJantesFragment"
-        android:name="pt.ipg.projeto.InserirJantesFragment"
+        android:id="@+id/editarJantesFragment"
+        android:name="pt.ipg.projeto.EditarJantesFragment"
         android:label="fragment_inserir_jantes"
-        tools:layout="@layout/fragment_inserir_jantes" >
+        tools:layout="@layout/fragment_editar_jantes" >
         <action
-            android:id="@+id/action_inserirJantesFragment_to_listaJantesFragment"
+            android:id="@+id/action_editarJantesFragment_to_listaJantesFragment"
             app:destination="@id/listaJantesFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/editaJanteFragment"
-        android:name="pt.ipg.projeto.EditaJanteFragment"
-        android:label="fragment_edita_jante"
-        tools:layout="@layout/fragment_edita_jante" >
-        <action
-            android:id="@+id/action_editaJanteFragment_to_listaJantesFragment"
-            app:destination="@id/listaJantesFragment" />
+        <argument
+            android:name="jante"
+            app:argType="pt.ipg.projeto.Jante"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
     <fragment
         android:id="@+id/eliminaJanteFragment"
@@ -226,6 +217,9 @@
         <action
             android:id="@+id/action_eliminaJanteFragment_to_listaJantesFragment"
             app:destination="@id/listaJantesFragment" />
+        <argument
+            android:name="jante"
+            app:argType="pt.ipg.projeto.Jante" />
     </fragment>
     <fragment
         android:id="@+id/editarEstofoFragment"
@@ -295,16 +289,15 @@
     <fragment
         android:id="@+id/editarTransmissaoFragment"
         android:name="pt.ipg.projeto.EditarTransmissaoFragment"
-        android:label="@string/inserir_transmissao_label"
         tools:layout="@layout/fragment_editar_transmissao">
         <action
             android:id="@+id/action_editarTransmissaoFragment_to_listaTransmissoesFragment"
             app:destination="@id/listaTransmissoesFragment" />
         <argument
             android:name="transmissao"
+            android:defaultValue="@null"
             app:argType="pt.ipg.projeto.Transmissao"
-            app:nullable="true"
-            android:defaultValue="@null" />
+            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/eliminarMarcaFragment"
@@ -314,29 +307,32 @@
         <action
             android:id="@+id/action_eliminarMarcaFragment_to_listaMarcasFragment"
             app:destination="@id/listaMarcasFragment" />
+        <argument
+            android:name="marca"
+            app:argType="pt.ipg.projeto.Marca" />
     </fragment>
     <fragment
         android:id="@+id/eliminarCombustivelFragment"
         android:name="pt.ipg.projeto.EliminarCombustivelFragment"
         android:label="@string/eliminar_combustivel_label"
         tools:layout="@layout/fragment_eliminar_combustivel">
-        <action
-            android:id="@+id/action_eliminarCombustivelFragment_to_listaCombustivelFragment"
-            app:destination="@id/listaCombustivelFragment" />
         <argument
             android:name="combustivel"
             app:argType="pt.ipg.projeto.Combustivel" />
+        <action
+            android:id="@+id/action_eliminarCombustivelFragment_to_listaCombustivelFragment"
+            app:destination="@id/listaCombustivelFragment" />
     </fragment>
     <fragment
         android:id="@+id/eliminarTransmisssaoFragment"
         android:name="pt.ipg.projeto.EliminarTransmisssaoFragment"
         android:label="@string/eliminar_transmissao_label"
         tools:layout="@layout/fragment_eliminar_transmisssao">
-        <action
-            android:id="@+id/action_eliminarTransmisssaoFragment_to_listaTransmissoesFragment"
-            app:destination="@id/listaTransmissoesFragment" />
         <argument
             android:name="transmissao"
             app:argType="pt.ipg.projeto.Transmissao" />
+        <action
+            android:id="@+id/action_eliminarTransmisssaoFragment_to_listaTransmissoesFragment"
+            app:destination="@id/listaTransmissoesFragment" />
     </fragment>
 </navigation>

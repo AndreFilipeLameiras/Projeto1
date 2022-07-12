@@ -12,7 +12,11 @@
             android:id="@+id/editTextNome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/nome_marca"
-            android:inputType="text" />
+            android:layout_marginStart="@dimen/margem_campos"
+            android:layout_marginLeft="@dimen/margem_campos"
+            android:layout_marginTop="@dimen/margem_campos"
+            android:layout_marginEnd="@dimen/margem_campos"
+            android:layout_marginRight="@dimen/margem_campos"
+            android:hint="@string/nome_marca" />
     </com.google.android.material.textfield.TextInputLayout>
 </LinearLayout>

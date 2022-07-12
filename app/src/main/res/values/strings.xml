@@ -99,6 +99,10 @@
     <string name="marca_guardada_sucesso">Marca guardada com sucesso</string>
     <string name="marca_eliminada_sucesso">Marca eliminada com sucesso</string>
     <string name="erro_guardar_marca">Erro ao guardar marca</string>
+    <string name="erro_alterar_marca">Erro ao alterar marca</string>
+    <string name="erro_eliminar_marca">Erro a eliminar marca</string>
+    <string name="elimina_marca">Elimina Marcas</string>
+    <string name="confirma_eliminar_marca">Tem a certeza que pretende eliminar esta marca?</string>
 
 
     <string name="nome_jante_obrigatorio">Preencha o Nome da jante</string>

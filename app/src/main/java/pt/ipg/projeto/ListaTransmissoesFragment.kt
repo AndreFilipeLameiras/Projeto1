@@ -19,10 +19,8 @@ class ListaTransmissoesFragment: Fragment(), LoaderManager.LoaderCallbacks<Curso
     var transmissaoSelecionada : Transmissao? = null
         get() = field
         set(value) {
-            if (value != field) {
                 field = value
                 (requireActivity() as MainActivity).mostraOpcoesAlterarEliminar(field != null)
-            }
         }
 
 

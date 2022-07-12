@@ -81,54 +81,23 @@ class ListaJantesFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
         LoaderManager.getInstance(this).initLoader(ID_LOADER_JANTES, null, this)
 
 
-       val recycleViewJantes = view.findViewById<RecyclerView>(R.id.recycleViewJantes)
-
-
-
         adapterJantes = AdapterJantes(this)
-        recycleViewJantes.adapter = adapterJantes
-        recycleViewJantes.layoutManager = LinearLayoutManager(requireContext())
-
-
-
+        binding.recycleViewJantes.adapter = adapterJantes
+        binding.recycleViewJantes.layoutManager = LinearLayoutManager(requireContext())
 
         val activity = activity as MainActivity
         activity.fragment = this
         activity.idMenuAtual = R.menu.menu_lista
     }
 
-
-
-
-    fun processaOpcaoMenu(item: MenuItem): Boolean{
-        when(item.itemId){
-            R.id.action_inserir -> navegaInserirJante()
-            R.id.action_alterar -> navegaAlterarJante()
-            R.id.action_eliminar -> navegaEliminarJante()
-            else -> return false
-        }
-
-        return true
-    }
-
-    private fun navegaEliminarJante() {
-        findNavController().navigate(R.id.action_listaJantesFragment_to_eliminaJanteFragment)
-    }
-
-    private fun navegaAlterarJante() {
-        findNavController().navigate(R.id.action_listaJantesFragment_to_editaJanteFragment)
-    }
-
-    private fun navegaInserirJante() {
-        findNavController().navigate(R.id.action_listaJantesFragment_to_inserirJantesFragment)
-    }
-
-
-    override fun onDestroyView() {
-        super.onDestroyView()
+    override fun onDestroy() {
+        super.onDestroy()
         _binding = null
 
     }
+
+
+
 
     /**
      * Instantiate and return a new Loader for the given ID.
@@ -140,16 +109,16 @@ class ListaJantesFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
      * @param args Any arguments supplied by the caller.
      * @return Return a new Loader instance that is ready to start loading.
      */
-    override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> =
-         CursorLoader(
+    override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> {
+         return CursorLoader(
             requireContext(),
             ContentProviderCarros.ENDERECO_JANTES,
             TabelaBDJantes.TODAS_COLUNAS,
             null,
             null,
-            "${TabelaBDJantes.CAMPO_NOME}"
+            TabelaBDJantes.CAMPO_NOME
         )
-
+    }
 
     /**
      * Called when a previously created loader has finished its load.  Note
@@ -212,6 +181,28 @@ class ListaJantesFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
         if(_binding == null ) return
         adapterJantes!!.cursor = null
     }
+
+    fun processaOpcaoMenu(item: MenuItem) : Boolean =
+        when(item.itemId) {
+            R.id.action_inserir -> {
+                val acao = ListaJantesFragmentDirections.actionListaJantesFragmentToEditarJantesFragment()
+                findNavController().navigate(acao)
+                (activity as MainActivity).atualizaTitulo(R.string.inserir_combustivel_label)
+                true
+            }
+            R.id.action_alterar -> {
+                val acao = ListaJantesFragmentDirections.actionListaJantesFragmentToEditarJantesFragment(janteSeleccionada)
+                findNavController().navigate(acao)
+                (activity as MainActivity).atualizaTitulo(R.string.alterar_combustivel_label)
+                true
+            }
+            R.id.action_eliminar -> {
+                val acao = ListaJantesFragmentDirections.actionListaJantesFragmentToEliminaJanteFragment(janteSeleccionada!!)
+                findNavController().navigate(acao)
+                true
+            }
+            else -> false
+        }
 
     companion object{
         const val ID_LOADER_JANTES = 0
