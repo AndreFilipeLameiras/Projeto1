@@ -155,7 +155,11 @@ class ListaCombustivelFragment: Fragment(), LoaderManager.LoaderCallbacks<Cursor
                 findNavController().navigate(acao)
                 true
             }
-            R.id.action_alterar -> true
+            R.id.action_alterar -> {
+                val acao = ListaCombustivelFragmentDirections.actionListaCombustivelFragmentToEditarCombustivelFragment(combustivelSelecionado)
+                findNavController().navigate(acao)
+                true
+            }
             R.id.action_eliminar -> {
                 val acao = ListaCombustivelFragmentDirections.actionListaCombustivelFragmentToEliminarCombustivelFragment(combustivelSelecionado!!)
                 findNavController().navigate(acao)

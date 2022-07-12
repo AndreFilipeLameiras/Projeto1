@@ -69,6 +69,7 @@ class EliminarCombustivelFragment : Fragment() {
                 navegaListaCombustivel()
                 true
             }
+            else -> false
         }
 
 

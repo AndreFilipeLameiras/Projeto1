@@ -157,7 +157,11 @@ class ListaTransmissoesFragment: Fragment(), LoaderManager.LoaderCallbacks<Curso
                 findNavController().navigate(acao)
                 true
             }
-            R.id.action_alterar -> true
+            R.id.action_alterar -> {
+                val acao = ListaTransmissoesFragmentDirections.actionListaTransmissoesFragmentToEditarTransmissaoFragment(transmissaoSelecionada)
+                findNavController().navigate(acao)
+                true
+            }
             R.id.action_eliminar -> {
                 val acao = ListaTransmissoesFragmentDirections.actionListaTransmissoesFragmentToEliminarTransmisssaoFragment(transmissaoSelecionada!!)
                 findNavController().navigate(acao)
