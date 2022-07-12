@@ -1,5 +1,6 @@
 package pt.ipg.projeto
 
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -23,6 +24,8 @@ class EditarCombustivelFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+
+    private var combustivel: Combustivel? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -68,22 +71,47 @@ class EditarCombustivelFragment : Fragment() {
             return
         }
 
-        insereCombustivel(nomeCombustivel)
+        val combustivelGuardado =
+            if (combustivel == null) {
+                insereCombustivel(nomeCombustivel)
+            } else {
+                alteraCombustivel(nomeCombustivel)
+            }
+
+        if (combustivelGuardado) {
+            Toast.makeText(requireContext(), R.string.combustivel_guardado_sucesso, Toast.LENGTH_LONG)
+                .show()
+            navegaListaCombustivel()
+        } else {
+            Snackbar.make(binding.editTextNomeCombustivel, R.string.erro_guardar_combustivel, Snackbar.LENGTH_INDEFINITE).show()
+            return
+        }
     }
 
-    private fun insereCombustivel(nomeCombustivel: String) {
+    private fun alteraCombustivel(nomeCombustivel: String) : Boolean{
+        val combustivel = Combustivel(nomeCombustivel)
+
+        val enderecoCombustivel = Uri.withAppendedPath(ContentProviderCarros.ENDERECO_COMBUSTIVEIS, "${this.combustivel!!.id}")
+
+        val registosAlterados = requireActivity().contentResolver.update(enderecoCombustivel, combustivel.toContentValues(), null, null)
+
+        return registosAlterados == 1
+    }
+
+
+    private fun insereCombustivel(nomeCombustivel: String) : Boolean{
         val combustivel = Combustivel(nomeCombustivel)
 
         val enderecoCombustivelInserido = requireActivity().contentResolver.insert(ContentProviderCarros.ENDERECO_COMBUSTIVEIS, combustivel.toContentValues())
 
-        if (enderecoCombustivelInserido == null){
-            Snackbar.make(binding.editTextNomeCombustivel, R.string.erro_guardar_combustivel, Snackbar.LENGTH_INDEFINITE).show()
-            return
+
+
+
+            return enderecoCombustivelInserido != null
         }
 
-        Toast.makeText(requireContext(), R.string.combustivel_guardada_sucesso, Toast.LENGTH_LONG).show()
-        navegaListaCombustivel()
-    }
+
+
 
     private fun navegaListaCombustivel() {
         findNavController().navigate(R.id.action_editarCombustivelFragment_to_listaCombustivelFragment)

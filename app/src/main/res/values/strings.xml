@@ -141,7 +141,7 @@
 
     <string name="nome_combustivel_obrigatorio">Preencha o Nome do combustivel</string>
     <string name="erro_guardar_combustivel">Erro ao guardar combustivel</string>
-    <string name="combustivel_guardada_sucesso">Combustivel guardada com sucesso</string>
+    <string name="combustivel_guardado_sucesso">Combustivel guardado com sucesso</string>
     <string name="elimina_combustivel">Elimina combustivel</string>
     <string name="erro_eliminar_combustivel">Erro ao eliminar combustivel</string>
     <string name="combustivel_eliminado_sucesso">Combustivel eliminado com sucesso</string>

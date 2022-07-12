@@ -1,5 +1,6 @@
 package pt.ipg.projeto
 
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -24,6 +25,8 @@ class EditarTransmissaoFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+
+    private var transmissao: Transmissao? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -64,28 +67,51 @@ class EditarTransmissaoFragment : Fragment() {
     private fun guardar() {
         val nomeTransmissao = binding.editTextNomeTransmissao.text.toString()
         if(nomeTransmissao.isBlank()){
-            binding.editTextNomeTransmissao.error = getString(R.string.nome_combustivel_obrigatorio)
+            binding.editTextNomeTransmissao.error = getString(R.string.nome_transmissao_obrigatorio)
             binding.editTextNomeTransmissao.requestFocus()
             return
         }
 
-        insereTransmissao(nomeTransmissao)
-    }
+        val transmissaoGuardado =
+            if (transmissao == null) {
+                insereTransmissao(nomeTransmissao)
+            } else {
+                alteraTransmissao(nomeTransmissao)
+            }
 
-    private fun insereTransmissao(nomeTransmissao: String) {
-        val transmissao = Transmissao(nomeTransmissao)
-
-        val enderecoTransmissaoInserida = requireActivity().contentResolver.insert(ContentProviderCarros.ENDERECO_TRASNMISSOES, transmissao.toContentValues())
-
-        if(enderecoTransmissaoInserida == null){
+        if (transmissaoGuardado) {
+            Toast.makeText(requireContext(), R.string.transmissao_guardada_sucesso, Toast.LENGTH_LONG)
+                .show()
+            navegalistaTransmissao()
+        } else {
             Snackbar.make(binding.editTextNomeTransmissao, R.string.erro_guardar_transmissao, Snackbar.LENGTH_INDEFINITE).show()
             return
         }
-
-        Toast.makeText(requireContext(), R.string.transmissao_guardada_sucesso, Toast.LENGTH_LONG).show()
-        navegalistaTransmissao()
-
     }
+
+    private fun alteraTransmissao(nomeTransmissao: String) : Boolean{
+        val transmissao = Transmissao(nomeTransmissao)
+
+        val enderecoTransmissao = Uri.withAppendedPath(ContentProviderCarros.ENDERECO_TRASNMISSOES, "${this.transmissao!!.id}")
+
+        val registosAlterados = requireActivity().contentResolver.update(enderecoTransmissao, transmissao.toContentValues(), null, null)
+
+        return registosAlterados == 1
+    }
+
+
+    private fun insereTransmissao(nomeTransmissao: String) : Boolean{
+        val transmissao = Transmissao(nomeTransmissao)
+
+        val enderecoTransmissaoInserido = requireActivity().contentResolver.insert(ContentProviderCarros.ENDERECO_TRASNMISSOES, transmissao.toContentValues())
+
+
+
+
+        return enderecoTransmissaoInserido != null
+    }
+
+
 
 
     private fun navegalistaTransmissao() {
