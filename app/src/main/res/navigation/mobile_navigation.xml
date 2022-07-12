@@ -47,7 +47,7 @@
     <fragment
         android:id="@+id/listaCombustivelFragment"
         android:name="pt.ipg.projeto.ListaCombustivelFragment"
-        android:label="ListaCombustivelFragment" >
+        android:label="@string/lista_combustivel_label">
         <action
             android:id="@+id/action_listaCombustivelFragment_to_navhome"
             app:destination="@id/navhome" />
@@ -138,7 +138,7 @@
     <fragment
         android:id="@+id/listaTransmissoesFragment"
         android:name="pt.ipg.projeto.ListaTransmissoesFragment"
-        android:label="ListaTransmissoesFragment" >
+        android:label="@string/lista_transmissao_label">
         <action
             android:id="@+id/action_listaTransmissoesFragment_to_navhome"
             app:destination="@id/navhome" />
@@ -268,8 +268,8 @@
     <fragment
         android:id="@+id/inserirCombustivelFragment"
         android:name="pt.ipg.projeto.InserirCombustivelFragment"
-        android:label="fragment_inserir_combustivel"
-        tools:layout="@layout/fragment_inserir_combustivel" >
+        android:label="@string/inserir_combustivel_label"
+        tools:layout="@layout/fragment_inserir_combustivel">
         <action
             android:id="@+id/action_inserirCombustivelFragment_to_listaCombustivelFragment"
             app:destination="@id/listaCombustivelFragment" />
@@ -277,8 +277,8 @@
     <fragment
         android:id="@+id/inserirTransmissaoFragment"
         android:name="pt.ipg.projeto.InserirTransmissaoFragment"
-        android:label="fragment_inserir_transmissao"
-        tools:layout="@layout/fragment_inserir_transmissao" >
+        android:label="@string/inserir_transmissao_label"
+        tools:layout="@layout/fragment_inserir_transmissao">
         <action
             android:id="@+id/action_inserirTransmissaoFragment_to_listaTransmissoesFragment"
             app:destination="@id/listaTransmissoesFragment" />
