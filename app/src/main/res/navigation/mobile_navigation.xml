@@ -58,8 +58,8 @@
             android:id="@+id/action_listaCombustivelFragment_to_eliminarCombustivelFragment"
             app:destination="@id/eliminarCombustivelFragment" />
         <argument
-            android:name="combustivel"
-            app:argType="pt.ipg.projeto.Combustivel" />
+            android:name="transmissao"
+            app:argType="pt.ipg.projeto.Transmissao" />
     </fragment>
     <fragment
         android:id="@+id/listaEstofosFragment"
@@ -154,9 +154,6 @@
         <action
             android:id="@+id/action_listaTransmissoesFragment_to_eliminarTransmisssaoFragment"
             app:destination="@id/eliminarTransmisssaoFragment" />
-        <argument
-            android:name="transmissao"
-            app:argType="pt.ipg.projeto.Transmissao" />
     </fragment>
     <fragment
         android:id="@+id/inserirMarcaFragment"
@@ -312,6 +309,9 @@
         <action
             android:id="@+id/action_eliminarCombustivelFragment_to_listaCombustivelFragment"
             app:destination="@id/listaCombustivelFragment" />
+        <argument
+            android:name="combustivel"
+            app:argType="pt.ipg.projeto.Combustivel" />
     </fragment>
     <fragment
         android:id="@+id/eliminarTransmisssaoFragment"
@@ -321,5 +321,8 @@
         <action
             android:id="@+id/action_eliminarTransmisssaoFragment_to_listaTransmissoesFragment"
             app:destination="@id/listaTransmissoesFragment" />
+        <argument
+            android:name="transmissao"
+            app:argType="pt.ipg.projeto.Transmissao" />
     </fragment>
 </navigation>

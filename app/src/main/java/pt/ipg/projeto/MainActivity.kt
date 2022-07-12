@@ -110,8 +110,12 @@ class MainActivity : AppCompatActivity() {
             opcaoProcessada = (fragment as EliminarTracaoFragment).processaOpcaoMenu(item)
         }else if (fragment is ListaTransmissoesFragment) {
             opcaoProcessada = (fragment as ListaTransmissoesFragment).processaOpcaoMenu(item)
+        }else if (fragment is EliminarTransmisssaoFragment) {
+            opcaoProcessada = (fragment as EliminarTransmisssaoFragment).processaOpcaoMenu(item)
         }else if (fragment is ListaCombustivelFragment) {
             opcaoProcessada = (fragment as ListaCombustivelFragment).processaOpcaoMenu(item)
+        }else if (fragment is EliminarCombustivelFragment) {
+            opcaoProcessada = (fragment as EliminarCombustivelFragment).processaOpcaoMenu(item)
         }
 
 

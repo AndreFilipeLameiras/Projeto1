@@ -19,7 +19,7 @@ class ListaCombustivelFragment: Fragment(), LoaderManager.LoaderCallbacks<Cursor
     var combustivelSelecionado : Combustivel? = null
         get() = field
         set(value) {
-            if (value != field) {
+            if(value != field){
                 field = value
                 (requireActivity() as MainActivity).mostraOpcoesAlterarEliminar(field != null)
             }
