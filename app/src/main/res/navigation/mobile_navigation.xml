@@ -307,8 +307,8 @@
     <fragment
         android:id="@+id/eliminarCombustivelFragment"
         android:name="pt.ipg.projeto.EliminarCombustivelFragment"
-        android:label="fragment_eliminar_combustivel"
-        tools:layout="@layout/fragment_eliminar_combustivel" >
+        android:label="@string/eliminar_combustivel_label"
+        tools:layout="@layout/fragment_eliminar_combustivel">
         <action
             android:id="@+id/action_eliminarCombustivelFragment_to_listaCombustivelFragment"
             app:destination="@id/listaCombustivelFragment" />
@@ -316,8 +316,8 @@
     <fragment
         android:id="@+id/eliminarTransmisssaoFragment"
         android:name="pt.ipg.projeto.EliminarTransmisssaoFragment"
-        android:label="fragment_eliminar_transmisssao"
-        tools:layout="@layout/fragment_eliminar_transmisssao" >
+        android:label="@string/eliminar_transmissao_label"
+        tools:layout="@layout/fragment_eliminar_transmisssao">
         <action
             android:id="@+id/action_eliminarTransmisssaoFragment_to_listaTransmissoesFragment"
             app:destination="@id/listaTransmissoesFragment" />
