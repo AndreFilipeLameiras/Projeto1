@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.loader.app.LoaderManager
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import pt.ipg.projeto.databinding.FragmentInserirTransmissaoBinding
 
 
@@ -29,7 +31,12 @@ class InserirTransmissaoFragment : Fragment() {
     ): View? {
         _binding = FragmentInserirTransmissaoBinding.inflate(inflater, container, false)
 
-        return inflater.inflate(R.layout.fragment_inserir_transmissao, container, false)
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -44,14 +51,46 @@ class InserirTransmissaoFragment : Fragment() {
     fun processaOpcaoMenu(item: MenuItem) : Boolean =
         when(item.itemId) {
             R.id.action_guardar -> {
+                guardar()
                 true
             }
             R.id.action_cancelar -> {
-                findNavController().navigate(R.id.action_inserirTransmissaoFragment_to_listaTransmissoesFragment)
+                navegalistaTransmissao()
                 true
             }
             else -> false
         }
+
+    private fun guardar() {
+        val nomeTransmissao = binding.editTextNomeTransmissao.text.toString()
+        if(nomeTransmissao.isBlank()){
+            binding.editTextNomeTransmissao.error = getString(R.string.nome_combustivel_obrigatorio)
+            binding.editTextNomeTransmissao.requestFocus()
+            return
+        }
+
+        insereTransmissao(nomeTransmissao)
+    }
+
+    private fun insereTransmissao(nomeTransmissao: String) {
+        val transmissao = Transmissao(nomeTransmissao)
+
+        val enderecoTransmissaoInserida = requireActivity().contentResolver.insert(ContentProviderCarros.ENDERECO_TRASNMISSOES, transmissao.toContentValues())
+
+        if(enderecoTransmissaoInserida == null){
+            Snackbar.make(binding.editTextNomeTransmissao, R.string.erro_guardar_transmissao, Snackbar.LENGTH_INDEFINITE).show()
+            return
+        }
+
+        Toast.makeText(requireContext(), R.string.transmissao_guardada_sucesso, Toast.LENGTH_LONG).show()
+        navegalistaTransmissao()
+
+    }
+
+
+    private fun navegalistaTransmissao() {
+        findNavController().navigate(R.id.action_inserirTransmissaoFragment_to_listaTransmissoesFragment)
+    }
 
 
 }

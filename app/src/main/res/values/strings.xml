@@ -131,5 +131,20 @@
     <string name="tracao_eliminada_sucesso">Tracao eliminada com sucesso</string>
     <string name="confirma_eliminar_tracao">Tem a certeza que pretende eliminar esta tracao?</string>
 
+    <string name="nome_transmissao_obrigatorio">Preencha o Nome da transmissao</string>
+    <string name="erro_guardar_transmissao">Erro ao guardar transmissao</string>
+    <string name="transmissao_guardada_sucesso">Transmissao guardada com sucesso</string>
+    <string name="elimina_transmissao">Elimina transmissao</string>
+    <string name="erro_eliminar_transmissao">Erro ao eliminar transmissao</string>
+    <string name="transmissao_eliminada_sucesso">Transmissao eliminada com sucesso</string>
+    <string name="confirma_eliminar_transmissao">Tem a certeza que pretende eliminar esta transmissao?</string>
+
+    <string name="nome_combustivel_obrigatorio">Preencha o Nome do combustivel</string>
+    <string name="erro_guardar_combustivel">Erro ao guardar combustivel</string>
+    <string name="combustivel_guardada_sucesso">Combustivel guardada com sucesso</string>
+    <string name="elimina_combustivel">Elimina combustivel</string>
+    <string name="erro_eliminar_combustivel">Erro ao eliminar combustivel</string>
+    <string name="combustivel_eliminada_sucesso">Combustivel eliminada com sucesso</string>
+    <string name="confirma_eliminar_combustivel">Tem a certeza que pretende eliminar este combustivel?</string>
 
 </resources>
