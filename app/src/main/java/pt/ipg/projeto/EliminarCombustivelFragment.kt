@@ -81,7 +81,7 @@ class EliminarCombustivelFragment : Fragment() {
             setTitle(R.string.eliminar_combustivel_label)
             setMessage(R.string.confirma_eliminar_combustivel)
             setNegativeButton(android.R.string.cancel, DialogInterface.OnClickListener { dialogInterface, i ->  })
-            setPositiveButton(R.string.eliminar, DialogInterface.OnClickListener { dialogInterface, i -> confirmaEliminarCombustivel() })
+            setPositiveButton(R.string.eliminar, DialogInterface.OnClickListener { dialogInterface, i -> confirmaEliminarCombustivel() }).show()
         }
     }
 

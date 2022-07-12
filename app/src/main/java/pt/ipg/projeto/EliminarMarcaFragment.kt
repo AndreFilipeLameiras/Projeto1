@@ -76,7 +76,7 @@ class EliminarMarcaFragment : Fragment() {
             setTitle(R.string.eliminar_marca_label)
             setMessage(R.string.confirma_eliminar_marca)
             setNegativeButton(android.R.string.cancel, DialogInterface.OnClickListener { dialogInterface, i ->  })
-            setPositiveButton(R.string.eliminar, DialogInterface.OnClickListener { dialogInterface, i -> confirmaEliminarMarca() })
+            setPositiveButton(R.string.eliminar, DialogInterface.OnClickListener { dialogInterface, i -> confirmaEliminarMarca() }).show()
         }
 
     }

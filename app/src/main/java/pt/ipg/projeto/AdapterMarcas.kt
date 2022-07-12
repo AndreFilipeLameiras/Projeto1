@@ -39,21 +39,22 @@ class AdapterMarcas(val fragment: ListaMarcasFragment): RecyclerView.Adapter<Ada
 
 
 
-        override fun onClick(p0: View?) {
+        override fun onClick(v: View?) {
             viewHolderSelecionado?.desSelecionado()
             seleciona()
         }
 
-       private fun desSelecionado() {
-           //viewHolderSelecionado = null
-           itemView.setBackgroundResource(android.R.color.white)
-       }
+
 
        private fun seleciona() {
             itemView.setBackgroundResource(android.R.color.holo_orange_light)
             viewHolderSelecionado = this
            fragment.marcaSeleccionada = marca
         }
+       private fun desSelecionado(){
+           itemView.setBackgroundResource(android.R.color.white)
+       }
+
 
 
     }

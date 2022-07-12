@@ -77,16 +77,16 @@ class ListaMarcasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
      * @param args Any arguments supplied by the caller.
      * @return Return a new Loader instance that is ready to start loading.
      */
-    override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> =
-        CursorLoader(
+    override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> {
+        return CursorLoader(
             requireContext(),
             ContentProviderCarros.ENDERECO_MARCAS,
             TabelaBDMarcas.TODAS_COLUNAS,
             null,
             null,
-            "${TabelaBDMarcas.CAMPO_NOME}"
+            TabelaBDMarcas.CAMPO_NOME
         )
-
+    }
 
     /**
      * Called when a previously created loader has finished its load.  Note
@@ -146,7 +146,7 @@ class ListaMarcasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
      * @param loader The Loader that is being reset.
      */
     override fun onLoaderReset(loader: Loader<Cursor>) {
-        if(_binding == null ) return
+        //if(_binding == null ) return
         adapterMarcas!!.cursor = null
     }
 
