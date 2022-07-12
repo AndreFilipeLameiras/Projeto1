@@ -144,9 +144,8 @@
     <string name="combustivel_guardada_sucesso">Combustivel guardada com sucesso</string>
     <string name="elimina_combustivel">Elimina combustivel</string>
     <string name="erro_eliminar_combustivel">Erro ao eliminar combustivel</string>
-    <string name="combustivel_eliminada_sucesso">Combustivel eliminada com sucesso</string>
+    <string name="combustivel_eliminado_sucesso">Combustivel eliminado com sucesso</string>
     <string name="confirma_eliminar_combustivel">Tem a certeza que pretende eliminar este combustivel?</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 
 </resources>
