@@ -6,12 +6,48 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class AdapterCores(val fragment: ListaCoresFragment ,var cursor: Cursor? = null) : RecyclerView.Adapter<AdapterCores.ViewHolderCores>() {
-    class ViewHolderCores (itemView: View) :RecyclerView.ViewHolder(itemView){
-        private val textViewNomeCor = itemView.findViewById<TextView>(R.id.textViewNomeCor)
+class AdapterCores(val fragment: ListaCoresFragment ) : RecyclerView.Adapter<AdapterCores.ViewHolderCores>() {
+    var cursor: Cursor? = null
+        get() = field
+        set(value) {
+            if(field != value){
+                field = value
+                notifyDataSetChanged()
+            }
+        }
 
-        fun atualizaCor(cor: Cores){
-            textViewNomeCor.text = cor.nome
+    var viewHolderSelecionada : ViewHolderCores? = null
+
+    inner class ViewHolderCores (itemCor: View) :RecyclerView.ViewHolder(itemCor), View.OnClickListener{
+        val texViewNome = itemCor.findViewById<TextView>(R.id.textViewNomeCor)
+        val textViewPreco = itemCor.findViewById<TextView>(R.id.textViewPrecoCor)
+
+        init {
+            itemCor.setOnClickListener(this)
+        }
+
+        var cor : Cores? = null
+            get() = field
+            set(value: Cores?) {
+                field = value
+
+                texViewNome.text = cor?.nome?: ""
+                textViewPreco.text = (cor?.preco?: "" ).toString()
+            }
+
+        override fun onClick(v: View?) {
+            viewHolderSelecionada?.desSeleciona()
+            seleciona()
+        }
+
+        private fun seleciona() {
+            itemView.setBackgroundResource(android.R.color.holo_orange_light)
+            viewHolderSelecionada = this
+            fragment.corSelecionada = cor
+        }
+
+        private fun desSeleciona(){
+            itemView.setBackgroundResource(android.R.color.white)
         }
 
     }
@@ -68,7 +104,7 @@ class AdapterCores(val fragment: ListaCoresFragment ,var cursor: Cursor? = null)
      */
     override fun onBindViewHolder(holder: ViewHolderCores, position: Int) {
         cursor!!.moveToPosition(position)
-        holder.atualizaCor(Cores.fromCursor(cursor!!))
+        holder.cor = Cores.fromCursor(cursor!!)
     }
 
     /**
@@ -77,7 +113,8 @@ class AdapterCores(val fragment: ListaCoresFragment ,var cursor: Cursor? = null)
      * @return The total number of items in this adapter.
      */
     override fun getItemCount(): Int {
-        return cursor?.count ?: 0
+        if(cursor == null) return 0
+        return cursor!!.count
     }
 
 

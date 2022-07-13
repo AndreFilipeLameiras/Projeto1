@@ -120,6 +120,12 @@ class MainActivity : AppCompatActivity() {
             opcaoProcessada = (fragment as EditarCombustivelFragment).processaOpcaoMenu(item)
         }else if (fragment is EliminarCombustivelFragment) {
             opcaoProcessada = (fragment as EliminarCombustivelFragment).processaOpcaoMenu(item)
+        }else if (fragment is ListaCoresFragment) {
+            opcaoProcessada = (fragment as ListaCoresFragment).processaOpcaoMenu(item)
+        }else if (fragment is EditarCorFragment) {
+            opcaoProcessada = (fragment as EditarCorFragment).processaOpcaoMenu(item)
+        }else if (fragment is EliminarCorFragment) {
+            opcaoProcessada = (fragment as EliminarCorFragment).processaOpcaoMenu(item)
         }
 
 

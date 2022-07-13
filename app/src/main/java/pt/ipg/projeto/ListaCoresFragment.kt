@@ -3,17 +3,26 @@ package pt.ipg.projeto
 import android.database.Cursor
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import pt.ipg.projeto.databinding.FragmentListaCoresBinding
 
 class ListaCoresFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
+    var corSelecionada : Cores? = null
+        get() = field
+        set(value) {
+            field = value
+            (requireActivity() as MainActivity).mostraOpcoesAlterarEliminar(field != null)
+        }
+
     private var _binding: FragmentListaCoresBinding? = null
     private var adapterCores: AdapterCores? = null
 
@@ -33,13 +42,17 @@ class ListaCoresFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val recyclerViewCores = view.findViewById<RecyclerView>(R.id.recyclerViewCores)
-        adapterCores = AdapterCores(this)
-        recyclerViewCores.adapter = adapterCores
-        recyclerViewCores.layoutManager = LinearLayoutManager(requireContext())
+        LoaderManager.getInstance(this).initLoader(ID_LOADER_CORES, null, this)
 
-        LoaderManager.getInstance(this)
-            .initLoader(ID_LOADER_CORES, null, this)
+
+        adapterCores = AdapterCores(this)
+        binding.recyclerViewCores.adapter = adapterCores
+        binding.recyclerViewCores.layoutManager = LinearLayoutManager(requireContext())
+
+        val activity = activity as MainActivity
+        activity.fragment = this
+        activity.idMenuAtual = R.menu.menu_lista
+
     }
 
     override fun onDestroyView() {
@@ -126,8 +139,32 @@ class ListaCoresFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
      * @param loader The Loader that is being reset.
      */
     override fun onLoaderReset(loader: Loader<Cursor>) {
+        if (_binding == null) return
         adapterCores!!.cursor = null
     }
+
+
+    fun processaOpcaoMenu(item: MenuItem): Boolean =
+        when(item.itemId){
+            R.id.action_inserir -> {
+                val acao = ListaCoresFragmentDirections.actionListaCoresFragmentToEditarCorFragment()
+                findNavController().navigate(acao)
+                (activity as MainActivity).atualizaTitulo(R.string.inserir_cor_label)
+                true
+            }
+            R.id.action_alterar -> {
+                val acao = ListaCoresFragmentDirections.actionListaCoresFragmentToEditarCorFragment(corSelecionada)
+                findNavController().navigate(acao)
+                (activity as MainActivity).atualizaTitulo(R.string.alterar_cor_label)
+                true
+            }
+            R.id.action_eliminar -> {
+                val acao = ListaCoresFragmentDirections.actionListaCoresFragmentToEliminarCorFragment(corSelecionada!!)
+                findNavController().navigate(acao)
+                true
+            }
+            else -> false
+        }
 
 
     companion object{

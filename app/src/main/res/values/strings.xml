@@ -18,6 +18,7 @@
     <string name="combustivel">Combustivel</string>
     <string name="transmissao">Transmissao</string>
     <string name="nome_tracao">Nome da Traçao</string>
+    <string name="cor">Cor</string>
     <string name="nome_cor">Nome da Cor</string>
     <string name="preco_cor">Preço da Cor</string>
     <string name="nome_estofo">Nome dos Estofos</string>
@@ -70,6 +71,11 @@
     <string name="inserir_combustivel_label">Inserir combustivel</string>
     <string name="alterar_combustivel_label">Alterar combustivel</string>
     <string name="eliminar_combustivel_label">Eliminar combustivel</string>
+
+    <string name="lista_cor_label">Lista das Cor</string>
+    <string name="inserir_cor_label">Inserir cor</string>
+    <string name="alterar_cor_label">Alterar cor</string>
+    <string name="eliminar_cor_label">Eliminar cor</string>
 
 
     <string name="previous">Voltar</string>
@@ -150,6 +156,14 @@
     <string name="erro_eliminar_combustivel">Erro ao eliminar combustivel</string>
     <string name="combustivel_eliminado_sucesso">Combustivel eliminado com sucesso</string>
     <string name="confirma_eliminar_combustivel">Tem a certeza que pretende eliminar este combustivel?</string>
+
+    <string name="nome_cor_obrigatoria">Preencha o Nome da cor</string>
+    <string name="erro_guardar_cor">Erro ao guardar cor</string>
+    <string name="cor_guardada_sucesso">Cor guardada com sucesso</string>
+    <string name="elimina_cor">Elimina cor</string>
+    <string name="erro_eliminar_cor">Erro ao eliminar cor</string>
+    <string name="cor_eliminada_sucesso">Cor eliminada com sucesso</string>
+    <string name="confirma_eliminar_cor">Tem a certeza que pretende eliminar esta cor?</string>
 
 
 </resources>

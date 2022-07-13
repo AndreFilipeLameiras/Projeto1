@@ -31,6 +31,9 @@
         <action
             android:id="@+id/action_navhome_to_listaCombustivelFragment"
             app:destination="@id/listaCombustivelFragment" />
+        <action
+            android:id="@+id/action_navhome_to_listaCoresFragment"
+            app:destination="@id/listaCoresFragment" />
     </fragment>
 
     <fragment
@@ -75,7 +78,17 @@
     <fragment
         android:id="@+id/listaCoresFragment"
         android:name="pt.ipg.projeto.ListaCoresFragment"
-        android:label="ListaCoresFragment" />
+        android:label="ListaCoresFragment" >
+        <action
+            android:id="@+id/action_listaCoresFragment_to_navhome"
+            app:destination="@id/navhome" />
+        <action
+            android:id="@+id/action_listaCoresFragment_to_editarCorFragment"
+            app:destination="@id/editarCorFragment" />
+        <action
+            android:id="@+id/action_listaCoresFragment_to_eliminarCorFragment"
+            app:destination="@id/eliminarCorFragment" />
+    </fragment>
     <fragment
         android:id="@+id/listaJantesFragment"
         android:name="pt.ipg.projeto.ListaJantesFragment"
@@ -334,5 +347,30 @@
         <action
             android:id="@+id/action_eliminarTransmisssaoFragment_to_listaTransmissoesFragment"
             app:destination="@id/listaTransmissoesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editarCorFragment"
+        android:name="pt.ipg.projeto.EditarCorFragment"
+        tools:layout="@layout/fragment_editar_cor" >
+        <action
+            android:id="@+id/action_editarCorFragment_to_listaCoresFragment"
+            app:destination="@id/listaCoresFragment" />
+        <argument
+            android:name="cor"
+            app:argType="pt.ipg.projeto.Cores"
+            app:nullable="true"
+            android:defaultValue="@null"/>
+    </fragment>
+    <fragment
+        android:id="@+id/eliminarCorFragment"
+        android:name="pt.ipg.projeto.EliminarCorFragment"
+        android:label="fragment_eliminar_cor"
+        tools:layout="@layout/fragment_eliminar_cor" >
+        <action
+            android:id="@+id/action_eliminarCorFragment_to_listaCoresFragment"
+            app:destination="@id/listaCoresFragment" />
+        <argument
+            android:name="cor"
+            app:argType="pt.ipg.projeto.Cores" />
     </fragment>
 </navigation>

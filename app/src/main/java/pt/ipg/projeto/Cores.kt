@@ -3,12 +3,13 @@ package pt.ipg.projeto
 import android.content.ContentValues
 import android.database.Cursor
 import android.provider.BaseColumns
+import java.io.Serializable
 
 data class Cores(
     var nome: String,
     var preco: Double,
     var id: Long = -1
-) {
+) : Serializable {
 
 
     fun toContentValues(): ContentValues {
@@ -16,7 +17,7 @@ data class Cores(
 
         valores.put(TabelaBDCores.CAMPO_COR, nome)
         valores.put(TabelaBDCores.PRECO, preco)
-        //valores.put(TabelaBDCores.CAMPO_PINTURA_ID, idPintura)
+
 
 
         return valores
@@ -28,12 +29,12 @@ data class Cores(
             val posId = cursor.getColumnIndex(BaseColumns._ID)
             val posNome = cursor.getColumnIndex(TabelaBDCores.CAMPO_COR)
             val posPreco = cursor.getColumnIndex(TabelaBDCores.PRECO)
-            //val posIdPint = cursor.getColumnIndex(TabelaBDCores.CAMPO_PINTURA_ID)
+
 
             val id = cursor.getLong(posId)
             val nome = cursor.getString(posNome)
             val preco = cursor.getDouble(posPreco)
-            //val idPintura = cursor.getLong(posIdPint)
+
 
             return Cores(nome, preco, id)
         }
