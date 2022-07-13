@@ -38,9 +38,9 @@
 
     <fragment
         android:id="@+id/nav_gallery"
-        android:name="pt.ipg.projeto.ui.gallery.GalleryFragment"
+        android:name="pt.ipg.projeto.ui.gallery.ListaCoresfragment"
         android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_listacores" />
 
     <fragment
         android:id="@+id/nav_slideshow"
@@ -77,17 +77,17 @@
     </fragment>
     <fragment
         android:id="@+id/listaCoresFragment"
-        android:name="pt.ipg.projeto.ListaCoresFragment"
-        android:label="ListaCoresFragment" >
-        <action
-            android:id="@+id/action_listaCoresFragment_to_navhome"
-            app:destination="@id/navhome" />
+        android:name="pt.ipg.projeto.ui.gallery.ListaCoresFragment"
+        android:label="ListaCoresFragment">
         <action
             android:id="@+id/action_listaCoresFragment_to_editarCorFragment"
             app:destination="@id/editarCorFragment" />
         <action
             android:id="@+id/action_listaCoresFragment_to_eliminarCorFragment"
             app:destination="@id/eliminarCorFragment" />
+        <action
+            android:id="@+id/action_listaCoresFragment_to_navhome"
+            app:destination="@id/navhome" />
     </fragment>
     <fragment
         android:id="@+id/listaJantesFragment"

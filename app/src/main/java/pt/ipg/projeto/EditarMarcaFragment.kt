@@ -28,8 +28,6 @@ class EditarMarcaFragment : Fragment() {
     ): View? {
         _binding = FragmentEditarMarcaBinding.inflate(inflater, container, false)
 
-
-
         return binding.root
     }
 
@@ -42,7 +40,7 @@ class EditarMarcaFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        val activity = activity as MainActivity
+        val activity = requireActivity() as MainActivity
         activity.fragment = this
         activity.idMenuAtual = R.menu.menu_edicao
 
@@ -50,7 +48,7 @@ class EditarMarcaFragment : Fragment() {
             marca = EditarMarcaFragmentArgs.fromBundle(arguments!!).marca
 
             if(marca != null){
-                binding.editTextNome.setText(marca!!.nome)
+                binding.editTextNomeMarca.setText(marca!!.nome)
             }
         }
 
@@ -74,10 +72,10 @@ class EditarMarcaFragment : Fragment() {
 
 
     private fun guardar() {
-        val nome = binding.editTextNome.text.toString()
+        val nome = binding.editTextNomeMarca.text.toString()
         if (nome.isBlank()) {
-            binding.editTextNome.error = getString(R.string.nome_marca_obrigatorio)
-            binding.editTextNome.requestFocus()
+            binding.editTextNomeMarca.error = getString(R.string.nome_marca_obrigatorio)
+            binding.editTextNomeMarca.requestFocus()
             return
 
         }
@@ -90,10 +88,11 @@ class EditarMarcaFragment : Fragment() {
             }
 
         if(marcaGuardada){
-            Toast.makeText(requireContext(), R.string.marca_guardada_sucesso, Toast.LENGTH_LONG).show()
+            Toast.makeText(requireContext(), R.string.marca_guardada_sucesso, Toast.LENGTH_LONG)
+                .show()
             navegaListaMarcas()
         }else{
-            Snackbar.make(binding.editTextNome, R.string.erro_guardar_marca, Snackbar.LENGTH_INDEFINITE).show()
+            Snackbar.make(binding.editTextNomeMarca, R.string.erro_guardar_marca, Snackbar.LENGTH_INDEFINITE).show()
             return
         }
 

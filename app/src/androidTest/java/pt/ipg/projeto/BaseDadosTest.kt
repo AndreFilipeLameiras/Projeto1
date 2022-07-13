@@ -251,7 +251,7 @@ class BaseDadosTest {
 
         val cursor = TabelaBDModelo(db).query(
             TabelaBDModelo.TODAS_COLUNAS,
-            "${BaseColumns._ID}=?",
+            "${TabelaBDModelo.CAMPO_ID}=?",
             arrayOf("${modelo.id}"),
             null,
             null,

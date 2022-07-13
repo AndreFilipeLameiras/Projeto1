@@ -71,9 +71,9 @@ class MenuPrincipalFragment : Fragment() {
             findNavController().navigate(R.id.action_navhome_to_listaCombustivelFragment)
         }
 
-        binding.buttonCor.setOnClickListener{
+        /*binding.buttonCor.setOnClickListener{
             findNavController().navigate(R.id.action_navhome_to_listaCoresFragment)
-        }
+        }*/
 
         val activity = activity as MainActivity
         activity.fragment = this

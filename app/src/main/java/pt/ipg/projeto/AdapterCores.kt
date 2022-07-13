@@ -5,8 +5,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import pt.ipg.projeto.ui.gallery.ListaCoresFragment
 
-class AdapterCores(val fragment: ListaCoresFragment ) : RecyclerView.Adapter<AdapterCores.ViewHolderCores>() {
+class AdapterCores(val fragment: ListaCoresFragment) : RecyclerView.Adapter<AdapterCores.ViewHolderCores>() {
     var cursor: Cursor? = null
         get() = field
         set(value) {

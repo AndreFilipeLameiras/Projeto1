@@ -134,6 +134,7 @@
 
 
     <string name="nome_tracao_obrigatorio">Preencha o Nome da traçao</string>
+    <string name="tracao">Traçao</string>
     <string name="erro_guardar_tracao">Erro ao guardar tracao</string>
     <string name="tracao_guardada_sucesso">Tracao guardada com sucesso</string>
     <string name="elimina_tracao">Elimina Tracao</string>

@@ -13,6 +13,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import pt.ipg.projeto.databinding.ActivityMainBinding
+import pt.ipg.projeto.ui.gallery.ListaCoresFragment
 import pt.ipg.projeto.ui.home.MenuPrincipalFragment
 
 class MainActivity : AppCompatActivity() {
@@ -55,7 +56,7 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navhome, R.id.nav_gallery, R.id.nav_slideshow
+                R.id.navhome, R.id.listaCores, R.id.nav_slideshow
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
