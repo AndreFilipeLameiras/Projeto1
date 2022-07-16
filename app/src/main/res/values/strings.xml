@@ -166,5 +166,7 @@
     <string name="cor_eliminada_sucesso">Cor eliminada com sucesso</string>
     <string name="confirma_eliminar_cor">Tem a certeza que pretende eliminar esta cor?</string>
 
+    <string name="configura_carro">Configurar Carro</string>
+
 
 </resources>

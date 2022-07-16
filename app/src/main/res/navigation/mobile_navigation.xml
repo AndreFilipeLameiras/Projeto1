@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_navhome_to_listaMarcasFragment"
             app:destination="@id/listaMarcasFragment" />
+        <action
+            android:id="@+id/action_navhome_to_listaCarrosFragment"
+            app:destination="@id/listaCarrosFragment" />
     </fragment>
 
     <fragment
@@ -336,5 +339,14 @@
         <argument
             android:name="cor"
             app:argType="pt.ipg.projeto.Cores" />
+    </fragment>
+    <fragment
+        android:id="@+id/listaCarrosFragment"
+        android:name="pt.ipg.projeto.ListaCarrosFragment"
+        android:label="fragment_lista_carros"
+        tools:layout="@layout/fragment_lista_carros" >
+        <action
+            android:id="@+id/action_listaCarrosFragment_to_navhome"
+            app:destination="@id/navhome" />
     </fragment>
 </navigation>

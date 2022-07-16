@@ -50,6 +50,11 @@ class MenuPrincipalFragment : Fragment() {
         binding.buttonMarcas.setOnClickListener {
             findNavController().navigate(R.id.action_navhome_to_listaMarcasFragment)
         }
+
+        binding.buttonCarros.setOnClickListener{
+            findNavController().navigate(R.id.action_navhome_to_listaCarrosFragment)
+        }
+
 /*
         binding.buttonJantes.setOnClickListener {
             findNavController().navigate(R.id.action_navhome_to_listaJantesFragment)
