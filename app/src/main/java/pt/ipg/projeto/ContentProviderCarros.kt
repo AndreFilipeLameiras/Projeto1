@@ -35,6 +35,7 @@ class ContentProviderCarros : ContentProvider() {
         val id = uri.lastPathSegment
 
         val cursor = when (getUriMatcher().match(uri)){
+            URI_CARROS -> TabelaBDCarros(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
             URI_MODELOS -> TabelaBDModelo(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
             URI_MARCAS -> TabelaBDMarcas(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
             URI_JANTES -> TabelaBDJantes(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
@@ -46,6 +47,7 @@ class ContentProviderCarros : ContentProvider() {
             URI_TRACOES -> TabelaBDTracao(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
             URI_TRASNMISSOES -> TabelaBDTransmissoes(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
 
+            URI_CARRO_ESPECIFICO -> TabelaBDCarros(db).query(colunas, "${BaseColumns._ID}=?", arrayOf("${id}"), null, null, null)
             URI_MODELO_ESPECIFICO -> TabelaBDModelo(db).query(colunas, "${BaseColumns._ID}=?",arrayOf("${id}"),null, null, null)
             URI_MARCA_ESPECIFICA -> TabelaBDMarcas(db).query(colunas, "${BaseColumns._ID}=?", arrayOf("${id}"),null, null, null)
             URI_JANTE_ESPECIFICA -> TabelaBDJantes(db).query(colunas, "${BaseColumns._ID}=?",arrayOf("${id}"),null, null, null)
@@ -70,6 +72,7 @@ class ContentProviderCarros : ContentProvider() {
 
     override fun getType(uri: Uri): String? =
         when(getUriMatcher().match(uri)){
+            URI_CARROS -> "$MULTIPLOS_REGISTOS/${TabelaBDCarros.NOME}"
             URI_MODELOS -> "$MULTIPLOS_REGISTOS/${TabelaBDModelo.NOME}"
             URI_MARCAS -> "$MULTIPLOS_REGISTOS/${TabelaBDMarcas.NOME}"
             URI_JANTES -> "$MULTIPLOS_REGISTOS/${TabelaBDJantes.NOME}"
@@ -81,6 +84,8 @@ class ContentProviderCarros : ContentProvider() {
             URI_TRACOES -> "$MULTIPLOS_REGISTOS/${TabelaBDTracao.NOME}"
             URI_TRASNMISSOES -> "$MULTIPLOS_REGISTOS/${TabelaBDTransmissoes.NOME}"
 
+
+            URI_CARRO_ESPECIFICO -> "$UNICO_REGISTO/${TabelaBDCarros.NOME}"
             URI_MODELO_ESPECIFICO -> "$UNICO_REGISTO/${TabelaBDModelo.NOME}"
             URI_MARCA_ESPECIFICA -> "$UNICO_REGISTO/${TabelaBDMarcas.NOME}"
             URI_JANTE_ESPECIFICA -> "$UNICO_REGISTO/${TabelaBDJantes.NOME}"
@@ -103,6 +108,7 @@ class ContentProviderCarros : ContentProvider() {
         requireNotNull(values)
 
         val id = when (getUriMatcher().match(uri)){
+            URI_CARROS -> TabelaBDCarros(db).insert(values)
             URI_MODELOS -> TabelaBDModelo(db).insert(values)
             URI_MARCAS -> TabelaBDMarcas(db).insert(values)
             URI_JANTES -> TabelaBDJantes(db).insert(values)
@@ -130,6 +136,7 @@ class ContentProviderCarros : ContentProvider() {
         val id = uri.lastPathSegment
 
         val registosApagados = when (getUriMatcher().match(uri)){
+            URI_CARRO_ESPECIFICO -> TabelaBDCarros(db).delete("${BaseColumns._ID}=?", arrayOf("${id}"))
             URI_MODELO_ESPECIFICO -> TabelaBDModelo(db).delete("${BaseColumns._ID}=?", arrayOf("${id}"))
             URI_MARCA_ESPECIFICA -> TabelaBDMarcas(db).delete("${BaseColumns._ID}=?", arrayOf("${id}"))
             URI_JANTE_ESPECIFICA -> TabelaBDJantes(db).delete("${BaseColumns._ID}=?", arrayOf("${id}"))
@@ -161,6 +168,7 @@ class ContentProviderCarros : ContentProvider() {
         val id = uri.lastPathSegment
 
         val registosAlterados = when (getUriMatcher().match(uri)){
+            URI_CARRO_ESPECIFICO -> TabelaBDCarros(db).update(values, "${BaseColumns._ID}=?", arrayOf("${id}"))
             URI_MODELO_ESPECIFICO -> TabelaBDModelo(db).update(values,"${BaseColumns._ID}=?", arrayOf("${id}"))
             URI_MARCA_ESPECIFICA -> TabelaBDMarcas(db).update(values,"${BaseColumns._ID}=?", arrayOf("${id}"))
             URI_JANTE_ESPECIFICA -> TabelaBDJantes(db).update(values,"${BaseColumns._ID}=?", arrayOf("${id}"))
@@ -214,12 +222,16 @@ class ContentProviderCarros : ContentProvider() {
         const val URI_TRASNMISSOES = 1000
         const val URI_TRANSMISSAO_ESPECIFICA = 1001
 
+        const val URI_CARROS = 1100
+        const val URI_CARRO_ESPECIFICO = 1101
+
         const val UNICO_REGISTO = "vnd.android.cursor.item"
         const val MULTIPLOS_REGISTOS = "vnd.android.cursor.dir"
 
         val ENDERECO_BASE = Uri.parse("content://$AUTHORITY")
-        val ENDERECO_MODELOS = Uri.withAppendedPath(ENDERECO_BASE, TabelaBDModelo.CAMPO_MODELO)
-        val ENDERECO_MARCAS = Uri.withAppendedPath(ENDERECO_BASE, TabelaBDMarcas.CAMPO_NOME)
+        val ENDERECO_CARROS = Uri.withAppendedPath(ENDERECO_BASE, TabelaBDCarros.NOME)
+        val ENDERECO_MODELOS = Uri.withAppendedPath(ENDERECO_BASE, TabelaBDModelo.NOME)
+        val ENDERECO_MARCAS = Uri.withAppendedPath(ENDERECO_BASE, TabelaBDMarcas.NOME)
         val ENDERECO_JANTES = Uri.withAppendedPath(ENDERECO_BASE, TabelaBDJantes.NOME)
         val ENDERECO_MOTORIZACOES = Uri.withAppendedPath(ENDERECO_BASE, TabelaBDMotorizacoes.NOME)
         val ENDERECO_COMBUSTIVEIS = Uri.withAppendedPath(ENDERECO_BASE, TabelaBDCombustivel.NOME)
@@ -238,6 +250,9 @@ class ContentProviderCarros : ContentProvider() {
 
             uriMatcher.addURI(AUTHORITY, TabelaBDMarcas.NOME, URI_MARCAS)
             uriMatcher.addURI(AUTHORITY, "${TabelaBDMarcas.NOME}/#", URI_MARCA_ESPECIFICA)
+
+            uriMatcher.addURI(AUTHORITY, TabelaBDCarros.NOME, URI_CARROS)
+            uriMatcher.addURI(AUTHORITY, "${TabelaBDCarros.NOME}/#", URI_CARRO_ESPECIFICO)
 
             uriMatcher.addURI(AUTHORITY, TabelaBDModelo.NOME, URI_MODELOS)
             uriMatcher.addURI(AUTHORITY, "${TabelaBDModelo.NOME}/#", URI_MODELO_ESPECIFICO)

@@ -16,5 +16,7 @@ class TabelaBDCarros(db: SQLiteDatabase) : TabelaBD(db, NOME){
         const val CAMPO_COR_ID = "corId"
         const val CAMPO_ESTOFOS_ID = "estofosId"
         const val CAMPO_JANTES_ID = "jantesId"
+
+        val TODAS_COLUNAS = arrayOf(BaseColumns._ID, CAMPO_MODELO_ID, CAMPO_MOTORIZACAO_ID, CAMPO_COR_ID, CAMPO_ESTOFOS_ID, CAMPO_JANTES_ID)
     }
 }
