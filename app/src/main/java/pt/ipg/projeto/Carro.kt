@@ -24,6 +24,7 @@ data class Carro (
         return valores
     }
 
+
     companion object{
         fun fromCursor(cursor: Cursor):Carro{
             val posId = cursor.getColumnIndex(BaseColumns._ID)
