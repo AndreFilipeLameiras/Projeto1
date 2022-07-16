@@ -77,6 +77,11 @@
     <string name="alterar_cor_label">Alterar cor</string>
     <string name="eliminar_cor_label">Eliminar cor</string>
 
+    <string name="lista_carro_label">Lista dos Carros</string>
+    <string name="inserir_carro_label">Inserir carro</string>
+    <string name="alterar_carro_label">Alterar carro</string>
+    <string name="eliminar_carro_label">Eliminar carro</string>
+
 
     <string name="previous">Voltar</string>
 
@@ -175,6 +180,7 @@
     <string name="erro_eliminar_carro">Erro ao eliminar carro</string>
     <string name="carro_eliminado_sucesso">Carro eliminado com sucesso</string>
     <string name="confirma_eliminar_carro">Tem a certeza que pretende eliminar este carro?</string>
+
 
 
 </resources>

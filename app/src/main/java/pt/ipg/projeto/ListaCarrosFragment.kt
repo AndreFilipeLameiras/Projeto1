@@ -16,6 +16,18 @@ import pt.ipg.projeto.databinding.FragmentListaCarrosBinding
 
 
 class ListaCarrosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
+    var carroSeleccionado : Carro? = null
+        get() = field
+        set(value) {
+            if (value != field) {
+                field = value
+                (requireActivity() as MainActivity).mostraOpcoesAlterarEliminar(field != null)
+            }
+        }
+
+
+
+
     private var _binding: FragmentListaCarrosBinding? = null
     private var adapterCarros: AdapterCarros? = null
 
