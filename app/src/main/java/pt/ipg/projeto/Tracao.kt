@@ -6,7 +6,7 @@ import android.provider.BaseColumns
 import java.io.Serializable
 
 data class Tracao (
-    var nome: String,
+    var nome: String = "",
     var id: Long = -1
     ): Serializable {
 

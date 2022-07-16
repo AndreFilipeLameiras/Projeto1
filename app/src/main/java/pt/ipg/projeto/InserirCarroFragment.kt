@@ -9,10 +9,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SimpleCursorAdapter
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import pt.ipg.projeto.databinding.FragmentInserirCarroBinding
 
 
@@ -227,6 +229,19 @@ class InserirCarroFragment : Fragment() , LoaderManager.LoaderCallbacks<Cursor>{
     }
 
     private fun insereCarro(idModelo: Long, idMotorizacao: Long, idCor: Long, idEstofo: Long, idJante: Long) {
+
+        val carro = Carro(Modelo(id = idModelo), Motorizacao(id = idMotorizacao), Cores(id = idCor), Estofos(id = idEstofo), Jante(id = idJante))
+
+        val enderecoCarroInserido = requireActivity().contentResolver.insert(ContentProviderCarros.ENDERECO_CARROS, carro.toContentValues())
+
+        if(enderecoCarroInserido == null){
+            Snackbar.make(binding.textViewModelos , R.string.erro_guardar_carro, Snackbar.LENGTH_INDEFINITE).show()
+            return
+        }
+
+
+        Toast.makeText(requireContext(), R.string.carro_guardado_sucesso, Toast.LENGTH_LONG).show()
+        navegaListaCarros()
 
     }
 

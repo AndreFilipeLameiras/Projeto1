@@ -169,7 +169,12 @@
     <string name="confirma_eliminar_cor">Tem a certeza que pretende eliminar esta cor?</string>
 
     <string name="configura_carro">Configurar Carro</string>
-
+    <string name="erro_guardar_carro">Erro ao guardar carro</string>
+    <string name="carro_guardado_sucesso">Carro guardado com sucesso</string>
+    <string name="elimina_carro">Elimina carro</string>
+    <string name="erro_eliminar_carro">Erro ao eliminar carro</string>
+    <string name="carro_eliminado_sucesso">Carro eliminado com sucesso</string>
+    <string name="confirma_eliminar_carro">Tem a certeza que pretende eliminar este carro?</string>
 
 
 </resources>

@@ -6,7 +6,7 @@ import android.provider.BaseColumns
 import java.io.Serializable
 
 data class Jante (
-    var nome: String,
+    var nome: String = "",
     var largura: Long,
     var altura: Long,
     var raio: Long,

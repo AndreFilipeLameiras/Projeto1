@@ -16,14 +16,20 @@ class AdapterCarros(val fragment: ListaCarrosFragment): RecyclerView.Adapter<Ada
             }
         }
 
+    var viewHolderSelecionado : ViewHolderCarro? = null
 
 
-    class ViewHolderCarro (itemCarro: View): RecyclerView.ViewHolder(itemCarro){
+    inner class ViewHolderCarro (itemCarro: View): RecyclerView.ViewHolder(itemCarro), View.OnClickListener{
         val textViewModelo = itemCarro. findViewById<TextView>(R.id.textViewModelo)
         val textViewMotorizacao = itemCarro. findViewById<TextView>(R.id.textViewMotorizacao)
         val textViewCor = itemCarro. findViewById<TextView>(R.id.textViewCor)
         val textViewEstofo = itemCarro. findViewById<TextView>(R.id.textViewEstofos)
         val textViewJante = itemCarro. findViewById<TextView>(R.id.textViewJantes)
+
+        init {
+            itemCarro.setOnClickListener(this)
+        }
+
 
         var carro : Carro? = null
             get() = field
@@ -38,8 +44,19 @@ class AdapterCarros(val fragment: ListaCarrosFragment): RecyclerView.Adapter<Ada
 
             }
 
+        override fun onClick(p0: View?) {
+            viewHolderSelecionado?.desSeleciona()
+            seleciona()
+        }
 
+        private fun seleciona() {
+            itemView.setBackgroundResource(android.R.color.holo_orange_light)
+            viewHolderSelecionado = this
+        }
 
+        private fun desSeleciona(){
+            itemView.setBackgroundResource(android.R.color.white)
+        }
 
     }
 
