@@ -10,11 +10,13 @@ import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import pt.ipg.projeto.databinding.FragmentListaCarrosBinding
 
 
 class ListaCarrosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     private var _binding: FragmentListaCarrosBinding? = null
+    private var adapterCarros: AdapterCarros? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -35,6 +37,11 @@ class ListaCarrosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
 
         LoaderManager.getInstance(this).initLoader(ID_LOADER_CARROS, null, this)
+
+
+        adapterCarros = AdapterCarros()
+        binding.recyclerViewCarros.adapter = adapterCarros
+        binding.recyclerViewCarros.layoutManager = LinearLayoutManager(requireContext())
 
     }
 
