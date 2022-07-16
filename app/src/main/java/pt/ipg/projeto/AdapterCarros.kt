@@ -3,9 +3,10 @@ package pt.ipg.projeto
 import android.database.Cursor
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class AdapterCarros: RecyclerView.Adapter<AdapterCarros.ViewHolderCarro>() {
+class AdapterCarros(val fragment: ListaCarrosFragment): RecyclerView.Adapter<AdapterCarros.ViewHolderCarro>() {
     var cursor : Cursor? = null
         get() = field
         set(value) {
@@ -17,7 +18,28 @@ class AdapterCarros: RecyclerView.Adapter<AdapterCarros.ViewHolderCarro>() {
 
 
 
-    class ViewHolderCarro (itemView: View): RecyclerView.ViewHolder(itemView){
+    class ViewHolderCarro (itemCarro: View): RecyclerView.ViewHolder(itemCarro){
+        val textViewModelo = itemCarro. findViewById<TextView>(R.id.textViewModelo)
+        val textViewMotorizacao = itemCarro. findViewById<TextView>(R.id.textViewMotorizacao)
+        val textViewCor = itemCarro. findViewById<TextView>(R.id.textViewCor)
+        val textViewEstofo = itemCarro. findViewById<TextView>(R.id.textViewEstofos)
+        val textViewJante = itemCarro. findViewById<TextView>(R.id.textViewJantes)
+
+        var carro : Carro? = null
+            get() = field
+            set(value: Carro?) {
+                field = value
+
+                textViewModelo.text = "${carro?.idModelo}"
+                textViewMotorizacao.text = "${carro?.idMotorizacao}"
+                textViewCor.text = "${carro?.idCor}"
+                textViewEstofo.text = "${carro?.idEstofos}"
+                textViewJante.text = "${carro?.idJantes}"
+
+            }
+
+
+
 
     }
 
@@ -45,7 +67,8 @@ class AdapterCarros: RecyclerView.Adapter<AdapterCarros.ViewHolderCarro>() {
      * @see .onBindViewHolder
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderCarro {
-        TODO("Not yet implemented")
+        val itemCarro = fragment.layoutInflater.inflate(R.layout.item_carro, parent, false)
+        return ViewHolderCarro(itemCarro)
     }
 
     /**
@@ -70,7 +93,8 @@ class AdapterCarros: RecyclerView.Adapter<AdapterCarros.ViewHolderCarro>() {
      * @param position The position of the item within the adapter's data set.
      */
     override fun onBindViewHolder(holder: ViewHolderCarro, position: Int) {
-        TODO("Not yet implemented")
+        cursor!!.moveToPosition(position)
+        holder.carro = Carro.fromCursor(cursor!!)
     }
 
     /**
