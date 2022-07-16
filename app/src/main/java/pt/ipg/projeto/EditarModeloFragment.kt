@@ -149,7 +149,7 @@ class EditarModeloFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
     private fun atualizaMarcasSelecionada() {
         if (modelo == null)return
-        val idMarca = modelo!!.idMarca
+        val idMarca = modelo!!.nomeMarca.id
 
         val ultimaMarca = binding.spinnerMarca.count - 1
 
@@ -229,7 +229,7 @@ class EditarModeloFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     }
 
     private fun alteraModelo(modelo: String, idMarca: Long, preco: Double): Boolean {
-        val modelo = Modelo(modelo,preco, idMarca)
+        val modelo = Modelo(modelo,preco, Marca(id = idMarca))
 
         val enderecoModelo = Uri.withAppendedPath(ContentProviderCarros.ENDERECO_MODELOS, "${this.modelo!!.id}")
 

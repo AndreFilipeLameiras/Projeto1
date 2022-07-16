@@ -189,7 +189,7 @@ class InserirModeloFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
     }
 
     private fun insereModelo(modelo: String, preco: Double,  idMarca: Long) {
-        val modelo = Modelo(modelo, preco, idMarca)
+        val modelo = Modelo(modelo, preco, Marca(id = idMarca))
 
         val enderecoModeloInserido = requireActivity().contentResolver.insert(ContentProviderCarros.ENDERECO_MODELOS, modelo.toContentValues())
 

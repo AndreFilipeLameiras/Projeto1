@@ -32,6 +32,6 @@ class TabelaBDModelo (db: SQLiteDatabase): TabelaBD(db, NOME){
         const val CAMPO_MARCA_ID = "marcaID"
         const val CAMPO_PRECO = "preco"
 
-        val TODAS_COLUNAS = arrayOf(BaseColumns._ID, CAMPO_MODELO, CAMPO_MARCA_ID , CAMPO_PRECO, TabelaBDMarcas.CAMPO_NOME )
+        val TODAS_COLUNAS = arrayOf(CAMPO_ID, CAMPO_MODELO, CAMPO_MARCA_ID , CAMPO_PRECO, TabelaBDMarcas.CAMPO_NOME )
     }
 }

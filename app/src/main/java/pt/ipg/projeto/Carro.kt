@@ -65,7 +65,7 @@ data class Carro (
             val nomeModelo = cursor.getString(posNomeModelo)
             val precoModelo = cursor.getString(posPrecoModelo)
             val marcaModelo = cursor.getString(posMarcaModelo)
-            val modelo = Modelo(nomeModelo, precoModelo.toDouble() ,idModelo)
+            val modelo = Modelo(nomeModelo, precoModelo.toDouble(), Marca("", marcaModelo.toLong()) ,idModelo)
 
             val idMotorizacao = cursor.getLong(posIdMotorizacao)
             val potenciaMotor = cursor.getString(posPotenciaMotorizacao)

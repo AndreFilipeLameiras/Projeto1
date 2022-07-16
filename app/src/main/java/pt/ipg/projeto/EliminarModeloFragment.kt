@@ -48,7 +48,7 @@ class EliminarModeloFragment : Fragment() {
         modelo = EliminarModeloFragmentArgs.fromBundle(arguments!!).modelo
 
         binding.textViewModelo.text = modelo.nomeModelo
-        binding.textViewNomeMarcas.text = modelo.nomeMarca
+        binding.textViewNomeMarcas.text = modelo.nomeMarca.nome
         binding.textViewPrecoModel.text = modelo.preco.toString()
     }
 

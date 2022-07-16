@@ -8,8 +8,8 @@ import java.io.Serializable
 data class Modelo(
     var nomeModelo: String,
     var preco: Double,
-    var idMarca: Long,
-    var nomeMarca: String?= null,
+    //var idMarca: Long,
+    var nomeMarca: Marca,
     var id: Long = -1
 
 
@@ -18,7 +18,7 @@ data class Modelo(
         val valores = ContentValues()
         valores.put(TabelaBDModelo.CAMPO_MODELO, nomeModelo)
         valores.put(TabelaBDModelo.CAMPO_PRECO, preco)
-        valores.put(TabelaBDModelo.CAMPO_MARCA_ID, idMarca)
+        valores.put(TabelaBDModelo.CAMPO_MARCA_ID, nomeMarca.id)
 
         return valores
     }
@@ -37,11 +37,11 @@ data class Modelo(
             val preco = cursor.getDouble(posPreco)
 
             val idMarca = cursor.getLong(posIdMarc)
-            /*val nomeMarca = cursor.getString(posNomeMarc)
-            val marca = Marca(nomeMarca, idMarca)
-*/
-            val nomeMarca = if (posNomeMarc != 1) cursor.getString(posNomeMarc) else null
-            return Modelo(modelo, preco, idMarca,  nomeMarca, id )
+            val nomMarca = cursor.getString(posNomeMarc)
+            val marca = Marca(nomMarca, idMarca)
+
+
+            return Modelo(modelo, preco, marca, id )
         }
     }
 }
