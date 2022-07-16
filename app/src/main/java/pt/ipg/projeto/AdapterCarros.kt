@@ -30,11 +30,11 @@ class AdapterCarros(val fragment: ListaCarrosFragment): RecyclerView.Adapter<Ada
             set(value: Carro?) {
                 field = value
 
-                textViewModelo.text = "${carro?.idModelo}"
-                textViewMotorizacao.text = "${carro?.idMotorizacao}"
-                textViewCor.text = "${carro?.idCor}"
-                textViewEstofo.text = "${carro?.idEstofos}"
-                textViewJante.text = "${carro?.idJantes}"
+                textViewModelo.text = carro?.modelo?.nomeModelo?: ""
+                textViewMotorizacao.text = carro?.motorizacao?.potencia.toString()
+                textViewCor.text = carro?.cores?.nome
+                textViewEstofo.text = carro?.estofos?.nome
+                textViewJante.text = carro?.jante?.nome
 
             }
 

@@ -39,6 +39,6 @@ class TabelaBDCarros(db: SQLiteDatabase) : TabelaBD(db, NOME){
         const val CAMPO_ESTOFOS_ID = "estofosId"
         const val CAMPO_JANTES_ID = "jantesId"
 
-        val TODAS_COLUNAS = arrayOf(CAMPO_ID, CAMPO_MODELO_ID, CAMPO_MOTORIZACAO_ID, CAMPO_COR_ID, CAMPO_ESTOFOS_ID, CAMPO_JANTES_ID)
+        val TODAS_COLUNAS = arrayOf(CAMPO_ID, CAMPO_MODELO_ID, TabelaBDModelo.CAMPO_MODELO,CAMPO_MOTORIZACAO_ID, TabelaBDMotorizacoes.CAMPO_POTENCIA, TabelaBDMotorizacoes.CAMPO_CONSUMO, CAMPO_COR_ID, TabelaBDCores.CAMPO_COR, CAMPO_ESTOFOS_ID,TabelaBDEstofos.ESTOFOS , CAMPO_JANTES_ID, TabelaBDJantes.CAMPO_NOME)
     }
 }
