@@ -139,7 +139,10 @@ class ListaCarrosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
     fun processaOpcaoMenu(item: MenuItem) : Boolean =
         when(item.itemId) {
-            R.id.action_inserir -> true
+            R.id.action_inserir -> {
+                findNavController().navigate(R.id.action_listaCarrosFragment_to_inserirCarroFragment)
+                true
+            }
             R.id.action_alterar -> true
             R.id.action_eliminar -> true
             else -> false
