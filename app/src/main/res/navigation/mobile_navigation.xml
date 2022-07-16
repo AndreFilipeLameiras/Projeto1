@@ -16,24 +16,6 @@
         <action
             android:id="@+id/action_navhome_to_listaMarcasFragment"
             app:destination="@id/listaMarcasFragment" />
-        <action
-            android:id="@+id/action_navhome_to_listaJantesFragment"
-            app:destination="@id/listaJantesFragment" />
-        <action
-            android:id="@+id/action_navhome_to_listaEstofosFragment"
-            app:destination="@id/listaEstofosFragment" />
-        <action
-            android:id="@+id/action_navhome_to_listaTracaoFragment"
-            app:destination="@id/listaTracaoFragment" />
-        <action
-            android:id="@+id/action_navhome_to_listaTransmissoesFragment"
-            app:destination="@id/listaTransmissoesFragment" />
-        <action
-            android:id="@+id/action_navhome_to_listaCombustivelFragment"
-            app:destination="@id/listaCombustivelFragment" />
-        <action
-            android:id="@+id/action_navhome_to_listaCoresFragment"
-            app:destination="@id/listaCoresFragment" />
     </fragment>
 
     <fragment
@@ -52,9 +34,6 @@
         android:name="pt.ipg.projeto.ListaCombustivelFragment"
         android:label="@string/lista_combustivel_label">
         <action
-            android:id="@+id/action_listaCombustivelFragment_to_navhome"
-            app:destination="@id/navhome" />
-        <action
             android:id="@+id/action_listaCombustivelFragment_to_editarCombustivelFragment"
             app:destination="@id/editarCombustivelFragment" />
         <action
@@ -69,33 +48,24 @@
             android:id="@+id/action_listaEstofosFragment_to_editarEstofoFragment"
             app:destination="@id/editarEstofoFragment" />
         <action
-            android:id="@+id/action_listaEstofosFragment_to_navhome"
-            app:destination="@id/navhome" />
-        <action
             android:id="@+id/action_listaEstofosFragment_to_eliminarEstofoFragment"
             app:destination="@id/eliminarEstofoFragment" />
     </fragment>
     <fragment
         android:id="@+id/listaCoresFragment"
         android:name="pt.ipg.projeto.ui.gallery.ListaCoresFragment"
-        android:label="ListaCoresFragment">
+        android:label="@string/lista_cor_label">
         <action
             android:id="@+id/action_listaCoresFragment_to_editarCorFragment"
             app:destination="@id/editarCorFragment" />
         <action
             android:id="@+id/action_listaCoresFragment_to_eliminarCorFragment"
             app:destination="@id/eliminarCorFragment" />
-        <action
-            android:id="@+id/action_listaCoresFragment_to_navhome"
-            app:destination="@id/navhome" />
     </fragment>
     <fragment
         android:id="@+id/listaJantesFragment"
         android:name="pt.ipg.projeto.ListaJantesFragment"
-        android:label="ListaJantesFragment" >
-        <action
-            android:id="@+id/action_listaJantesFragment_to_navhome"
-            app:destination="@id/navhome" />
+        android:label="@string/lista_jante_label">
         <action
             android:id="@+id/action_listaJantesFragment_to_editarJantesFragment"
             app:destination="@id/editarJantesFragment" />
@@ -137,10 +107,7 @@
     <fragment
         android:id="@+id/listaTracaoFragment"
         android:name="pt.ipg.projeto.ListaTracaoFragment"
-        android:label="ListaTracaoFragment" >
-        <action
-            android:id="@+id/action_listaTracaoFragment_to_navhome"
-            app:destination="@id/navhome" />
+        android:label="@string/lista_tracao_label">
         <action
             android:id="@+id/action_listaTracaoFragment_to_editarTracaoFragment"
             app:destination="@id/editarTracaoFragment" />
@@ -152,9 +119,6 @@
         android:id="@+id/listaTransmissoesFragment"
         android:name="pt.ipg.projeto.ListaTransmissoesFragment"
         android:label="@string/lista_transmissao_label">
-        <action
-            android:id="@+id/action_listaTransmissoesFragment_to_navhome"
-            app:destination="@id/navhome" />
         <action
             android:id="@+id/action_listaTransmissoesFragment_to_eliminarTransmisssaoFragment"
             app:destination="@id/eliminarTransmisssaoFragment" />

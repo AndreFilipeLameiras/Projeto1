@@ -9,12 +9,31 @@
             android:icon="@drawable/ic_menu_camera"
             android:title="@string/menu_home" />
         <item
-            android:id="@+id/listaCores"
+            android:id="@+id/listaCoresFragment"
             android:icon="@drawable/ic_menu_gallery"
             android:title="@string/lista_cor_label" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_slideshow" />
+            android:id="@+id/listaJantesFragment"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/lista_jante_label" />
+        <item
+            android:id="@+id/listaCombustivelFragment"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/lista_combustivel_label" />
+        <item
+            android:id="@+id/listaTracaoFragment"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/lista_tracao_label" />
+        <item
+            android:id="@+id/listaTransmissoesFragment"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/lista_transmissao_label" />
+        <item
+            android:id="@+id/listaEstofosFragment"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/lista_estofo_label" />
+
+
+
     </group>
 </menu>

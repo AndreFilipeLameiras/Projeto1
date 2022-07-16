@@ -18,42 +18,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import pt.ipg.projeto.*
 import pt.ipg.projeto.databinding.FragmentListaCoresBinding
 
-/*
-class ListaCoresfragment : Fragment() {
-
-    //private lateinit var listacoresViewModel: ListaCoresViewModel
-    private var _binding: FragmentListaCoresBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        /*listacoresViewModel =
-            ViewModelProvider(this).get(listacoresViewModel::class.java)
-*/
-
-
-        _binding = FragmentListaCoresBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-/*
-        val textView: TextView = binding.
-        listacoresViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })*/
-        return root
-    }
-
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-}*/
 
 class ListaCoresFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     var corSelecionada : Cores? = null

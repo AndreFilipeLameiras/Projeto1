@@ -50,7 +50,7 @@ class MenuPrincipalFragment : Fragment() {
         binding.buttonMarcas.setOnClickListener {
             findNavController().navigate(R.id.action_navhome_to_listaMarcasFragment)
         }
-
+/*
         binding.buttonJantes.setOnClickListener {
             findNavController().navigate(R.id.action_navhome_to_listaJantesFragment)
         }
@@ -69,7 +69,7 @@ class MenuPrincipalFragment : Fragment() {
 
         binding.buttonCombustivel.setOnClickListener{
             findNavController().navigate(R.id.action_navhome_to_listaCombustivelFragment)
-        }
+        }*/
 
         /*binding.buttonCor.setOnClickListener{
             findNavController().navigate(R.id.action_navhome_to_listaCoresFragment)

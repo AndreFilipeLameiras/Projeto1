@@ -246,7 +246,7 @@ class BaseDadosTest {
         val marca = Marca("Ferrari")
         marca.id = insereMarca(TabelaBDMarcas(db), marca)
 
-        val modelo = Modelo("F8 Tributo", 78451.21, idMarca = marca.id, nomeMarca = marca.nome)
+        val modelo = Modelo("F8 Tributo", 78451.21, marca.id, "Ferrari" )
         modelo.id = insereModelo(TabelaBDModelo(db), modelo)
 
         val cursor = TabelaBDModelo(db).query(
@@ -696,7 +696,7 @@ class BaseDadosTest {
 
         TabelaBDMotorizacoes(db).insert(motorizacao.toContentValues())
     }
-/*
+
     @Test
     fun consegueAlterarMotorizacao(){
         val db = getBdCarrosOpenHelper().writableDatabase
@@ -740,8 +740,8 @@ class BaseDadosTest {
         assertEquals(1, registosAlterados)
 
         db.close()
-    }*/
-/*
+    }
+
 
     @Test
     fun consegueEliminarMotorizacao(){
@@ -776,6 +776,8 @@ class BaseDadosTest {
     fun consegueLerMotorizacao(){
         val db = getBdCarrosOpenHelper().writableDatabase
 
+
+
         val transmissao = Transmissao("Automatica")
         insereTransmissao(db, transmissao)
 
@@ -807,6 +809,6 @@ class BaseDadosTest {
 
         db.close()
     }
-*/
+
 
 }
