@@ -348,5 +348,17 @@
         <action
             android:id="@+id/action_listaCarrosFragment_to_navhome"
             app:destination="@id/navhome" />
+        <action
+            android:id="@+id/action_listaCarrosFragment_to_inserirCarroFragment"
+            app:destination="@id/inserirCarroFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/inserirCarroFragment"
+        android:name="pt.ipg.projeto.InserirCarroFragment"
+        android:label="fragment_inserir_carro"
+        tools:layout="@layout/fragment_inserir_carro" >
+        <action
+            android:id="@+id/action_inserirCarroFragment_to_listaCarrosFragment"
+            app:destination="@id/listaCarrosFragment" />
     </fragment>
 </navigation>
