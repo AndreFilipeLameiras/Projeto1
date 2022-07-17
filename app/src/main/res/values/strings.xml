@@ -180,7 +180,8 @@
     <string name="erro_eliminar_carro">Erro ao eliminar carro</string>
     <string name="carro_eliminado_sucesso">Carro eliminado com sucesso</string>
     <string name="confirma_eliminar_carro">Tem a certeza que pretende eliminar este carro?</string>
-
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

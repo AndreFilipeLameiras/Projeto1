@@ -1,6 +1,7 @@
 package pt.ipg.projeto
 
 import android.database.Cursor
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -184,23 +185,79 @@ class EditarCarroFragment : Fragment() , LoaderManager.LoaderCallbacks<Cursor>{
     }
 
     private fun atualizaModeloSelecionado() {
-        TODO("Not yet implemented")
+        if(carro == null) return
+        val idModelo = carro!!.modelo.id
+
+
+        val ultimoModelo = binding.spinnerModelos.count - 1
+
+        for (i in 0..ultimoModelo){
+            if(binding.spinnerModelos.getItemIdAtPosition(i) == idModelo){
+                binding.spinnerModelos.setSelection(i)
+                return
+            }
+        }
     }
 
     private fun atualizaMotorizacaoSelecionado() {
-        TODO("Not yet implemented")
+        if(carro == null) return
+        val idMotorizacao = carro!!.motorizacao.id
+
+
+        val ultimaMotorizacao = binding.spinnerMotorizacao.count - 1
+
+        for (i in 0..ultimaMotorizacao){
+            if(binding.spinnerMotorizacao.getItemIdAtPosition(i) == idMotorizacao){
+                binding.spinnerMotorizacao.setSelection(i)
+                return
+            }
+        }
     }
 
     private fun atualizaCoresSelecionado() {
-        TODO("Not yet implemented")
+        if(carro == null) return
+        val idCor = carro!!.cores.id
+
+
+        val ultimaCor = binding.spinnerCores.count - 1
+
+        for (i in 0..ultimaCor){
+            if(binding.spinnerCores.getItemIdAtPosition(i) == idCor){
+                binding.spinnerCores.setSelection(i)
+                return
+            }
+        }
     }
 
     private fun atualizaEstofosSelecionado() {
-        TODO("Not yet implemented")
+        if(carro == null) return
+        val idEstofo = carro!!.estofos.id
+
+
+        val ultimoEstofo = binding.spinnerEstofos.count - 1
+
+        for (i in 0..ultimoEstofo){
+            if(binding.spinnerEstofos.getItemIdAtPosition(i) == idEstofo){
+                binding.spinnerEstofos.setSelection(i)
+                return
+            }
+        }
     }
 
     private fun atualizaJantesSelecionado() {
-        TODO("Not yet implemented")
+        if(carro == null) return
+        val idJante = carro!!.jante.id
+
+
+        val ultimaJante = binding.spinnerJantes.count - 1
+
+        for (i in 0..ultimaJante){
+            if(binding.spinnerJantes.getItemIdAtPosition(i) == idJante){
+                binding.spinnerJantes.setSelection(i)
+                return
+            }
+        }
+
     }
 
     /**
@@ -266,25 +323,50 @@ class EditarCarroFragment : Fragment() , LoaderManager.LoaderCallbacks<Cursor>{
             binding.spinnerJantes.requestFocus()
             return
         }
-        
-        insereCarro(idModelo, idMotorizacao, idCor, idEstofo, idJante)
+
+        val carroGuardado =
+            if (carro == null) {
+                insereCarro(idModelo, idMotorizacao, idCor, idEstofo, idJante)
+            } else {
+                alteraCarro(idModelo, idMotorizacao, idCor, idEstofo, idJante)
+            }
+
+        if (carroGuardado) {
+            Toast.makeText(requireContext(), R.string.carro_guardado_sucesso, Toast.LENGTH_LONG)
+                .show()
+            navegaListaCarros()
+        } else {
+            Snackbar.make(binding.spinnerModelos, R.string.erro_guardar_carro, Snackbar.LENGTH_INDEFINITE).show()
+            return
+        }
         
     }
 
-    private fun insereCarro(idModelo: Long, idMotorizacao: Long, idCor: Long, idEstofo: Long, idJante: Long) {
+    private fun alteraCarro(idModelo: Long, idMotorizacao: Long, idCor: Long, idEstofo: Long, idJante: Long) :Boolean{
+        val carro = Carro(Modelo(nomeModelo = "", preco = toString().toDouble(), nomeMarca = Marca(nome = ""),id = idModelo), Motorizacao(potencia = toString().toLong() , consumo = toString().toDouble(), emissoes = toString().toDouble(), transmissao = Transmissao(nome = ""), Tracao(nome = ""), Combustivel(nome = ""), id = idMotorizacao),
+            Cores(nome = "", preco = toString().toDouble(), id = idCor), Estofos(nome = "", preco = toString().toDouble(), id = idEstofo), Jante(nome = "", largura = toString().toLong(), altura = toString().toLong(), raio = toString().toLong(), preco = toString().toDouble(), id = idJante), id = toString().toLong() )
 
-        val carro = Carro(Modelo(id = idModelo), Motorizacao(id = idMotorizacao), Cores(id = idCor), Estofos(id = idEstofo), Jante(id = idJante))
+        val enderecoCarro = Uri.withAppendedPath(ContentProviderCarros.ENDERECO_CARROS, "${this.carro!!.id}")
+
+        val registosAlterados = requireActivity().contentResolver.update(enderecoCarro, carro.toContentValues(), null, null)
+
+        return registosAlterados == 1
+
+    }
+
+
+    private fun insereCarro(idModelo: Long, idMotorizacao: Long, idCor: Long, idEstofo: Long, idJante: Long) :Boolean {
+
+        val carro = Carro(Modelo(nomeModelo = "", preco = toString().toDouble(), nomeMarca = Marca(nome = ""),id = idModelo), Motorizacao(potencia = toString().toLong() , consumo = toString().toDouble(), emissoes = toString().toDouble(), transmissao = Transmissao(nome = ""), Tracao(nome = ""), Combustivel(nome = ""), id = idMotorizacao),
+            Cores(nome = "", preco = toString().toDouble(), id = idCor), Estofos(nome = "", preco = toString().toDouble(), id = idEstofo), Jante(nome = "", largura = toString().toLong(), altura = toString().toLong(), raio = toString().toLong(), preco = toString().toDouble(), id = idJante), id = toString().toLong() )
+
 
         val enderecoCarroInserido = requireActivity().contentResolver.insert(ContentProviderCarros.ENDERECO_CARROS, carro.toContentValues())
 
-        if(enderecoCarroInserido == null){
-            Snackbar.make(binding.textViewModelos , R.string.erro_guardar_carro, Snackbar.LENGTH_INDEFINITE).show()
-            return
-        }
+
+        return enderecoCarroInserido != null
 
 
-        Toast.makeText(requireContext(), R.string.carro_guardado_sucesso, Toast.LENGTH_LONG).show()
-        navegaListaCarros()
 
     }
 
