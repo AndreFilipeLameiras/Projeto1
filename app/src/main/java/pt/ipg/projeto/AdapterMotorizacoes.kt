@@ -1,10 +1,22 @@
 package pt.ipg.projeto
 
+import android.database.Cursor
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
 class AdapterMotorizacoes :RecyclerView.Adapter<AdapterMotorizacoes.ViewHolderMotorizacoes>() {
+    var cursor: Cursor? = null
+        get() = field
+        set(value) {
+            if (field != value) {
+                field = value
+                notifyDataSetChanged()
+            }
+        }
+
+
+
     class ViewHolderMotorizacoes (itemView: View) : RecyclerView.ViewHolder(itemView){
 
     }
