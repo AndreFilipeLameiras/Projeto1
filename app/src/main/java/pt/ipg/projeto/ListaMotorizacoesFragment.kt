@@ -156,11 +156,16 @@ class ListaMotorizacoesFragment : Fragment(), LoaderManager.LoaderCallbacks<Curs
     fun processaOpcaoMenu(item: MenuItem) : Boolean =
         when(item.itemId) {
             R.id.action_inserir -> {
-                findNavController().navigate(R.id.action_listaMotorizacoesFragment_to_inserirMotorizacaoFragment)
+                val acao = ListaMotorizacoesFragmentDirections.actionListaMotorizacoesFragmentToInserirMotorizacaoFragment()
+                findNavController().navigate(acao)
                 true
             }
             R.id.action_alterar -> true
-            R.id.action_eliminar -> true
+            R.id.action_eliminar -> {
+                val acao = ListaMotorizacoesFragmentDirections.actionListaMotorizacoesFragmentToEliminaMotorizacaoFragment(motorizacaoSelecionada!!)
+                findNavController().navigate(acao)
+                true
+            }
             else -> false
         }
 

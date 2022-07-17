@@ -416,5 +416,8 @@
         <action
             android:id="@+id/action_eliminaMotorizacaoFragment_to_listaMotorizacoesFragment"
             app:destination="@id/listaMotorizacoesFragment" />
+        <argument
+            android:name="motorizacao"
+            app:argType="pt.ipg.projeto.Motorizacao" />
     </fragment>
 </navigation>

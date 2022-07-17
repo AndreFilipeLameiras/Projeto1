@@ -137,6 +137,8 @@ class MainActivity : AppCompatActivity() {
             opcaoProcessada = (fragment as ListaMotorizacoesFragment).processaOpcaoMenu(item)
         }else if (fragment is InserirMotorizacaoFragment) {
             opcaoProcessada = (fragment as InserirMotorizacaoFragment).processaOpcaoMenu(item)
+        }else if (fragment is EliminaMotorizacaoFragment) {
+            opcaoProcessada = (fragment as EliminaMotorizacaoFragment).processaOpcaoMenu(item)
         }
 
 

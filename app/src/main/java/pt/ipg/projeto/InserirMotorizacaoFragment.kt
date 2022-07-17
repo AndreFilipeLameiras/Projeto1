@@ -52,7 +52,7 @@ class InserirMotorizacaoFragment : Fragment(), LoaderManager.LoaderCallbacks<Cur
         LoaderManager.getInstance(this).initLoader(ID_LOADER_TRACAO, null, this)
         LoaderManager.getInstance(this).initLoader(ID_LOADER_COMBUSTIVEL, null, this)
 
-        val activity = activity as MainActivity
+        val activity = requireActivity() as MainActivity
         activity.fragment = this
         activity.idMenuAtual = R.menu.menu_edicao
     }
