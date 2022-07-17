@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_navhome_to_listaCarrosFragment"
             app:destination="@id/listaCarrosFragment" />
+        <action
+            android:id="@+id/action_navhome_to_listaMotorizacoesFragment"
+            app:destination="@id/listaMotorizacoesFragment" />
     </fragment>
 
     <fragment
@@ -380,5 +383,14 @@
         <argument
             android:name="carro"
             app:argType="pt.ipg.projeto.Carro" />
+    </fragment>
+    <fragment
+        android:id="@+id/listaMotorizacoesFragment"
+        android:name="pt.ipg.projeto.ListaMotorizacoesFragment"
+        android:label="fragment_lista_motorizacoes"
+        tools:layout="@layout/fragment_lista_motorizacoes" >
+        <action
+            android:id="@+id/action_listaMotorizacoesFragment_to_navhome"
+            app:destination="@id/navhome" />
     </fragment>
 </navigation>

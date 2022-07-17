@@ -55,6 +55,10 @@ class MenuPrincipalFragment : Fragment() {
             findNavController().navigate(R.id.action_navhome_to_listaCarrosFragment)
         }
 
+        binding.buttonMotorizacoes.setOnClickListener{
+            findNavController().navigate(R.id.action_navhome_to_listaMotorizacoesFragment)
+        }
+
 /*
         binding.buttonJantes.setOnClickListener {
             findNavController().navigate(R.id.action_navhome_to_listaJantesFragment)
