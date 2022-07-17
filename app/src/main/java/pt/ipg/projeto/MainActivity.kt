@@ -81,8 +81,10 @@ class MainActivity : AppCompatActivity() {
             opcaoProcessada = (fragment as MenuPrincipalFragment).processaOpcaoMenu(item)
         }else if (fragment is ListaCarrosFragment) {
             opcaoProcessada = (fragment as ListaCarrosFragment).processaOpcaoMenu(item)
-        }else if (fragment is InserirCarroFragment) {
-            opcaoProcessada = (fragment as InserirCarroFragment).processaOpcaoMenu(item)
+        }else if (fragment is EditarCarroFragment) {
+            opcaoProcessada = (fragment as EditarCarroFragment).processaOpcaoMenu(item)
+        }else if (fragment is EliminarCarroFragment) {
+            opcaoProcessada = (fragment as EliminarCarroFragment).processaOpcaoMenu(item)
         }else if (fragment is ListaMarcasFragment) {
             opcaoProcessada = (fragment as ListaMarcasFragment).processaOpcaoMenu(item)
         } else if (fragment is EditarMarcaFragment) {

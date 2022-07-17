@@ -19,10 +19,10 @@ class ListaCarrosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     var carroSeleccionado : Carro? = null
         get() = field
         set(value) {
-            if (value != field) {
+
                 field = value
                 (requireActivity() as MainActivity).mostraOpcoesAlterarEliminar(field != null)
-            }
+
         }
 
 
@@ -146,19 +146,26 @@ class ListaCarrosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
      * @param loader The Loader that is being reset.
      */
     override fun onLoaderReset(loader: Loader<Cursor>) {
+        if (_binding == null) return
         adapterCarros!!.cursor = null
     }
 
     fun processaOpcaoMenu(item: MenuItem) : Boolean =
         when(item.itemId) {
             R.id.action_inserir -> {
-                val acao = ListaCarrosFragmentDirections.actionListaCarrosFragmentToInserirCarroFragment()
+                val acao = ListaCarrosFragmentDirections.actionListaCarrosFragmentToEditarCarroFragment()
                 findNavController().navigate(acao)
+                (activity as MainActivity).atualizaTitulo(R.string.inserir_carro_label)
                 true
             }
-            R.id.action_alterar -> true
+            R.id.action_alterar -> {
+                val acao = ListaCarrosFragmentDirections.actionListaCarrosFragmentToEditarCarroFragment(carroSeleccionado)
+                findNavController().navigate(acao)
+                (activity as MainActivity).atualizaTitulo(R.string.alterar_carro_label)
+                true
+            }
             R.id.action_eliminar -> {
-                val acao = ListaCarrosFragmentDirections.actionListaCarrosFragmentToEliminarCarroFragment()
+                val acao = ListaCarrosFragmentDirections.actionListaCarrosFragmentToEliminarCarroFragment(carroSeleccionado!!)
                 findNavController().navigate(acao)
                 true
             }

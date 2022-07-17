@@ -15,20 +15,22 @@ import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
-import pt.ipg.projeto.databinding.FragmentInserirCarroBinding
+import pt.ipg.projeto.databinding.FragmentEditarCarroBinding
 
 
 /**
  * A simple [Fragment] subclass.
- * Use the [InserirCarroFragment.newInstance] factory method to
+ * Use the [EditarCarroFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class InserirCarroFragment : Fragment() , LoaderManager.LoaderCallbacks<Cursor>{
-    private var _binding: FragmentInserirCarroBinding? = null
+class EditarCarroFragment : Fragment() , LoaderManager.LoaderCallbacks<Cursor>{
+    private var _binding: FragmentEditarCarroBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+
+    private var carro: Carro? = null
 
 
     override fun onCreateView(
@@ -36,7 +38,7 @@ class InserirCarroFragment : Fragment() , LoaderManager.LoaderCallbacks<Cursor>{
         savedInstanceState: Bundle?
     ): View? {
 
-        _binding = FragmentInserirCarroBinding.inflate(inflater, container, false)
+        _binding = FragmentEditarCarroBinding.inflate(inflater, container, false)
         // Inflate the layout for this fragment
         return binding.root
     }
@@ -56,9 +58,22 @@ class InserirCarroFragment : Fragment() , LoaderManager.LoaderCallbacks<Cursor>{
         LoaderManager.getInstance(this).initLoader(ID_LOADER_ESTOFOS, null, this)
         LoaderManager.getInstance(this).initLoader(ID_LOADER_JANTES, null, this)
 
-        val activity = activity as MainActivity
+        val activity = requireActivity() as MainActivity
         activity.fragment = this
         activity.idMenuAtual = R.menu.menu_edicao
+
+        if(arguments != null){
+            carro = EditarCarroFragmentArgs.fromBundle(arguments!!).carro
+
+
+        }
+
+        LoaderManager.getInstance(this).initLoader(ID_LOADER_MODELOS, null, this)
+        LoaderManager.getInstance(this).initLoader(ID_LOADER_MOTORIZACAO, null, this)
+        LoaderManager.getInstance(this).initLoader(ID_LOADER_COR, null, this)
+        LoaderManager.getInstance(this).initLoader(ID_LOADER_ESTOFOS, null, this)
+        LoaderManager.getInstance(this).initLoader(ID_LOADER_JANTES, null, this)
+
 
     }
 
@@ -159,6 +174,33 @@ class InserirCarroFragment : Fragment() , LoaderManager.LoaderCallbacks<Cursor>{
         binding.spinnerCores.adapter = adapterCores
         binding.spinnerEstofos.adapter = adapterEstofos
         binding.spinnerJantes.adapter = adapterJante
+
+        atualizaModeloSelecionado()
+        atualizaMotorizacaoSelecionado()
+        atualizaCoresSelecionado()
+        atualizaEstofosSelecionado()
+        atualizaJantesSelecionado()
+
+    }
+
+    private fun atualizaModeloSelecionado() {
+        TODO("Not yet implemented")
+    }
+
+    private fun atualizaMotorizacaoSelecionado() {
+        TODO("Not yet implemented")
+    }
+
+    private fun atualizaCoresSelecionado() {
+        TODO("Not yet implemented")
+    }
+
+    private fun atualizaEstofosSelecionado() {
+        TODO("Not yet implemented")
+    }
+
+    private fun atualizaJantesSelecionado() {
+        TODO("Not yet implemented")
     }
 
     /**
@@ -172,6 +214,7 @@ class InserirCarroFragment : Fragment() , LoaderManager.LoaderCallbacks<Cursor>{
      * @param loader The Loader that is being reset.
      */
     override fun onLoaderReset(loader: Loader<Cursor>) {
+        if (_binding == null) return
         binding.spinnerModelos.adapter = null
         binding.spinnerMotorizacao.adapter = null
         binding.spinnerCores.adapter = null
@@ -246,7 +289,7 @@ class InserirCarroFragment : Fragment() , LoaderManager.LoaderCallbacks<Cursor>{
     }
 
     private fun navegaListaCarros() {
-        findNavController().navigate(R.id.action_inserirCarroFragment_to_listaCarrosFragment)
+        findNavController().navigate(R.id.action_editarCarroFragment_to_listaCarrosFragment)
     }
 
 

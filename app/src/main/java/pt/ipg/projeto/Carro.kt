@@ -3,6 +3,7 @@ package pt.ipg.projeto
 import android.content.ContentValues
 import android.database.Cursor
 import android.provider.BaseColumns
+import java.io.Serializable
 
 data class Carro (
     var modelo: Modelo,
@@ -11,7 +12,7 @@ data class Carro (
     var estofos: Estofos,
     var jante: Jante,
     var id: Long
-){
+) : Serializable {
     fun toContentValues(): ContentValues{
         val valores = ContentValues()
 
