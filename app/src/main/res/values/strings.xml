@@ -151,7 +151,7 @@
     <string name="emissoes_obrigatorias">Preencha as emissoes</string>
     <string name="erro_guardar_motorizacao">Erro ao guardar motorizacao</string>
     <string name="motorizacao_guardada_sucesso">motorizacao guardada com sucesso</string>
-    <string name="elimina_motorizacao">Elimina motorizacao</string>
+    <string name="elimina_motorizacao">Elimina motorização</string>
     <string name="erro_eliminar_motorizacao">Erro ao eliminar motorizacao</string>
     <string name="motorizacao_eliminada_sucesso">motorizacao eliminada com sucesso</string>
     <string name="confirma_eliminar_motorizacao">Tem a certeza que pretende eliminar esta motorizacao?</string>

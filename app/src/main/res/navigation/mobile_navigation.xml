@@ -395,6 +395,9 @@
         <action
             android:id="@+id/action_listaMotorizacoesFragment_to_inserirMotorizacaoFragment"
             app:destination="@id/inserirMotorizacaoFragment" />
+        <action
+            android:id="@+id/action_listaMotorizacoesFragment_to_eliminaMotorizacaoFragment"
+            app:destination="@id/eliminaMotorizacaoFragment" />
     </fragment>
     <fragment
         android:id="@+id/inserirMotorizacaoFragment"
@@ -403,6 +406,15 @@
         tools:layout="@layout/fragment_inserir_motorizacao" >
         <action
             android:id="@+id/action_inserirMotorizacaoFragment_to_listaMotorizacoesFragment"
+            app:destination="@id/listaMotorizacoesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/eliminaMotorizacaoFragment"
+        android:name="pt.ipg.projeto.EliminaMotorizacaoFragment"
+        android:label="fragment_elimina_motorizacao"
+        tools:layout="@layout/fragment_elimina_motorizacao" >
+        <action
+            android:id="@+id/action_eliminaMotorizacaoFragment_to_listaMotorizacoesFragment"
             app:destination="@id/listaMotorizacoesFragment" />
     </fragment>
 </navigation>

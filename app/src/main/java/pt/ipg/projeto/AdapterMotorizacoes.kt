@@ -52,6 +52,7 @@ class AdapterMotorizacoes(val fragment: ListaMotorizacoesFragment) :RecyclerView
         private fun seleciona() {
             itemView.setBackgroundResource(android.R.color.holo_orange_light)
             viewHolderSelecionado = this
+            fragment.motorizacaoSelecionada = motorizacao
         }
 
         private fun desSeleciona(){

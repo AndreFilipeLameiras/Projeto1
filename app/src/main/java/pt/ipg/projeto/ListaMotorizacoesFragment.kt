@@ -21,7 +21,14 @@ import pt.ipg.projeto.databinding.FragmentListaMotorizacoesBinding
  * create an instance of this fragment.
  */
 class ListaMotorizacoesFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
-
+    var motorizacaoSelecionada : Motorizacao? = null
+        get() = field
+        set(value) {
+            if (value != field) {
+                field = value
+                (requireActivity() as MainActivity).mostraOpcoesAlterarEliminar(field != null)
+            }
+        }
 
     private var _binding: FragmentListaMotorizacoesBinding? = null
     private var adapterMotorizacoes: AdapterMotorizacoes? = null
