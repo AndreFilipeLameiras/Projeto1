@@ -392,5 +392,17 @@
         <action
             android:id="@+id/action_listaMotorizacoesFragment_to_navhome"
             app:destination="@id/navhome" />
+        <action
+            android:id="@+id/action_listaMotorizacoesFragment_to_inserirMotorizacaoFragment"
+            app:destination="@id/inserirMotorizacaoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/inserirMotorizacaoFragment"
+        android:name="pt.ipg.projeto.InserirMotorizacaoFragment"
+        android:label="fragment_inserir_motorizacao"
+        tools:layout="@layout/fragment_inserir_motorizacao" >
+        <action
+            android:id="@+id/action_inserirMotorizacaoFragment_to_listaMotorizacoesFragment"
+            app:destination="@id/listaMotorizacoesFragment" />
     </fragment>
 </navigation>

@@ -135,6 +135,8 @@ class MainActivity : AppCompatActivity() {
             opcaoProcessada = (fragment as EliminarCorFragment).processaOpcaoMenu(item)
         }else if (fragment is ListaMotorizacoesFragment) {
             opcaoProcessada = (fragment as ListaMotorizacoesFragment).processaOpcaoMenu(item)
+        }else if (fragment is InserirMotorizacaoFragment) {
+            opcaoProcessada = (fragment as InserirMotorizacaoFragment).processaOpcaoMenu(item)
         }
 
 

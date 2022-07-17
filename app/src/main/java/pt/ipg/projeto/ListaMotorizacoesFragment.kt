@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import pt.ipg.projeto.databinding.FragmentListaMotorizacoesBinding
 
@@ -147,7 +148,10 @@ class ListaMotorizacoesFragment : Fragment(), LoaderManager.LoaderCallbacks<Curs
 
     fun processaOpcaoMenu(item: MenuItem) : Boolean =
         when(item.itemId) {
-            R.id.action_inserir -> true
+            R.id.action_inserir -> {
+                findNavController().navigate(R.id.action_listaMotorizacoesFragment_to_inserirMotorizacaoFragment)
+                true
+            }
             R.id.action_alterar -> true
             R.id.action_eliminar -> true
             else -> false
