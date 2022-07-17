@@ -146,7 +146,15 @@
     <string name="confirma_eliminar_estof">Tem a certeza que pretende eliminar este estofo?</string>
 
     <string name="motorizacao_obrigatoria">Preencha o Nome da motorizaçao</string>
-
+    <string name="potencia_obrigatoria">Preencha a Potencia</string>
+    <string name="consumo_obrigatorio">Preencha o Consumo</string>
+    <string name="emissoes_obrigatorias">Preencha as emissoes</string>
+    <string name="erro_guardar_motorizacao">Erro ao guardar motorizacao</string>
+    <string name="motorizacao_guardada_sucesso">motorizacao guardada com sucesso</string>
+    <string name="elimina_motorizacao">Elimina motorizacao</string>
+    <string name="erro_eliminar_motorizacao">Erro ao eliminar motorizacao</string>
+    <string name="motorizacao_eliminada_sucesso">motorizacao eliminada com sucesso</string>
+    <string name="confirma_eliminar_motorizacao">Tem a certeza que pretende eliminar esta motorizacao?</string>
 
     <string name="nome_tracao_obrigatorio">Preencha o Nome da traçao</string>
     <string name="tracao">Traçao</string>

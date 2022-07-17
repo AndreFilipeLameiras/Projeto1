@@ -16,15 +16,20 @@ class AdapterMotorizacoes(val fragment: ListaMotorizacoesFragment) :RecyclerView
             }
         }
 
+    var viewHolderSelecionado : ViewHolderMotorizacoes? = null
 
-
-    class ViewHolderMotorizacoes (itemMotorizacao: View) : RecyclerView.ViewHolder(itemMotorizacao){
+    inner class ViewHolderMotorizacoes (itemMotorizacao: View) : RecyclerView.ViewHolder(itemMotorizacao), View.OnClickListener{
         val textViewPotencia = itemMotorizacao.findViewById<TextView>(R.id.textViewPotencia)
         val textViewConsumo = itemMotorizacao.findViewById<TextView>(R.id.textViewConsumo)
         val textViewEmissao = itemMotorizacao.findViewById<TextView>(R.id.textViewEmissoes)
         val textViewTransmissao = itemMotorizacao.findViewById<TextView>(R.id.textViewTransmissao)
         val textViewTracao = itemMotorizacao.findViewById<TextView>(R.id.textViewTracao)
         val textViewCombustivel = itemMotorizacao.findViewById<TextView>(R.id.textViewCombustivel)
+
+        init {
+            itemMotorizacao.setOnClickListener(this)
+        }
+
 
         var motorizacao: Motorizacao? = null
             get() = field
@@ -38,6 +43,21 @@ class AdapterMotorizacoes(val fragment: ListaMotorizacoesFragment) :RecyclerView
                 textViewTracao.text = motorizacao?.tracao?.nome?: ""
                 textViewCombustivel.text = motorizacao?.combustivel?.nome?: ""
             }
+
+        override fun onClick(p0: View?) {
+            viewHolderSelecionado?.desSeleciona()
+            seleciona()
+        }
+
+        private fun seleciona() {
+            itemView.setBackgroundResource(android.R.color.holo_orange_light)
+            viewHolderSelecionado = this
+        }
+
+        private fun desSeleciona(){
+            itemView.setBackgroundResource(android.R.color.white)
+        }
+
     }
 
     /**
