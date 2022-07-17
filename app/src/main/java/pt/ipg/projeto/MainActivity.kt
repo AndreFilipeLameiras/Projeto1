@@ -133,6 +133,8 @@ class MainActivity : AppCompatActivity() {
             opcaoProcessada = (fragment as EditarCorFragment).processaOpcaoMenu(item)
         }else if (fragment is EliminarCorFragment) {
             opcaoProcessada = (fragment as EliminarCorFragment).processaOpcaoMenu(item)
+        }else if (fragment is ListaMotorizacoesFragment) {
+            opcaoProcessada = (fragment as ListaMotorizacoesFragment).processaOpcaoMenu(item)
         }
 
 

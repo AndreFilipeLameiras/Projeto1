@@ -82,6 +82,14 @@
     <string name="alterar_carro_label">Alterar carro</string>
     <string name="eliminar_carro_label">Eliminar carro</string>
 
+    <string name="potencia">Potencia</string>
+    <string name="consumo">Consumo</string>
+    <string name="emissao">Emissao</string>
+
+    <string name="lista_motorizacao_label">Lista das Motorizacoes</string>
+    <string name="inserir_motorizacao_label">Inserir motorizacao</string>
+    <string name="alterar_motorizacao_label">Alterar motorizacao</string>
+    <string name="eliminar_motorizacao_label">Eliminar motorizacao</string>
 
     <string name="previous">Voltar</string>
 

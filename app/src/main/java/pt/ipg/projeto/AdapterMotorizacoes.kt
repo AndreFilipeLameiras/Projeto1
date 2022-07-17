@@ -3,9 +3,10 @@ package pt.ipg.projeto
 import android.database.Cursor
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class AdapterMotorizacoes :RecyclerView.Adapter<AdapterMotorizacoes.ViewHolderMotorizacoes>() {
+class AdapterMotorizacoes(val fragment: ListaMotorizacoesFragment) :RecyclerView.Adapter<AdapterMotorizacoes.ViewHolderMotorizacoes>() {
     var cursor: Cursor? = null
         get() = field
         set(value) {
@@ -17,8 +18,26 @@ class AdapterMotorizacoes :RecyclerView.Adapter<AdapterMotorizacoes.ViewHolderMo
 
 
 
-    class ViewHolderMotorizacoes (itemView: View) : RecyclerView.ViewHolder(itemView){
+    class ViewHolderMotorizacoes (itemMotorizacao: View) : RecyclerView.ViewHolder(itemMotorizacao){
+        val textViewPotencia = itemMotorizacao.findViewById<TextView>(R.id.textViewPotencia)
+        val textViewConsumo = itemMotorizacao.findViewById<TextView>(R.id.textViewConsumo)
+        val textViewEmissao = itemMotorizacao.findViewById<TextView>(R.id.textViewEmissoes)
+        val textViewTransmissao = itemMotorizacao.findViewById<TextView>(R.id.textViewTransmissao)
+        val textViewTracao = itemMotorizacao.findViewById<TextView>(R.id.textViewTracao)
+        val textViewCombustivel = itemMotorizacao.findViewById<TextView>(R.id.textViewCombustivel)
 
+        var motorizacao: Motorizacao? = null
+            get() = field
+            set(value: Motorizacao?) {
+                field = value
+
+                textViewPotencia.text = motorizacao?.potencia.toString()
+                textViewConsumo.text = motorizacao?.consumo.toString()
+                textViewEmissao.text = motorizacao?.emissoes.toString()
+                textViewTransmissao.text = motorizacao?.transmissao?.nome?: ""
+                textViewTracao.text = motorizacao?.tracao?.nome?: ""
+                textViewCombustivel.text = motorizacao?.combustivel?.nome?: ""
+            }
     }
 
     /**
@@ -45,7 +64,8 @@ class AdapterMotorizacoes :RecyclerView.Adapter<AdapterMotorizacoes.ViewHolderMo
      * @see .onBindViewHolder
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderMotorizacoes {
-        TODO("Not yet implemented")
+        val itemMotorizacao = fragment.layoutInflater.inflate(R.layout.item_motorizacao, parent, false)
+        return ViewHolderMotorizacoes(itemMotorizacao)
     }
 
     /**
@@ -70,7 +90,8 @@ class AdapterMotorizacoes :RecyclerView.Adapter<AdapterMotorizacoes.ViewHolderMo
      * @param position The position of the item within the adapter's data set.
      */
     override fun onBindViewHolder(holder: ViewHolderMotorizacoes, position: Int) {
-        TODO("Not yet implemented")
+        cursor!!.moveToPosition(position)
+        holder.motorizacao = Motorizacao.fromCursor(cursor!!)
     }
 
     /**
@@ -79,6 +100,8 @@ class AdapterMotorizacoes :RecyclerView.Adapter<AdapterMotorizacoes.ViewHolderMo
      * @return The total number of items in this adapter.
      */
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        if (cursor == null) return 0
+
+        return cursor!!.count
     }
 }

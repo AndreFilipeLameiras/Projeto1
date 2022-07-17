@@ -4,6 +4,7 @@ import android.database.Cursor
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.loader.app.LoaderManager
@@ -43,9 +44,14 @@ class ListaMotorizacoesFragment : Fragment(), LoaderManager.LoaderCallbacks<Curs
         LoaderManager.getInstance(this).initLoader(ID_LOADER_MOTORIZAZCOES, null, this)
 
 
-        adapterMotorizacoes = AdapterMotorizacoes()
+        adapterMotorizacoes = AdapterMotorizacoes(this)
         binding.recyclerViewMotorizacao.adapter = adapterMotorizacoes
         binding.recyclerViewMotorizacao.layoutManager = LinearLayoutManager(requireContext())
+
+        val activity = activity as MainActivity
+        activity.fragment = this
+        activity.idMenuAtual = R.menu.menu_lista
+
     }
 
 
@@ -137,6 +143,15 @@ class ListaMotorizacoesFragment : Fragment(), LoaderManager.LoaderCallbacks<Curs
     override fun onLoaderReset(loader: Loader<Cursor>) {
         adapterMotorizacoes!!.cursor = null
     }
+
+
+    fun processaOpcaoMenu(item: MenuItem) : Boolean =
+        when(item.itemId) {
+            R.id.action_inserir -> true
+            R.id.action_alterar -> true
+            R.id.action_eliminar -> true
+            else -> false
+        }
 
     companion object{
         const val ID_LOADER_MOTORIZAZCOES = 0
